@@ -1,0 +1,213 @@
+/* Maison Yama — socle commun : polices, tokens, en-tête, pied de page, cartes produit.
+   Chargé par toutes les pages, avant la feuille propre à la page. */
+
+/* ---------- Polices locales ---------- */
+/* Playfair Display et Poppins sont servies depuis assets/fonts/ : aucun appel à Google Fonts.
+   Deux sous-ensembles seulement (latin, latin-ext) — le reste est inutile en français. */
+@font-face{font-family:'Playfair';font-style:italic;font-weight:300;font-display:swap;src:url('../fonts/playfair-italic-300-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Playfair';font-style:italic;font-weight:300;font-display:swap;src:url('../fonts/playfair-italic-300-latinext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Playfair';font-style:italic;font-weight:400;font-display:swap;src:url('../fonts/playfair-italic-400-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Playfair';font-style:italic;font-weight:400;font-display:swap;src:url('../fonts/playfair-italic-400-latinext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Playfair';font-style:normal;font-weight:300;font-display:swap;src:url('../fonts/playfair-normal-300-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Playfair';font-style:normal;font-weight:300;font-display:swap;src:url('../fonts/playfair-normal-300-latinext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Playfair';font-style:normal;font-weight:400;font-display:swap;src:url('../fonts/playfair-normal-400-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Playfair';font-style:normal;font-weight:400;font-display:swap;src:url('../fonts/playfair-normal-400-latinext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Playfair';font-style:normal;font-weight:500;font-display:swap;src:url('../fonts/playfair-normal-500-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Playfair';font-style:normal;font-weight:500;font-display:swap;src:url('../fonts/playfair-normal-500-latinext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:300;font-display:swap;src:url('../fonts/poppins-normal-300-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:300;font-display:swap;src:url('../fonts/poppins-normal-300-latinext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:400;font-display:swap;src:url('../fonts/poppins-normal-400-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:400;font-display:swap;src:url('../fonts/poppins-normal-400-latinext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:500;font-display:swap;src:url('../fonts/poppins-normal-500-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:500;font-display:swap;src:url('../fonts/poppins-normal-500-latinext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+
+/* ---------- Tokens ---------- */
+:root{
+  /* fonds */
+  --ym-bg:#f8f6f0;          /* fond de page */
+  --ym-photo-bg:#ece7da;    /* fond derrière une photo en situation */
+  --ym-cutout-bg:#e7e3db;   /* fond derrière une photo produit détourée */
+  --ym-mist:#eef0e8;        /* encarts « écrin » */
+
+  /* texte */
+  --ym-ink:#2b2a22;         /* texte courant */
+  --ym-olive:#5b604a;       /* texte secondaire, prix */
+  --ym-muted:#747a60;       /* légendes, spécifications */
+  --ym-moss:#5f5a37;        /* liens discrets soulignés d'or */
+  --ym-cream:#f2ede0;       /* texte sur fond sauge */
+
+  /* verts */
+  --ym-sage:#97a082;        /* bandeau utilitaire, pied de page */
+  --ym-sage-soft:#a6ad91;   /* bande savoir-faire */
+  --ym-button:#868e6e;      /* boutons pleins */
+
+  /* ors */
+  --ym-gold:#b0894a;        /* filets, soulignés, état actif */
+  --ym-gold-deep:#a08a4e;   /* surtitres */
+  --ym-gold-soft:#d8c69a;   /* séparateurs du bandeau */
+  --ym-gold-cream:#f4ead0;  /* survol sur fond sauge, chiffres clés */
+  --ym-line:#e3dac6;        /* filets et bordures clairs */
+
+  /* typographie */
+  --ym-serif:'Playfair', serif;
+  --ym-sans:'Poppins', sans-serif;
+}
+
+/* ---------- Base ---------- */
+*{box-sizing:border-box;}
+body{margin:0; background:var(--ym-bg); color:var(--ym-ink); font-family:var(--ym-sans);}
+a{text-decoration:none; color:inherit;}
+img{display:block;}
+.ym-container{max-width:1260px; margin:0 auto; padding-left:clamp(20px,5vw,56px); padding-right:clamp(20px,5vw,56px);}
+
+/* ---------- Bandeau utilitaire ---------- */
+.ym-utility{display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:8px 12px; padding:10px 16px; background:var(--ym-sage); color:var(--ym-cream); font-size:11px; letter-spacing:.22em; text-transform:uppercase; font-weight:300; text-align:center;}
+.ym-utility .sep{color:var(--ym-gold-soft);}
+
+/* ---------- En-tête ---------- */
+header{border-bottom:1px solid rgba(117,112,71,.28); background:var(--ym-bg);}
+.ym-header{display:grid; grid-template-columns:1fr auto 1fr; align-items:center; padding-top:22px; padding-bottom:22px;}
+.ym-nav{display:flex; gap:34px; font-size:11.5px; letter-spacing:.16em; text-transform:uppercase;}
+.ym-nav a{padding-bottom:2px; border-bottom:1px solid transparent;}
+.ym-nav a:hover,
+.ym-nav a[aria-current="page"]{border-bottom-color:var(--ym-gold);}
+.ym-logo{display:flex; justify-content:center;}
+.ym-logo img{height:clamp(40px,5vw,52px); width:auto;}
+.ym-actions{display:flex; gap:22px; justify-content:flex-end; font-size:11.5px; letter-spacing:.16em; text-transform:uppercase;}
+.ym-actions a:hover{color:var(--ym-gold);}
+
+/* Bouton burger : masqué en desktop, révélé en mobile par la media query. */
+.ym-burger{display:none; flex-direction:column; justify-content:center; gap:5px; width:34px; height:34px; padding:0; background:none; border:0; cursor:pointer;}
+.ym-burger span{display:block; width:22px; height:1.5px; background:var(--ym-ink); transition:transform .3s ease, opacity .2s ease;}
+.ym-burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.ym-burger[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.ym-burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+
+/* ---------- Éléments d'écriture partagés ---------- */
+.ym-eyebrow{font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--ym-gold-deep);}
+.ym-rule{width:34px; height:1px; background:var(--ym-gold);}
+.ym-link{font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--ym-moss); border-bottom:1px solid var(--ym-gold); padding-bottom:3px;}
+.ym-link:hover{color:var(--ym-gold);}
+.ym-cta{font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--ym-bg); background:var(--ym-button); padding:17px 36px;}
+.ym-cta:hover{background:var(--ym-olive);}
+
+/* ---------- Intro de page (collection, la maison, savoir-faire) ---------- */
+.ym-intro{padding:clamp(40px,6vw,72px) 0 clamp(32px,4vw,48px); text-align:center;}
+.ym-intro .ym-eyebrow{margin-bottom:22px;}
+.ym-intro h1{font-family:var(--ym-serif); font-weight:300; font-size:clamp(34px,4.4vw,50px); line-height:1.1; margin:0 0 24px;}
+.ym-intro .ym-rule{margin:0 auto 30px;}
+.ym-intro p{font-family:var(--ym-serif); font-weight:300; font-size:clamp(18px,2.1vw,21px); line-height:1.55; color:var(--ym-olive); max-width:600px; margin:0 auto;}
+
+/* ---------- Hero de page : photo pleine largeur, voile, titre ---------- */
+.ym-page-hero{position:relative; min-height:clamp(420px,54vw,620px);}
+.ym-page-hero > img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+.ym-hero-veil{position:absolute; inset:0; background:linear-gradient(90deg, rgba(20,18,12,.55), rgba(20,18,12,.06) 62%);}
+/* content-box : la hauteur de bande s'ajoute aux marges au lieu de les absorber. */
+.ym-page-hero-copy{position:relative; box-sizing:content-box; min-height:clamp(420px,54vw,620px); display:flex; flex-direction:column; justify-content:center; padding-top:clamp(48px,7vw,80px); padding-bottom:clamp(48px,7vw,80px); color:#f6f1e4;}
+/* Enfant flex à marges auto : sans width, il se réduirait à la largeur de son texte. */
+.ym-page-hero-copy > .ym-container{width:100%;}
+.ym-page-hero .ym-eyebrow{letter-spacing:.3em; color:#e0c48a; margin-bottom:24px;}
+.ym-page-hero h1{font-family:var(--ym-serif); font-weight:300; font-size:clamp(38px,5.2vw,60px); line-height:1.1; margin:0 0 22px; max-width:640px;}
+.ym-page-hero h1 em{font-style:italic;}
+.ym-page-hero-copy p{font-family:var(--ym-serif); font-weight:300; font-size:clamp(19px,2.4vw,23px); line-height:1.5; max-width:520px; margin:0; color:#f1e7d5;}
+
+/* ---------- Section en deux volets : le texte d'un côté, la photo de l'autre ---------- */
+/* L'ordre du markup décide du côté ; sur mobile les volets s'empilent. */
+.ym-split{display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); align-items:stretch;}
+.ym-split-copy{display:flex; flex-direction:column; justify-content:center; padding:clamp(56px,8vw,104px) clamp(28px,5vw,96px);}
+.ym-split-copy .ym-eyebrow{margin-bottom:26px;}
+.ym-split-copy h2{font-family:var(--ym-serif); font-weight:300; font-size:clamp(30px,3.8vw,44px); line-height:1.15; margin:0 0 22px;}
+.ym-split-copy p{font-family:var(--ym-serif); font-weight:300; font-size:clamp(18px,2vw,20px); line-height:1.6; color:var(--ym-olive); max-width:430px; margin:0;}
+.ym-split-media{position:relative; min-height:clamp(360px,46vw,560px); background:#e2e4d8;}
+.ym-split-media img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+/* --reverse pose la photo à gauche en desktop tout en gardant, dans le DOM, le texte
+   avant la photo — donc au-dessus une fois les volets empilés en mobile. Le point de
+   bascule (680px) est celui où la grille repasse à une seule colonne (2 × 340px). */
+@media (min-width:680px){
+  .ym-split--reverse > .ym-split-copy{order:2;}
+}
+
+/* ---------- Manifeste centré ---------- */
+.ym-statement{padding:clamp(64px,9vw,112px) 0; text-align:center;}
+.ym-statement .ym-rule{margin:0 auto 34px;}
+.ym-statement p{font-family:var(--ym-serif); font-weight:300; font-size:clamp(24px,3.2vw,34px); line-height:1.5; max-width:860px; margin:0 auto;}
+.ym-statement em{font-style:italic; color:var(--ym-olive);}
+.ym-statement-foot{font-size:11px; letter-spacing:.26em; text-transform:uppercase; color:var(--ym-muted); margin-top:40px;}
+
+/* ---------- Bande savoir-faire et chiffres clés ---------- */
+.ym-craft{background:var(--ym-sage-soft); color:#f0ecdd; padding:clamp(64px,9vw,108px) 0;}
+.ym-craft-inner{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:clamp(40px,6vw,80px); align-items:center;}
+.ym-craft-label{font-size:12px; letter-spacing:.28em; text-transform:uppercase; color:#747a5f; margin-bottom:26px;}
+.ym-craft h2{font-family:var(--ym-serif); font-weight:300; font-size:clamp(32px,4vw,46px); line-height:1.12; margin:0 0 24px;}
+.ym-craft p{font-family:var(--ym-serif); font-weight:300; font-size:clamp(19px,2.2vw,21px); line-height:1.6; color:#e4dfcd; max-width:440px; margin:0;}
+.ym-stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(90px,1fr)); gap:24px; text-align:center;}
+.ym-stat-value{font-family:var(--ym-serif); font-weight:300; font-size:clamp(34px,4vw,44px); color:var(--ym-gold-cream);}
+/* « Luberon » est un mot, pas un nombre : il démarre plus petit pour ne pas déborder. */
+.ym-stat-value--word{font-size:clamp(30px,3.4vw,44px);}
+.ym-stat-label{font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:#747a5f; margin-top:12px;}
+
+/* ---------- Zoom au survol (fiche produit, savoir-faire) ---------- */
+/* Chaque page dimensionne son .ym-main-img ; ici on ne gère que le zoom lui-même.
+   --ym-zoom règle l'échelle atteinte au survol. */
+.ym-zoombox{position:relative; overflow:hidden; background:var(--ym-photo-bg); cursor:zoom-in;}
+.ym-main-img{transform-origin:center; transition:transform 1.1s cubic-bezier(.2,.7,.2,1);}
+.ym-zoombox:hover .ym-main-img{transform:scale(var(--ym-zoom, 2.6));}
+.ym-zoomhint{position:absolute; bottom:16px; left:16px; display:flex; align-items:center; gap:8px; padding:9px 15px; background:rgba(43,42,34,.62); color:#f4efe2; font-size:10px; letter-spacing:.16em; text-transform:uppercase; backdrop-filter:blur(3px); pointer-events:none; transition:opacity .4s ease;}
+.ym-zoombox:hover .ym-zoomhint{opacity:0;}
+.ym-zoomhint span{font-size:13px; line-height:1;}
+
+/* ---------- Cartes produit (accueil, collection, recommandations) ---------- */
+.ym-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:clamp(28px,4vw,44px) 30px;}
+.ym-card{display:block;}
+.ym-card:hover{opacity:.94;}
+.ym-shot{position:relative; aspect-ratio:4/5; overflow:hidden; background:var(--ym-cutout-bg);}
+.ym-shot img{position:absolute; inset:0; width:100%; height:100%;}
+.ym-worn{object-fit:cover;}
+.ym-cutout{object-fit:contain; background:var(--ym-cutout-bg);}
+/* .ym-fade est l'image du dessus : elle s'efface au survol pour révéler l'autre. */
+.ym-fade{transition:opacity .6s ease, transform 1s ease;}
+.ym-card:hover .ym-fade{opacity:0; transform:scale(1.05);}
+.ym-meta{display:flex; justify-content:space-between; align-items:baseline; gap:12px; padding:20px 2px 0;}
+.ym-name{font-family:var(--ym-serif); font-weight:300; font-size:25px;}
+.ym-spec{font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--ym-muted); margin-top:5px;}
+.ym-price{font-family:var(--ym-serif); font-weight:300; font-size:22px; color:var(--ym-olive); white-space:nowrap;}
+
+/* ---------- Pied de page ---------- */
+footer{background:var(--ym-sage); color:#e8e3d2; padding:clamp(56px,8vw,84px) 0 46px;}
+.ym-foot-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:40px; padding-bottom:clamp(40px,6vw,56px); border-bottom:1px solid rgba(232,227,210,.22);}
+.ym-foot-grid img{height:clamp(52px,6vw,66px); width:auto; margin-bottom:24px;}
+/* max-width calée pour que la baseline tombe en trois lignes équilibrées. */
+.ym-foot-grid p{font-family:var(--ym-serif); font-weight:300; font-size:16px; line-height:1.5; max-width:223px; margin:0; color:#fff;}
+.ym-foot-col{font-size:12.5px; line-height:2.1; letter-spacing:.04em;}
+.ym-foot-title{font-size:10px; letter-spacing:.24em; text-transform:uppercase; color:#f0eee0; margin-bottom:14px;}
+.ym-foot-col a:hover{color:var(--ym-gold-cream);}
+.ym-foot-bottom{display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; padding-top:24px; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:#f0eee0;}
+
+@media (max-width:760px){
+  /* Bandeau utilitaire retiré : trop épais pour la hauteur d'écran mobile. */
+  .ym-utility{display:none;}
+
+  /* En-tête : logo à gauche, puis Panier et burger à droite.
+     Le menu passe en position:absolute (hors flux), donc il ne compte pas comme
+     colonne. L'ordre visuel est réglé par `order` sans toucher au DOM. */
+  header{position:relative;}
+  .ym-header{grid-template-columns:1fr auto auto; column-gap:16px;}
+  .ym-logo{order:0; justify-content:flex-start;}
+  .ym-actions{order:1;}
+  /* « Recherche » masqué sur mobile ; seul « Panier » reste. */
+  .ym-actions a:first-child{display:none;}
+  .ym-burger{display:flex; order:2;}
+  .ym-nav{
+    position:absolute; top:100%; left:0; right:0; z-index:30;
+    display:none; flex-direction:column; gap:0;
+    background:var(--ym-bg); border-bottom:1px solid rgba(117,112,71,.28);
+    padding:8px clamp(20px,5vw,56px) 16px;
+    box-shadow:0 12px 24px rgba(43,42,34,.08);
+  }
+  .ym-nav.is-open{display:flex;}
+  .ym-nav a{padding:14px 0; border-bottom:1px solid transparent;}
+  .ym-nav a + a{border-top:1px solid rgba(117,112,71,.14);}
+
+  /* La copie passe au-dessus de la photo : le voile devient vertical. */
+  .ym-hero-veil{background:linear-gradient(0deg, rgba(20,18,12,.62), rgba(20,18,12,.30));}
+}
