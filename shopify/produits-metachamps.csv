@@ -1,8 +1,8 @@
-﻿Handle,Title,Metafield: custom.tagline [single_line_text_field],Metafield: custom.dimensions [single_line_text_field],Metafield: custom.perles [number_integer],Metafield: custom.padding_detoure [number_integer]
-cigale,Cigale,La symphonie de l'été provençal.,"6 × 2,8 cm",599,8
-grande-lavande,Grande lavande,,"8,8 × 2,7 cm",568,8
-petite-lavande,Petite lavande,,"5,5 × 2 cm",257,12
-guepier,Guêpier,,"4,2 × 4,5 cm",300,10
-mesange,Mésange,,"3 × 3,6 cm",260,12
-chardonneret,Chardonneret,,"4,2 × 4,3 cm",271,10
-rouge-gorge,Rouge-gorge,,"3,5 × 3,5 cm",268,10
+﻿Handle,Title,Option1 Name,Option1 Value,Metafield: custom.tagline [single_line_text_field],Metafield: custom.dimensions [single_line_text_field],Metafield: custom.perles [number_integer],Metafield: custom.padding_detoure [number_integer]
+cigale,Cigale,Title,Default Title,La symphonie de l'été provençal.,"6 × 2,8 cm",599,8
+grande-lavande,Grande lavande,Title,Default Title,,"8,8 × 2,7 cm",568,8
+petite-lavande,Petite lavande,Title,Default Title,,"5,5 × 2 cm",257,12
+guepier,Guêpier,Title,Default Title,,"4,2 × 4,5 cm",300,10
+mesange,Mésange,Title,Default Title,,"3 × 3,6 cm",260,12
+chardonneret,Chardonneret,Title,Default Title,,"4,2 × 4,3 cm",271,10
+rouge-gorge,Rouge-gorge,Title,Default Title,,"3,5 × 3,5 cm",268,10
