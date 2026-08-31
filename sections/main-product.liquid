@@ -44,9 +44,10 @@
                         data-alt="{{ alt_image }}"
                         data-fit="{{ fit }}" data-pad="{{ pad }}" data-bg="{{ bg }}"
                         {% if fit == 'contain' %}style="background:{{ bg }};"{% endif %}>
+                  {%- capture style_vignette -%}object-fit:{{ fit }}{%- endcapture -%}
                   {{ image | image_url: width: 220 | image_tag:
                        alt: alt_image, widths: '110, 220', sizes: '92px', loading: 'lazy',
-                       style: 'object-fit:' | append: fit }}
+                       style: style_vignette }}
                 </button>
               {%- endfor -%}
             </div>
