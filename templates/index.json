@@ -10,7 +10,7 @@
         "cta_libelle": "Découvrir la collection",
         "cta_lien": "/collections/all",
         "lien_libelle": "Le savoir-faire",
-        "lien_lien": "/pages/savoir-faire",
+        "lien_lien": "/pages/le-savoir-faire",
         "image_alt": "Broche lavande portée"
       }
     },
@@ -43,11 +43,34 @@
     "savoir-faire": {
       "type": "ym-craft",
       "blocks": {
-        "perles": { "type": "chiffre", "settings": { "valeur": "599", "libelle": "Perles · une cigale" } },
-        "main": { "type": "chiffre", "settings": { "valeur": "100%", "libelle": "Tissé main" } },
-        "luberon": { "type": "chiffre", "settings": { "valeur": "Luberon", "libelle": "Conçu & créé", "est_un_mot": true } }
+        "perles": {
+          "type": "chiffre",
+          "settings": {
+            "valeur": "599",
+            "libelle": "Perles · une cigale"
+          }
+        },
+        "main": {
+          "type": "chiffre",
+          "settings": {
+            "valeur": "100%",
+            "libelle": "Tissé main"
+          }
+        },
+        "luberon": {
+          "type": "chiffre",
+          "settings": {
+            "valeur": "Luberon",
+            "libelle": "Conçu & créé",
+            "est_un_mot": true
+          }
+        }
       },
-      "block_order": ["perles", "main", "luberon"],
+      "block_order": [
+        "perles",
+        "main",
+        "luberon"
+      ],
       "settings": {
         "surtitre": "Le savoir-faire",
         "titre": "Un geste lent,",
@@ -68,5 +91,12 @@
       }
     }
   },
-  "order": ["ouverture", "manifeste", "collection", "editorial", "savoir-faire", "ecrin"]
+  "order": [
+    "ouverture",
+    "manifeste",
+    "collection",
+    "editorial",
+    "savoir-faire",
+    "ecrin"
+  ]
 }

@@ -73,7 +73,7 @@
 
         <h1>{{ product.title }}</h1>
 
-        {%- assign tagline = product.metafields.custom.tagline -%}
+        {%- assign tagline = product.metafields.custom.tagline | strip -%}
         {%- if tagline != blank -%}
           <p class="ym-tagline">{{ tagline }}</p>
         {%- endif -%}
@@ -126,7 +126,7 @@
           {%- if product.metafields.custom.dimensions != blank -%}
             <div>
               <div class="ym-spec-label">{{ 'produit.dimensions' | t }}</div>
-              <div class="ym-spec-value">{{ product.metafields.custom.dimensions }}</div>
+              <div class="ym-spec-value">{{ product.metafields.custom.dimensions | strip }}</div>
             </div>
           {%- endif -%}
           {%- if product.metafields.custom.perles != blank -%}

@@ -20,7 +20,7 @@
       <div class="ym-spec">{{ item.variant.title }}</div>
     {%- endunless -%}
     {%- if item.product.metafields.custom.dimensions != blank -%}
-      <div class="ym-spec">{{ item.product.metafields.custom.dimensions }}</div>
+      <div class="ym-spec">{{ item.product.metafields.custom.dimensions | strip }}</div>
     {%- endif -%}
 
     <div class="ym-line-foot">
