@@ -3,10 +3,22 @@
 Thème Shopify sur mesure, transposé du site statique qui vit dans `docs/`.
 Sans build : les fichiers de ce dépôt sont ceux que Shopify sert.
 
+## Deux branches, deux contenus
+
+Cette branche — `shopify-live` — **ne contient que le thème**, et elle est
+connectée à la boutique : tout commit ici déploie, et tout réglage fait dans
+l'éditeur de thème revient ici en commit.
+
+`main` garde le site statique d'origine (`docs/`, toujours servi par GitHub
+Pages) et les fichiers d'import du catalogue. Les deux branches ne fusionnent
+jamais : elles ne portent pas les mêmes fichiers. C'est la même convention que
+`gh-pages`, et elle ne demande aucun entretien.
+
 Le thème occupe la racine parce que l'intégration GitHub de Shopify n'accepte pas
-de sous-dossier. `docs/` (le site statique, toujours servi par GitHub Pages) et
-`shopify/` (l'import du catalogue) sont ignorés par Shopify, par la CLI via
-`.shopifyignore`, et par le linter via `.theme-check.yml`.
+de sous-dossier. Elle ne se contente d'ailleurs pas d'ignorer les dossiers hors
+thème, contrairement à ce qu'annonce sa documentation : la présence de `docs/`
+faisait échouer la connexion, sur un PDF au nom accentué rangé sous
+`docs/assets/`. D'où la séparation.
 
 ## Repères
 
@@ -48,7 +60,7 @@ Tous facultatifs : leur bloc disparaît s'ils sont vides.
 ## Vérifier
 
 ```sh
-shopify theme check           # linter officiel
-python3 shopify/verifier.py   # références internes et clés de traduction
-shopify theme dev             # aperçu local branché sur la boutique
+shopify theme check      # linter officiel
+python3 verifier.py      # références internes et clés de traduction
+shopify theme dev        # aperçu local branché sur la boutique
 ```
