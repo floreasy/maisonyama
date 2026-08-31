@@ -1,0 +1,19 @@
+﻿Handle,Title,Body (HTML),Vendor,Type,Tags,Published,Option1 Name,Option1 Value,Variant SKU,Variant Grams,Variant Inventory Tracker,Variant Inventory Policy,Variant Fulfillment Service,Variant Price,Variant Requires Shipping,Variant Taxable,Image Src,Image Position,Image Alt Text,Gift Card,SEO Title,SEO Description,Status
+cigale,Cigale,"<p>Une présence éphémère, tissée perle après perle. La cigale capte la lumière de l'été provençal et la révèle au creux du regard — une broche entièrement réalisée à la main.</p>",Maison Yama,Broche,Collection 2026,TRUE,Title,Default Title,YM-CIGALE,20,,deny,manual,100.00,TRUE,TRUE,https://floreasy.github.io/maisonyama/assets/opt/situation-cigale.jpeg,1,Broche cigale portée,FALSE,Cigale — Broche tissée à la main,"La Cigale, broche en perles de rocaille tissée à la main au cœur du Luberon. 599 perles, 6 × 2,8 cm, livrée dans son écrin.",active
+cigale,,,,,,,,,,,,,,,,,https://floreasy.github.io/maisonyama/assets/opt/cutout-cigale.png,2,Broche cigale,,,,
+cigale,,,,,,,,,,,,,,,,,https://floreasy.github.io/maisonyama/assets/opt/situation-cigale-lac.jpg,3,La cigale au bord d'un lac de Provence,,,,
+cigale,,,,,,,,,,,,,,,,,https://floreasy.github.io/maisonyama/assets/opt/box-cigale.jpeg,4,Écrin Maison Yama,,,,
+grande-lavande,Grande lavande,,Maison Yama,Broche,Collection 2026,TRUE,Title,Default Title,YM-GRANDE-LAVAN,20,,deny,manual,125.00,TRUE,TRUE,https://floreasy.github.io/maisonyama/assets/opt/situation-grande-lavande.jpeg,1,Broche grande lavande portée,FALSE,,,active
+grande-lavande,,,,,,,,,,,,,,,,,https://floreasy.github.io/maisonyama/assets/opt/cutout-grande-lavande.png,2,Broche grande lavande,,,,
+grande-lavande,,,,,,,,,,,,,,,,,https://floreasy.github.io/maisonyama/assets/opt/produit-grande-lavande.png,3,"Broche grande lavande, vue de détail",,,,
+petite-lavande,Petite lavande,,Maison Yama,Broche,Collection 2026,TRUE,Title,Default Title,YM-PETITE-LAVAN,20,,deny,manual,56.00,TRUE,TRUE,https://floreasy.github.io/maisonyama/assets/opt/situation-lavande-navy.jpeg,1,Broche petite lavande portée,FALSE,,,active
+petite-lavande,,,,,,,,,,,,,,,,,https://floreasy.github.io/maisonyama/assets/opt/cutout-petite-lavande.png,2,Broche petite lavande,,,,
+guepier,Guêpier,,Maison Yama,Broche,Collection 2026,TRUE,Title,Default Title,YM-GUEPIER,20,,deny,manual,65.00,TRUE,TRUE,https://floreasy.github.io/maisonyama/assets/opt/situation-guepier.jpeg,1,Broche guêpier portée,FALSE,,,active
+guepier,,,,,,,,,,,,,,,,,https://floreasy.github.io/maisonyama/assets/opt/cutout-guepier.png,2,Broche guêpier,,,,
+mesange,Mésange,,Maison Yama,Broche,Collection 2026,TRUE,Title,Default Title,YM-MESANGE,20,,deny,manual,56.00,TRUE,TRUE,https://floreasy.github.io/maisonyama/assets/opt/situation-mesange.jpeg,1,Broche mésange portée,FALSE,,,active
+mesange,,,,,,,,,,,,,,,,,https://floreasy.github.io/maisonyama/assets/opt/cutout-mesange.png,2,Broche mésange,,,,
+chardonneret,Chardonneret,,Maison Yama,Broche,Collection 2026,TRUE,Title,Default Title,YM-CHARDONNERET,20,,deny,manual,56.00,TRUE,TRUE,https://floreasy.github.io/maisonyama/assets/opt/situation-chardonneret.jpeg,1,Broche chardonneret portée,FALSE,,,active
+chardonneret,,,,,,,,,,,,,,,,,https://floreasy.github.io/maisonyama/assets/opt/cutout-chardonneret.png,2,Broche chardonneret,,,,
+chardonneret,,,,,,,,,,,,,,,,,https://floreasy.github.io/maisonyama/assets/opt/produit-chardonneret.png,3,"Broche chardonneret, vue de détail",,,,
+rouge-gorge,Rouge-gorge,,Maison Yama,Broche,Collection 2026,TRUE,Title,Default Title,YM-ROUGE-GORGE,20,,deny,manual,56.00,TRUE,TRUE,https://floreasy.github.io/maisonyama/assets/opt/situation-rouge-gorge.jpeg,1,Broche rouge-gorge portée,FALSE,,,active
+rouge-gorge,,,,,,,,,,,,,,,,,https://floreasy.github.io/maisonyama/assets/opt/cutout-rouge-gorge.png,2,Broche rouge-gorge,,,,
