@@ -1,0 +1,38 @@
+{%- comment -%}
+  Autres pièces de la collection. Sur un catalogue de cette taille, piocher dans
+  la collection du produit courant vaut mieux qu'un moteur de recommandation :
+  c'est instantané, sans JS, et jamais vide.
+{%- endcomment -%}
+{%- assign col = product.collections.first -%}
+{%- if col != blank and col.products_count > 1 -%}
+  <section class="ym-reco">
+    <div class="ym-container">
+      <div class="ym-reco-head">
+        {%- if section.settings.surtitre != blank -%}
+          <div class="ym-eyebrow">{{ section.settings.surtitre }}</div>
+        {%- endif -%}
+        <h2>{{ section.settings.titre }}</h2>
+      </div>
+      <div class="ym-grid">
+        {%- assign montrees = 0 -%}
+        {%- for autre in col.products -%}
+          {%- if autre.id != product.id and montrees < section.settings.nombre -%}
+            {%- assign montrees = montrees | plus: 1 -%}
+            {%- render 'ym-card', product: autre, index: montrees -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Autres pièces",
+  "settings": [
+    { "type": "text", "id": "surtitre", "label": "Surtitre", "default": "À découvrir aussi" },
+    { "type": "text", "id": "titre", "label": "Titre", "default": "Autres pièces de la collection" },
+    { "type": "range", "id": "nombre", "label": "Nombre de pièces", "min": 2, "max": 6, "step": 1, "default": 3 }
+  ]
+}
+{% endschema %}

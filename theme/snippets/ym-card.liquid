@@ -1,0 +1,96 @@
+{%- comment -%}
+  Carte produit — accueil, collection, recommandations, recherche.
+
+  Les deux visuels sont superposés : celui du dessus s'efface au survol pour
+  révéler l'autre. La grille alterne, pièce après pièce, entre une photo portée
+  et un détouré au repos — c'est ce battement qui donne son rythme à la grille.
+
+  Accepte : product (obligatoire), index (position 1-based, pilote l'alternance),
+            spec_complete (true pour afficher aussi le nombre de perles).
+{%- endcomment -%}
+
+{%- assign ym_detoure = blank -%}
+{%- assign ym_situation = blank -%}
+{%- for image in product.images -%}
+  {%- capture cadrage -%}{%- render 'ym-cadrage', image: image -%}{%- endcapture -%}
+  {%- assign cadrage = cadrage | strip -%}
+  {%- if cadrage == 'contain' -%}
+    {%- if ym_detoure == blank -%}{%- assign ym_detoure = image -%}{%- endif -%}
+  {%- else -%}
+    {%- if ym_situation == blank -%}{%- assign ym_situation = image -%}{%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- comment -%} Un seul type de visuel : on retombe sur l'autre, et rien ne bascule au survol. {%- endcomment -%}
+{%- if ym_detoure == blank -%}{%- assign ym_detoure = ym_situation -%}{%- endif -%}
+{%- if ym_situation == blank -%}{%- assign ym_situation = ym_detoure -%}{%- endif -%}
+
+{%- comment -%}
+  Une petite mésange a besoin de plus de marge qu'une grande lavande pour occuper
+  le même cadre. Réglable par produit ; 10 % convient à la plupart des pièces.
+{%- endcomment -%}
+{%- assign ym_padding = product.metafields.custom.padding_detoure | default: 10 -%}
+
+{%- assign index = index | default: 1 -%}
+{%- assign rang = index | modulo: 2 -%}
+
+{%- comment -%} Rang impair : la photo portée au repos. Rang pair : le détouré. {%- endcomment -%}
+{%- if rang == 1 -%}
+  {%- assign dessous = ym_detoure -%}
+  {%- assign dessus = ym_situation -%}
+  {%- assign classe_dessous = 'ym-cutout' -%}
+  {%- assign classe_dessus = 'ym-worn ym-fade' -%}
+  {%- capture style_dessous %}padding:{{ ym_padding }}%{% endcapture -%}
+  {%- assign style_dessus = '' -%}
+{%- else -%}
+  {%- assign dessous = ym_situation -%}
+  {%- assign dessus = ym_detoure -%}
+  {%- assign classe_dessous = 'ym-worn' -%}
+  {%- assign classe_dessus = 'ym-cutout ym-fade' -%}
+  {%- assign style_dessous = '' -%}
+  {%- capture style_dessus %}padding:{{ ym_padding }}%{% endcapture -%}
+{%- endif -%}
+
+{%- if ym_detoure == ym_situation -%}{%- assign dessus = blank -%}{%- endif -%}
+
+{%- assign ym_sizes = '(min-width: 1100px) 25vw, (min-width: 700px) 33vw, 50vw' -%}
+{%- assign ym_widths = '280, 420, 560, 840' -%}
+{%- assign alt_produit = product.title | escape -%}
+
+<a class="ym-card" href="{{ product.url }}">
+  <div class="ym-shot">
+    {%- if dessous != blank -%}
+      {%- assign alt_dessous = dessous.alt | default: alt_produit -%}
+      {{ dessous | image_url: width: 900 | image_tag:
+           class: classe_dessous, style: style_dessous, alt: alt_dessous,
+           widths: ym_widths, sizes: ym_sizes, loading: 'lazy' }}
+    {%- endif -%}
+    {%- if dessus != blank -%}
+      {%- assign alt_dessus = dessus.alt | default: alt_produit -%}
+      {{ dessus | image_url: width: 900 | image_tag:
+           class: classe_dessus, style: style_dessus, alt: alt_dessus,
+           widths: ym_widths, sizes: ym_sizes, loading: 'lazy' }}
+    {%- endif -%}
+  </div>
+
+  <div class="ym-meta">
+    <div>
+      <div class="ym-name">{{ product.title }}</div>
+      {%- capture spec -%}
+        {%- if spec_complete and product.metafields.custom.perles -%}
+          {{ product.metafields.custom.perles }} perles
+          {%- if product.metafields.custom.dimensions != blank %} · {% endif -%}
+        {%- endif -%}
+        {{ product.metafields.custom.dimensions }}
+      {%- endcapture -%}
+      {%- assign spec = spec | strip -%}
+      {%- if spec != blank -%}<div class="ym-spec">{{ spec }}</div>{%- endif -%}
+    </div>
+    <div class="ym-price">
+      {%- if product.compare_at_price > product.price -%}
+        <s>{{ product.compare_at_price | money }}</s>
+      {%- endif -%}
+      {{ product.price | money }}
+    </div>
+  </div>
+</a>

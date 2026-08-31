@@ -1,0 +1,51 @@
+{
+  "general": {
+    "recherche": {
+      "titre": "Recherche",
+      "placeholder": "Chercher une broche…",
+      "envoyer": "Rechercher",
+      "resultats": "{{ count }} résultat pour « {{ terms }} »",
+      "resultats_pluriel": "{{ count }} résultats pour « {{ terms }} »",
+      "aucun_resultat": "Aucune pièce ne correspond à « {{ terms }} ».",
+      "invitation": "Cherchez une broche par son nom : cigale, lavande, mésange…"
+    },
+    "404": {
+      "titre": "Cette page s'est envolée",
+      "texte": "Le lien que vous avez suivi ne mène nulle part. La collection, elle, est toujours là.",
+      "lien": "Voir la collection"
+    },
+    "pagination": { "precedent": "Précédent", "suivant": "Suivant" }
+  },
+  "panier": {
+    "titre": "Votre panier",
+    "vide": "Votre panier est vide.",
+    "vide_lien": "Découvrir la collection",
+    "article": "article",
+    "articles": "articles",
+    "sous_total": "Sous-total",
+    "note_livraison": "Frais de port et taxes calculés à l'étape suivante.",
+    "commander": "Passer commande",
+    "continuer": "Poursuivre mes achats",
+    "retirer": "Retirer",
+    "quantite": "Quantité",
+    "ajoute": "Ajoutée au panier",
+    "erreur": "Cette pièce n'a pas pu être ajoutée au panier.",
+    "fermer": "Fermer le panier"
+  },
+  "produit": {
+    "ajouter": "Ajouter au panier",
+    "epuise": "Pièce vendue",
+    "indisponible": "Indisponible",
+    "favoris": "Ajouter aux favoris",
+    "zoom": "Survolez pour voir les détails",
+    "dimensions": "Dimensions",
+    "matiere": "Matière",
+    "faconnage": "Façonnage",
+    "origine": "Origine",
+    "perles": "{{ count }} perles de rocaille",
+    "fil_ariane": "Collection"
+  },
+  "collection": {
+    "vide": "Aucune pièce dans cette collection pour le moment."
+  }
+}

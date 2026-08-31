@@ -1,0 +1,23 @@
+{%- comment -%} Intro centrée : surtitre, titre, filet doré, chapô. {%- endcomment -%}
+<section class="ym-intro">
+  <div class="ym-container">
+    {%- if section.settings.surtitre != blank -%}
+      <div class="ym-eyebrow">{{ section.settings.surtitre }}</div>
+    {%- endif -%}
+    <h1>{{ section.settings.titre | default: page_title }}</h1>
+    <div class="ym-rule"></div>
+    {%- if section.settings.texte != blank -%}<p>{{ section.settings.texte }}</p>{%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Intro centrée",
+  "settings": [
+    { "type": "text", "id": "surtitre", "label": "Surtitre", "default": "Collection 2026" },
+    { "type": "text", "id": "titre", "label": "Titre", "info": "Laisser vide pour reprendre le titre de la page." },
+    { "type": "textarea", "id": "texte", "label": "Chapô", "default": "Sept pièces, tissées perle après perle au cœur du Luberon. Chacune naît d'une observation sensible du vivant, traduite par un geste lent et précis." }
+  ],
+  "presets": [{ "name": "Intro centrée" }]
+}
+{% endschema %}

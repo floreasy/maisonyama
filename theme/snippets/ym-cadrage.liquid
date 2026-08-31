@@ -1,0 +1,16 @@
+{%- comment -%}
+  Écrit « contain » ou « cover » selon la nature du visuel.
+
+    · un détouré  — PNG, fond transparent, la broche seule → posé en entier ;
+    · une situation — JPEG, la broche portée ou en décor    → remplit son cadre.
+
+  La règle « PNG = détouré » n'est pas un hasard : un fond transparent impose le
+  PNG, une photo pleine n'a aucune raison de l'être. C'est donc la distinction que
+  la boutique fait déjà naturellement en exportant ses images — rien à cocher.
+
+  À capturer par l'appelant, {% render %} n'exportant pas ses variables :
+    {%- capture cadrage -%}{%- render 'ym-cadrage', image: image -%}{%- endcapture -%}
+    {%- assign cadrage = cadrage | strip -%}
+{%- endcomment -%}
+{%- assign ym_src = image | image_url: width: 1 -%}
+{%- if ym_src contains '.png' -%}contain{%- else -%}cover{%- endif -%}

@@ -1,0 +1,39 @@
+{%- assign collection = collections[section.settings.collection] -%}
+<section class="ym-collection">
+  <div class="ym-container">
+    <div class="ym-section-head">
+      <div>
+        {%- if section.settings.surtitre != blank -%}
+          <div class="ym-eyebrow">{{ section.settings.surtitre }}</div>
+        {%- endif -%}
+        {%- if section.settings.titre != blank -%}<h2>{{ section.settings.titre }}</h2>{%- endif -%}
+      </div>
+      {%- if section.settings.lien_libelle != blank and collection != blank -%}
+        <a class="ym-link" href="{{ collection.url }}">{{ section.settings.lien_libelle }}</a>
+      {%- endif -%}
+    </div>
+
+    <div class="ym-grid">
+      {%- for product in collection.products limit: section.settings.nombre -%}
+        {%- render 'ym-card', product: product, index: forloop.index, spec_complete: section.settings.spec_complete -%}
+      {%- else -%}
+        <p>{{ 'collection.vide' | t }}</p>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Grille de collection",
+  "settings": [
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "text", "id": "surtitre", "label": "Surtitre", "default": "Collection 2026" },
+    { "type": "text", "id": "titre", "label": "Titre", "default": "Inspirées du vivant" },
+    { "type": "text", "id": "lien_libelle", "label": "Lien à droite du titre", "default": "Tout voir" },
+    { "type": "range", "id": "nombre", "label": "Nombre de pièces", "min": 2, "max": 12, "step": 1, "default": 6 },
+    { "type": "checkbox", "id": "spec_complete", "label": "Afficher le nombre de perles", "default": false }
+  ],
+  "presets": [{ "name": "Grille de collection" }]
+}
+{% endschema %}

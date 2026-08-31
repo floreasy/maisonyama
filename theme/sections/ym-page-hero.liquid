@@ -1,0 +1,47 @@
+{%- comment -%} Ouverture de page intérieure : photo pleine largeur, voile latéral, titre. {%- endcomment -%}
+<section class="ym-page-hero">
+  {%- render 'ym-image',
+      image: section.settings.image,
+      repli: section.settings.repli, repli_l: 1600, repli_h: 1067,
+      alt: section.settings.image_alt,
+      eager: true -%}
+  <div class="ym-hero-veil"></div>
+  <div class="ym-page-hero-copy">
+    <div class="ym-container">
+      {%- if section.settings.surtitre != blank -%}
+        <div class="ym-eyebrow">{{ section.settings.surtitre }}</div>
+      {%- endif -%}
+      <h1>
+        {{- section.settings.titre -}}
+        {%- if section.settings.titre_italique != blank %} <em>{{ section.settings.titre_italique }}</em>{% endif -%}
+      </h1>
+      {%- if section.settings.texte != blank -%}<p>{{ section.settings.texte }}</p>{%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Ouverture de page",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Photo" },
+    {
+      "type": "select",
+      "id": "repli",
+      "label": "Photo de repli",
+      "info": "Paysage livré avec le thème, affiché tant qu'aucune photo n'est choisie ci-dessus.",
+      "options": [
+        { "value": "decor-olivia.jpg", "label": "Chemin de lavande" },
+        { "value": "decor-flor.jpg", "label": "Champ au lever du jour" }
+      ],
+      "default": "decor-olivia.jpg"
+    },
+    { "type": "text", "id": "image_alt", "label": "Description de l'image", "default": "Paysage du Luberon" },
+    { "type": "text", "id": "surtitre", "label": "Surtitre", "default": "La Maison" },
+    { "type": "text", "id": "titre", "label": "Titre", "default": "Une maison née de" },
+    { "type": "text", "id": "titre_italique", "label": "Suite du titre, en italique", "default": "l'observation du vivant." },
+    { "type": "textarea", "id": "texte", "label": "Texte", "default": "Au Castellet-en-Luberon, entre les rangs de lavande et le chant des cigales." }
+  ],
+  "presets": [{ "name": "Ouverture de page" }]
+}
+{% endschema %}

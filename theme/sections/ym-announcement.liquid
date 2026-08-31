@@ -1,0 +1,36 @@
+{%- comment -%} Bandeau utilitaire. Masqué sous 760 px : trop épais pour un écran de téléphone. {%- endcomment -%}
+{%- if section.blocks.size > 0 -%}
+  <div class="ym-utility">
+    {%- for block in section.blocks -%}
+      {%- if forloop.index > 1 -%}<span class="sep">·</span>{%- endif -%}
+      <span {{ block.shopify_attributes }}>{{ block.settings.texte }}</span>
+    {%- endfor -%}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Bandeau utilitaire",
+  "class": "ym-announcement-section",
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "mention",
+      "name": "Mention",
+      "settings": [
+        { "type": "text", "id": "texte", "label": "Texte", "default": "Livraison soignée en France" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bandeau utilitaire",
+      "blocks": [
+        { "type": "mention", "settings": { "texte": "Tissées main au cœur du Luberon" } },
+        { "type": "mention", "settings": { "texte": "Livraison soignée en France" } },
+        { "type": "mention", "settings": { "texte": "Chaque pièce dans son écrin" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

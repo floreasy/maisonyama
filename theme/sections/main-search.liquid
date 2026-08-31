@@ -1,0 +1,52 @@
+<section class="ym-intro">
+  <div class="ym-container">
+    <div class="ym-eyebrow">{{ shop.name }}</div>
+    <h1>{{ 'general.recherche.titre' | t }}</h1>
+    <div class="ym-rule"></div>
+
+    <form class="ym-search-form" action="{{ routes.search_url }}" method="get" role="search">
+      <input type="search" name="q" value="{{ search.terms | escape }}"
+             placeholder="{{ 'general.recherche.placeholder' | t }}"
+             aria-label="{{ 'general.recherche.titre' | t }}">
+      <button class="ym-cta" type="submit">{{ 'general.recherche.envoyer' | t }}</button>
+    </form>
+
+    {%- if search.performed -%}
+      <p class="ym-search-count">
+        {%- if search.results_count == 0 -%}
+          {{ 'general.recherche.aucun_resultat' | t: terms: search.terms }}
+        {%- elsif search.results_count == 1 -%}
+          {{ 'general.recherche.resultats' | t: count: search.results_count, terms: search.terms }}
+        {%- else -%}
+          {{ 'general.recherche.resultats_pluriel' | t: count: search.results_count, terms: search.terms }}
+        {%- endif -%}
+      </p>
+    {%- else -%}
+      <p>{{ 'general.recherche.invitation' | t }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{%- if search.performed and search.results_count > 0 -%}
+  <div class="ym-container ym-collection-list">
+    {%- paginate search.results by 12 -%}
+      <div class="ym-grid">
+        {%- for item in search.results -%}
+          {%- if item.object_type == 'product' -%}
+            {%- render 'ym-card', product: item, index: forloop.index, spec_complete: true -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      {%- if paginate.pages > 1 -%}
+        <nav class="ym-pagination" aria-label="Pagination">
+          {%- if paginate.previous -%}<a class="ym-link" href="{{ paginate.previous.url }}">{{ 'general.pagination.precedent' | t }}</a>{%- endif -%}
+          {%- if paginate.next -%}<a class="ym-link" href="{{ paginate.next.url }}">{{ 'general.pagination.suivant' | t }}</a>{%- endif -%}
+        </nav>
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{ "name": "Recherche", "settings": [] }
+{% endschema %}

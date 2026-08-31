@@ -1,0 +1,26 @@
+{%- comment -%} Appel final. Sur fond sauge, le surtitre passe du doré au vert sombre (voir sections.css). {%- endcomment -%}
+<section class="ym-cta-band{% if section.settings.fond_sauge %} ym-cta-band--sage{% endif %}">
+  <div class="ym-container">
+    {%- if section.settings.surtitre != blank -%}
+      <div class="ym-eyebrow">{{ section.settings.surtitre }}</div>
+    {%- endif -%}
+    <h2>{{ section.settings.titre }}</h2>
+    {%- if section.settings.cta_libelle != blank -%}
+      <a class="ym-cta" href="{{ section.settings.cta_lien }}">{{ section.settings.cta_libelle }}</a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Appel à la collection",
+  "settings": [
+    { "type": "text", "id": "surtitre", "label": "Surtitre", "default": "Collection 2026" },
+    { "type": "text", "id": "titre", "label": "Titre", "default": "Découvrez les pièces nées ici." },
+    { "type": "text", "id": "cta_libelle", "label": "Bouton", "default": "Voir la collection" },
+    { "type": "url", "id": "cta_lien", "label": "Lien du bouton" },
+    { "type": "checkbox", "id": "fond_sauge", "label": "Fond vert sauge", "default": false }
+  ],
+  "presets": [{ "name": "Appel à la collection" }]
+}
+{% endschema %}

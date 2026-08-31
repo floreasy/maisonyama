@@ -1,0 +1,72 @@
+{
+  "sections": {
+    "ouverture": {
+      "type": "ym-hero",
+      "settings": {
+        "surtitre": "Castellet-en-Luberon · Collection 2026",
+        "titre": "Broches tissées à la main,",
+        "titre_italique": "perle après perle.",
+        "texte": "Une observation sensible du vivant, traduite par un geste lent et précis, au cœur du Luberon.",
+        "cta_libelle": "Découvrir la collection",
+        "cta_lien": "/collections/all",
+        "lien_libelle": "Le savoir-faire",
+        "lien_lien": "/pages/savoir-faire",
+        "image_alt": "Broche lavande portée"
+      }
+    },
+    "manifeste": {
+      "type": "ym-statement",
+      "settings": {
+        "texte": "Nées d'un geste lent et précis, elles traduisent une observation sensible du vivant. Les couleurs et les textures sont choisies pour <em>capter la lumière</em> et se révéler au regard.",
+        "mention": "Une présence délicate au quotidien"
+      }
+    },
+    "collection": {
+      "type": "ym-featured-collection",
+      "settings": {
+        "surtitre": "Collection 2026",
+        "titre": "Inspirées du vivant",
+        "lien_libelle": "Tout voir",
+        "nombre": 6,
+        "spec_complete": false
+      }
+    },
+    "editorial": {
+      "type": "ym-editorial",
+      "settings": {
+        "surtitre": "La Cigale",
+        "texte": "La symphonie de l'été provençal.",
+        "mention": "Une présence éphémère",
+        "image_alt": "Broche cigale portée"
+      }
+    },
+    "savoir-faire": {
+      "type": "ym-craft",
+      "blocks": {
+        "perles": { "type": "chiffre", "settings": { "valeur": "599", "libelle": "Perles · une cigale" } },
+        "main": { "type": "chiffre", "settings": { "valeur": "100%", "libelle": "Tissé main" } },
+        "luberon": { "type": "chiffre", "settings": { "valeur": "Luberon", "libelle": "Conçu & créé", "est_un_mot": true } }
+      },
+      "block_order": ["perles", "main", "luberon"],
+      "settings": {
+        "surtitre": "Le savoir-faire",
+        "titre": "Un geste lent,",
+        "titre_suite": "une perle après l'autre.",
+        "texte": "Chaque broche est entièrement tissée à la main. Les couleurs et les textures sont choisies pour capter la lumière et se révéler au regard."
+      }
+    },
+    "ecrin": {
+      "type": "ym-split",
+      "settings": {
+        "surtitre": "L'écrin Maison Yama",
+        "titre": "Chaque pièce présentée dans son écrin.",
+        "texte": "<p>Tissée à la main, perle après perle, puis déposée dans son écrin signé — prête à offrir, ou à se faire offrir.</p>",
+        "image_alt": "Écrin Maison Yama",
+        "image_a_gauche": false,
+        "cadrage": "cover",
+        "fond": "mist"
+      }
+    }
+  },
+  "order": ["ouverture", "manifeste", "collection", "editorial", "savoir-faire", "ecrin"]
+}

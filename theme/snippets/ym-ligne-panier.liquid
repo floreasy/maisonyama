@@ -1,0 +1,37 @@
+{%- comment -%}
+  Une ligne du panier. Partagée par le tiroir et par la page /panier : une seule
+  écriture du prix, du visuel et des commandes de quantité.
+  Accepte : item (ligne de panier), compact (true dans le tiroir).
+{%- endcomment -%}
+<div class="ym-line{% if compact %} ym-line--compact{% endif %}">
+  <a class="ym-line-shot" href="{{ item.url }}">
+    {%- if item.image != blank -%}
+      {%- capture fit -%}{%- render 'ym-cadrage', image: item.image -%}{%- endcapture -%}
+      {%- assign fit = fit | strip -%}
+      {%- assign style_ligne = 'object-fit:' | append: fit -%}
+      {{ item.image | image_url: width: 260 | image_tag:
+           widths: '130, 260', sizes: '130px', alt: item.title, loading: 'lazy', style: style_ligne }}
+    {%- endif -%}
+  </a>
+
+  <div class="ym-line-body">
+    <a class="ym-name" href="{{ item.url }}">{{ item.product.title }}</a>
+    {%- unless item.product.has_only_default_variant -%}
+      <div class="ym-spec">{{ item.variant.title }}</div>
+    {%- endunless -%}
+    {%- if item.product.metafields.custom.dimensions != blank -%}
+      <div class="ym-spec">{{ item.product.metafields.custom.dimensions }}</div>
+    {%- endif -%}
+
+    <div class="ym-line-foot">
+      <div class="ym-qty">
+        <button type="button" data-ym-qty="{{ item.line }}" data-ym-to="{{ item.quantity | minus: 1 }}" aria-label="Retirer un exemplaire">−</button>
+        <span aria-label="{{ 'panier.quantite' | t }}">{{ item.quantity }}</span>
+        <button type="button" data-ym-qty="{{ item.line }}" data-ym-to="{{ item.quantity | plus: 1 }}" aria-label="Ajouter un exemplaire">+</button>
+      </div>
+      <div class="ym-price">{{ item.final_line_price | money }}</div>
+    </div>
+
+    <button class="ym-line-remove" type="button" data-ym-qty="{{ item.line }}" data-ym-to="0">{{ 'panier.retirer' | t }}</button>
+  </div>
+</div>

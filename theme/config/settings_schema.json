@@ -1,0 +1,85 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Maison Yama",
+    "theme_version": "1.0.0",
+    "theme_author": "Maison Yama",
+    "theme_documentation_url": "https://github.com/floreasy/maisonyama",
+    "theme_support_url": "https://github.com/floreasy/maisonyama/issues"
+  },
+  {
+    "name": "Identité",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Les couleurs et les polices de la maison sont figées dans le fichier assets/base.css (bloc « Tokens »). Elles ne sont pas modifiables ici pour éviter toute dérive de la charte."
+      },
+      {
+        "type": "image_picker",
+        "id": "logo_header",
+        "label": "Logo de l'en-tête",
+        "info": "Version verte. Laisser vide pour utiliser le logo livré avec le thème."
+      },
+      {
+        "type": "image_picker",
+        "id": "logo_footer",
+        "label": "Logo du pied de page",
+        "info": "Version blanche, posée sur le vert sauge."
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon",
+        "info": "Carré, 96 × 96 px minimum."
+      },
+      {
+        "type": "image_picker",
+        "id": "share_image",
+        "label": "Image de partage par défaut",
+        "info": "Utilisée quand une page est partagée sur les réseaux. 1200 × 630 px."
+      }
+    ]
+  },
+  {
+    "name": "Fiche produit",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Ces deux mentions sont identiques sur toutes les broches : on les règle une fois ici plutôt que produit par produit."
+      },
+      {
+        "type": "text",
+        "id": "spec_faconnage",
+        "label": "Façonnage",
+        "default": "Tissé entièrement main"
+      },
+      {
+        "type": "text",
+        "id": "spec_origine",
+        "label": "Origine",
+        "default": "Castellet-en-Luberon"
+      },
+      {
+        "type": "text",
+        "id": "product_price_note",
+        "label": "Mention sous le prix",
+        "default": "Prix public conseillé · TVA incluse"
+      },
+      {
+        "type": "text",
+        "id": "product_stock_note",
+        "label": "Mention de disponibilité",
+        "default": "En stock — expédiée sous 3 à 5 jours",
+        "info": "Affichée quand la pièce est disponible."
+      }
+    ]
+  },
+  {
+    "name": "Réseaux sociaux",
+    "settings": [
+      { "type": "text", "id": "social_instagram", "label": "Instagram", "default": "https://instagram.com/maisonyama" },
+      { "type": "text", "id": "social_facebook", "label": "Facebook" },
+      { "type": "text", "id": "social_pinterest", "label": "Pinterest" }
+    ]
+  }
+]

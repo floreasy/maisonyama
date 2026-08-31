@@ -1,0 +1,85 @@
+<footer>
+  <div class="ym-container">
+    <div class="ym-foot-grid">
+      <div>
+        {%- if section.settings.logo != blank -%}
+          {{ section.settings.logo | image_url: width: 330 | image_tag:
+               widths: '132, 198, 264, 330', sizes: '165px', alt: shop.name, loading: 'lazy' }}
+        {%- elsif settings.logo_footer != blank -%}
+          {{ settings.logo_footer | image_url: width: 330 | image_tag:
+               widths: '132, 198, 264, 330', sizes: '165px', alt: shop.name, loading: 'lazy' }}
+        {%- else -%}
+          <img src="{{ 'logo-principal-blanc.png' | asset_url }}" alt="{{ shop.name }}" width="1100" height="623" loading="lazy">
+        {%- endif -%}
+        {%- if section.settings.baseline != blank -%}
+          <p>{{ section.settings.baseline }}</p>
+        {%- endif -%}
+      </div>
+
+      {%- for block in section.blocks -%}
+        <div class="ym-foot-col" {{ block.shopify_attributes }}>
+          {%- if block.settings.titre != blank -%}
+            <div class="ym-foot-title">{{ block.settings.titre }}</div>
+          {%- endif -%}
+
+          {%- case block.type -%}
+            {%- when 'menu' -%}
+              {%- for link in block.settings.menu.links -%}
+                <a href="{{ link.url }}">{{ link.title }}</a><br>
+              {%- endfor -%}
+
+            {%- when 'contact' -%}
+              {%- if block.settings.adresse != blank -%}{{ block.settings.adresse }}<br>{%- endif -%}
+              {%- if block.settings.telephone != blank -%}
+                <a href="tel:{{ block.settings.telephone | remove: ' ' }}">{{ block.settings.telephone }}</a><br>
+              {%- endif -%}
+              {%- if block.settings.email != blank -%}
+                <a href="mailto:{{ block.settings.email }}">{{ block.settings.email }}</a><br>
+              {%- endif -%}
+              {%- if settings.social_instagram != blank -%}
+                <a href="{{ settings.social_instagram }}" rel="me noopener" target="_blank">Instagram · {{ block.settings.instagram_pseudo }}</a><br>
+              {%- endif -%}
+          {%- endcase -%}
+        </div>
+      {%- endfor -%}
+    </div>
+
+    <div class="ym-foot-bottom">
+      <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</span>
+      <span>{{ section.settings.mention_finale }}</span>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Pied de page",
+  "max_blocks": 3,
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo", "info": "Version blanche. Laisser vide pour reprendre celui des paramètres du thème." },
+    { "type": "text", "id": "baseline", "label": "Baseline", "default": "Broches en perles de rocaille tissées à la main au cœur du Luberon." },
+    { "type": "text", "id": "mention_finale", "label": "Mention en bas à droite", "default": "Fait main en Provence" }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Colonne de liens",
+      "settings": [
+        { "type": "text", "id": "titre", "label": "Titre", "default": "Maison" },
+        { "type": "link_list", "id": "menu", "label": "Menu", "default": "footer" }
+      ]
+    },
+    {
+      "type": "contact",
+      "name": "Colonne contact",
+      "settings": [
+        { "type": "text", "id": "titre", "label": "Titre", "default": "Contact" },
+        { "type": "text", "id": "adresse", "label": "Commune", "default": "Castellet-en-Luberon" },
+        { "type": "text", "id": "telephone", "label": "Téléphone", "default": "06 23 10 24 41" },
+        { "type": "text", "id": "email", "label": "E-mail", "default": "contact@maisonyama.fr" },
+        { "type": "text", "id": "instagram_pseudo", "label": "Pseudo Instagram", "default": "@maisonyama" }
+      ]
+    }
+  ]
+}
+{% endschema %}

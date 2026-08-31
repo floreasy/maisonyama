@@ -1,0 +1,100 @@
+{%- comment -%}
+  Les temps du savoir-faire. Chaque étape est un volet texte / volet photo ;
+  la grille alterne d'elle-même le côté et le fond amande, étape après étape,
+  pour qu'une suite d'étapes reste lisible sans réglage manuel.
+{%- endcomment -%}
+
+{%- for block in section.blocks -%}
+  {%- assign rang = forloop.index | modulo: 2 -%}
+  {%- assign classes = 'ym-split ym-step' -%}
+  {%- if rang == 1 -%}
+    {%- assign classes = classes | append: ' ym-split--mist' -%}
+  {%- else -%}
+    {%- assign classes = classes | append: ' ym-split--reverse' -%}
+  {%- endif -%}
+
+  {%- assign classes_media = 'ym-split-media ym-step-media' -%}
+  {%- if block.settings.cadrage == 'contain' -%}
+    {%- assign classes_media = classes_media | append: ' ym-step-media--cutout' -%}
+  {%- endif -%}
+  {%- if block.settings.zoom -%}
+    {%- assign classes_media = classes_media | append: ' ym-zoombox' -%}
+  {%- endif -%}
+
+  <section class="{{ classes }}" {{ block.shopify_attributes }}>
+    <div class="ym-split-copy">
+      {%- if block.settings.numero != blank -%}
+        <div class="ym-step-number">{{ block.settings.numero }}</div>
+      {%- endif -%}
+      {%- if block.settings.surtitre != blank -%}
+        <div class="ym-eyebrow">{{ block.settings.surtitre }}</div>
+      {%- endif -%}
+      <h2>{{ block.settings.titre }}</h2>
+      {{ block.settings.texte }}
+    </div>
+
+    <div class="{{ classes_media }}">
+      {%- if block.settings.zoom -%}
+        {%- comment -%} Au survol, l'image grandit dans son cadre : le tissage se laisse compter perle à perle. {%- endcomment -%}
+        {%- assign alt_zoom = block.settings.image_alt | escape -%}
+        {%- if block.settings.image != blank -%}
+          {{ block.settings.image | image_url: width: 1600 | image_tag:
+               class: 'ym-main-img', alt: alt_zoom, widths: '600, 900, 1200, 1600', sizes: '(min-width: 680px) 50vw, 100vw', loading: 'lazy' }}
+        {%- else -%}
+          <img class="ym-main-img" src="{{ 'cutout-cigale.png' | asset_url }}" alt="{{ alt_zoom }}" width="1100" height="1100" loading="lazy">
+        {%- endif -%}
+        <div class="ym-zoomhint"><span>⤢</span> {{ block.settings.zoom_libelle }}</div>
+      {%- else -%}
+        {%- render 'ym-image',
+            image: block.settings.image,
+            repli: 'decor-thomas.jpg', repli_l: 1600, repli_h: 900,
+            alt: block.settings.image_alt,
+            sizes: '(min-width: 680px) 50vw, 100vw' -%}
+      {%- endif -%}
+    </div>
+  </section>
+{%- endfor -%}
+
+{% schema %}
+{
+  "name": "Les temps du savoir-faire",
+  "max_blocks": 6,
+  "blocks": [
+    {
+      "type": "etape",
+      "name": "Étape",
+      "settings": [
+        { "type": "text", "id": "numero", "label": "Numéro", "default": "01" },
+        { "type": "text", "id": "surtitre", "label": "Surtitre", "default": "L'observation" },
+        { "type": "text", "id": "titre", "label": "Titre", "default": "Tout commence dehors." },
+        { "type": "richtext", "id": "texte", "label": "Texte" },
+        { "type": "image_picker", "id": "image", "label": "Photo" },
+        { "type": "text", "id": "image_alt", "label": "Description de l'image" },
+        {
+          "type": "select",
+          "id": "cadrage",
+          "label": "Cadrage",
+          "options": [
+            { "value": "cover", "label": "Remplir le cadre (photo)" },
+            { "value": "contain", "label": "Poser en entier (visuel détouré)" }
+          ],
+          "default": "cover"
+        },
+        { "type": "checkbox", "id": "zoom", "label": "Loupe au survol", "default": false },
+        { "type": "text", "id": "zoom_libelle", "label": "Invitation de la loupe", "default": "Survolez pour approcher le tissage" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Les temps du savoir-faire",
+      "blocks": [
+        { "type": "etape", "settings": { "numero": "01", "surtitre": "L'observation", "titre": "Tout commence dehors.", "texte": "<p>Les champs, les haies, les toits du village. On note une posture, un éclat de plumage, la courbe d'une tige — le motif existe avant la première perle.</p>", "image_alt": "Champ de lavande au lever du soleil" } },
+        { "type": "etape", "settings": { "numero": "02", "surtitre": "La composition", "titre": "Choisir chaque couleur, une à une.", "texte": "<p>Le dessin fixe la silhouette, puis vient la palette : des perles de rocaille triées par teinte et par finition — mates, nacrées, irisées — pour capter la lumière comme le ferait le vivant.</p>", "cadrage": "contain", "image_alt": "Broche grande lavande" } },
+        { "type": "etape", "settings": { "numero": "03", "surtitre": "Le tissage", "titre": "Perle après perle, à l'aiguille.", "texte": "<p>Chaque perle est cousue à sa voisine, rang après rang, jusqu'à ce que le motif prenne corps. Une cigale en demande 599 — et plusieurs heures de tissage ininterrompu.</p>", "zoom": true, "image_alt": "Tissage de la broche cigale" } },
+        { "type": "etape", "settings": { "numero": "04", "surtitre": "Les finitions", "titre": "Doublée, montée, mise en écrin.", "texte": "<p>Le tissage est doublé pour tenir sa forme, l'attache est cousue à la main, puis la broche rejoint son écrin vert amande — dernière étape avant de quitter l'atelier.</p>", "image_alt": "Écrin Maison Yama" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

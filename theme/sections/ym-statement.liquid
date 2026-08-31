@@ -1,0 +1,27 @@
+{%- comment -%} Manifeste centré. L'italique se pose avec le <em> de l'éditeur de texte enrichi. {%- endcomment -%}
+<section class="ym-statement">
+  <div class="ym-container">
+    <div class="ym-rule"></div>
+    <p>{{ section.settings.texte }}</p>
+    {%- if section.settings.mention != blank -%}
+      <div class="ym-statement-foot">{{ section.settings.mention }}</div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Manifeste",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "texte",
+      "label": "Texte",
+      "info": "Mettez en italique le fragment à faire ressortir.",
+      "default": "Nées d'un geste lent et précis, elles traduisent une observation sensible du vivant. Les couleurs et les textures sont choisies pour <em>capter la lumière</em> et se révéler au regard."
+    },
+    { "type": "text", "id": "mention", "label": "Mention en bas", "default": "Une présence délicate au quotidien" }
+  ],
+  "presets": [{ "name": "Manifeste" }]
+}
+{% endschema %}

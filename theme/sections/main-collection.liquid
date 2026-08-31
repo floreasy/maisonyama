@@ -1,0 +1,31 @@
+<div class="ym-container ym-collection-list">
+  {%- paginate collection.products by section.settings.par_page -%}
+    <div class="ym-grid">
+      {%- for product in collection.products -%}
+        {%- render 'ym-card', product: product, index: forloop.index, spec_complete: section.settings.spec_complete -%}
+      {%- else -%}
+        <p>{{ 'collection.vide' | t }}</p>
+      {%- endfor -%}
+    </div>
+    {%- if paginate.pages > 1 -%}
+      <nav class="ym-pagination" aria-label="Pagination">
+        {%- if paginate.previous -%}
+          <a class="ym-link" href="{{ paginate.previous.url }}">{{ 'general.pagination.precedent' | t }}</a>
+        {%- endif -%}
+        {%- if paginate.next -%}
+          <a class="ym-link" href="{{ paginate.next.url }}">{{ 'general.pagination.suivant' | t }}</a>
+        {%- endif -%}
+      </nav>
+    {%- endif -%}
+  {%- endpaginate -%}
+</div>
+
+{% schema %}
+{
+  "name": "Grille de la collection",
+  "settings": [
+    { "type": "range", "id": "par_page", "label": "Pièces par page", "min": 4, "max": 24, "step": 1, "default": 12 },
+    { "type": "checkbox", "id": "spec_complete", "label": "Afficher le nombre de perles", "default": true }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "intro": {
+      "type": "ym-intro",
+      "settings": { "surtitre": "Maison Yama", "titre": "Nos collections", "texte": "" }
+    }
+  },
+  "order": ["intro"]
+}

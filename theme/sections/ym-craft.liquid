@@ -1,0 +1,59 @@
+{%- comment -%} Bande sauge : un bloc de texte à gauche, les chiffres clés à droite. {%- endcomment -%}
+<section class="ym-craft">
+  <div class="ym-container ym-craft-inner">
+    <div>
+      {%- if section.settings.surtitre != blank -%}
+        <div class="ym-craft-label">{{ section.settings.surtitre }}</div>
+      {%- endif -%}
+      <h2>
+        {{- section.settings.titre -}}
+        {%- if section.settings.titre_suite != blank -%}<br>{{ section.settings.titre_suite }}{%- endif -%}
+      </h2>
+      {%- if section.settings.texte != blank -%}<p>{{ section.settings.texte }}</p>{%- endif -%}
+    </div>
+
+    <div class="ym-stats">
+      {%- for block in section.blocks -%}
+        <div {{ block.shopify_attributes }}>
+          {%- comment -%} Un mot est plus large qu'un nombre : il démarre plus petit pour ne pas déborder. {%- endcomment -%}
+          <div class="ym-stat-value{% if block.settings.est_un_mot %} ym-stat-value--word{% endif %}">{{ block.settings.valeur }}</div>
+          <div class="ym-stat-label">{{ block.settings.libelle }}</div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Savoir-faire et chiffres",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "text", "id": "surtitre", "label": "Surtitre", "default": "Le savoir-faire" },
+    { "type": "text", "id": "titre", "label": "Titre", "default": "Un geste lent," },
+    { "type": "text", "id": "titre_suite", "label": "Deuxième ligne du titre", "default": "une perle après l'autre." },
+    { "type": "textarea", "id": "texte", "label": "Texte", "default": "Chaque broche est entièrement tissée à la main. Les couleurs et les textures sont choisies pour capter la lumière et se révéler au regard." }
+  ],
+  "blocks": [
+    {
+      "type": "chiffre",
+      "name": "Chiffre clé",
+      "settings": [
+        { "type": "text", "id": "valeur", "label": "Valeur", "default": "599" },
+        { "type": "text", "id": "libelle", "label": "Légende", "default": "Perles · une cigale" },
+        { "type": "checkbox", "id": "est_un_mot", "label": "La valeur est un mot, pas un nombre", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Savoir-faire et chiffres",
+      "blocks": [
+        { "type": "chiffre", "settings": { "valeur": "599", "libelle": "Perles · une cigale" } },
+        { "type": "chiffre", "settings": { "valeur": "100%", "libelle": "Tissé main" } },
+        { "type": "chiffre", "settings": { "valeur": "Luberon", "libelle": "Conçu & créé", "est_un_mot": true } }
+      ]
+    }
+  ]
+}
+{% endschema %}

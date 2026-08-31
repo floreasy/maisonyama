@@ -1,0 +1,137 @@
+{
+  "sections": {
+    "ouverture": {
+      "type": "ym-page-hero",
+      "settings": {
+        "surtitre": "Le savoir-faire",
+        "titre": "Un geste lent,",
+        "titre_italique": "une perle après l'autre.",
+        "texte": "De l'observation au dernier point, chaque broche traverse les mêmes quatre temps.",
+        "image_alt": "Paysage du Luberon",
+        "repli": "decor-flor.jpg"
+      }
+    },
+    "manifeste": {
+      "type": "ym-statement",
+      "settings": {
+        "texte": "Aucune machine, aucun moule. Une aiguille, du fil, des perles de rocaille — et <em>le temps qu'il faut.</em>",
+        "mention": ""
+      }
+    },
+    "temps": {
+      "type": "ym-steps",
+      "blocks": {
+        "un": {
+          "type": "etape",
+          "settings": {
+            "numero": "01",
+            "surtitre": "L'observation",
+            "titre": "Tout commence dehors.",
+            "texte": "<p>Les champs, les haies, les toits du village. On note une posture, un éclat de plumage, la courbe d'une tige — le motif existe avant la première perle.</p>",
+            "cadrage": "cover",
+            "zoom": false,
+            "image_alt": "Champ de lavande au lever du soleil"
+          }
+        },
+        "deux": {
+          "type": "etape",
+          "settings": {
+            "numero": "02",
+            "surtitre": "La composition",
+            "titre": "Choisir chaque couleur, une à une.",
+            "texte": "<p>Le dessin fixe la silhouette, puis vient la palette : des perles de rocaille triées par teinte et par finition — mates, nacrées, irisées — pour capter la lumière comme le ferait le vivant.</p>",
+            "cadrage": "contain",
+            "zoom": false,
+            "image_alt": "Broche grande lavande"
+          }
+        },
+        "trois": {
+          "type": "etape",
+          "settings": {
+            "numero": "03",
+            "surtitre": "Le tissage",
+            "titre": "Perle après perle, à l'aiguille.",
+            "texte": "<p>Chaque perle est cousue à sa voisine, rang après rang, jusqu'à ce que le motif prenne corps. Une cigale en demande 599 — et plusieurs heures de tissage ininterrompu.</p>",
+            "cadrage": "contain",
+            "zoom": true,
+            "zoom_libelle": "Survolez pour approcher le tissage",
+            "image_alt": "Tissage de la broche cigale"
+          }
+        },
+        "quatre": {
+          "type": "etape",
+          "settings": {
+            "numero": "04",
+            "surtitre": "Les finitions",
+            "titre": "Doublée, montée, mise en écrin.",
+            "texte": "<p>Le tissage est doublé pour tenir sa forme, l'attache est cousue à la main, puis la broche rejoint son écrin vert amande — dernière étape avant de quitter l'atelier.</p>",
+            "cadrage": "cover",
+            "zoom": false,
+            "image_alt": "Écrin Maison Yama"
+          }
+        }
+      },
+      "block_order": [
+        "un",
+        "deux",
+        "trois",
+        "quatre"
+      ]
+    },
+    "chiffres": {
+      "type": "ym-craft",
+      "blocks": {
+        "perles": {
+          "type": "chiffre",
+          "settings": {
+            "valeur": "599",
+            "libelle": "Perles · une cigale"
+          }
+        },
+        "main": {
+          "type": "chiffre",
+          "settings": {
+            "valeur": "100%",
+            "libelle": "Tissé main"
+          }
+        },
+        "luberon": {
+          "type": "chiffre",
+          "settings": {
+            "valeur": "Luberon",
+            "libelle": "Conçu & créé",
+            "est_un_mot": true
+          }
+        }
+      },
+      "block_order": [
+        "perles",
+        "main",
+        "luberon"
+      ],
+      "settings": {
+        "surtitre": "En quelques chiffres",
+        "titre": "Le temps que prend",
+        "titre_suite": "une belle chose.",
+        "texte": "Chaque broche est entièrement tissée à la main. Les couleurs et les textures sont choisies pour capter la lumière et se révéler au regard."
+      }
+    },
+    "appel": {
+      "type": "ym-cta-band",
+      "settings": {
+        "surtitre": "Collection 2026",
+        "titre": "Voir ce que ces gestes font naître.",
+        "cta_libelle": "Découvrir la collection",
+        "cta_lien": "/collections/all",
+        "fond_sauge": false
+      }
+    }
+  },
+  "order": [
+    "ouverture",
+    "manifeste",
+    "temps",
+    "chiffres",
+    "appel"
+  ]
+}

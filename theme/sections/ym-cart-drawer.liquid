@@ -1,0 +1,47 @@
+{%- comment -%}
+  Tiroir du panier. Re-rendu par l'API de rendu de section après chaque
+  modification : le balisage reste construit par Liquid, le JS ne fait que
+  remplacer le bloc et l'ouvrir.
+{%- endcomment -%}
+<div class="ym-drawer" data-ym-drawer hidden>
+  <div class="ym-drawer-veil" data-ym-close></div>
+
+  <aside class="ym-drawer-panel" role="dialog" aria-modal="true" aria-label="{{ 'panier.titre' | t }}">
+    <header class="ym-drawer-head">
+      <span class="ym-eyebrow">
+        {{ 'panier.titre' | t }}
+        {%- if cart.item_count > 0 %} · {{ cart.item_count }} {% if cart.item_count == 1 %}{{ 'panier.article' | t }}{% else %}{{ 'panier.articles' | t }}{% endif %}{% endif -%}
+      </span>
+      <button class="ym-drawer-close" type="button" data-ym-close aria-label="{{ 'panier.fermer' | t }}">×</button>
+    </header>
+
+    {%- if cart.item_count == 0 -%}
+      <div class="ym-drawer-empty">
+        <p>{{ 'panier.vide' | t }}</p>
+        <a class="ym-link" href="{{ routes.all_products_collection_url }}">{{ 'panier.vide_lien' | t }}</a>
+      </div>
+    {%- else -%}
+      <div class="ym-drawer-lines">
+        {%- for item in cart.items -%}
+          {%- render 'ym-ligne-panier', item: item, compact: true -%}
+        {%- endfor -%}
+      </div>
+
+      <footer class="ym-drawer-foot">
+        <div class="ym-drawer-total">
+          <span>{{ 'panier.sous_total' | t }}</span>
+          <span class="ym-price">{{ cart.total_price | money }}</span>
+        </div>
+        <p class="ym-drawer-note">{{ 'panier.note_livraison' | t }}</p>
+        <form action="{{ routes.cart_url }}" method="post">
+          <button class="ym-cta ym-cta--block" type="submit" name="checkout">{{ 'panier.commander' | t }}</button>
+        </form>
+        <button class="ym-link ym-drawer-continue" type="button" data-ym-close>{{ 'panier.continuer' | t }}</button>
+      </footer>
+    {%- endif -%}
+  </aside>
+</div>
+
+{% schema %}
+{ "name": "Tiroir du panier", "settings": [] }
+{% endschema %}

@@ -1,0 +1,22 @@
+{%- comment -%} Bande sauge de bas de collection : un titre à gauche, une phrase à droite. {%- endcomment -%}
+<section class="ym-note">
+  <div class="ym-container ym-note-inner">
+    <h2>
+      {{- section.settings.titre -}}
+      {%- if section.settings.titre_suite != blank -%}<br>{{ section.settings.titre_suite }}{%- endif -%}
+    </h2>
+    <p>{{ section.settings.texte }}</p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Note écrin",
+  "settings": [
+    { "type": "text", "id": "titre", "label": "Titre", "default": "Chaque pièce est livrée" },
+    { "type": "text", "id": "titre_suite", "label": "Deuxième ligne du titre", "default": "dans son écrin." },
+    { "type": "textarea", "id": "texte", "label": "Texte", "default": "Tissée à la main, perle après perle, puis confiée à son écrin vert amande frappé d'or — prête à offrir, ou à se faire offrir." }
+  ],
+  "presets": [{ "name": "Note écrin" }]
+}
+{% endschema %}

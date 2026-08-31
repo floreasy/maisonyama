@@ -1,0 +1,22 @@
+{
+  "sections": {
+    "intro": {
+      "type": "ym-intro",
+      "settings": {
+        "surtitre": "Collection 2026",
+        "titre": "Inspirées du vivant",
+        "texte": "Sept pièces, tissées perle après perle au cœur du Luberon. Chacune naît d'une observation sensible du vivant, traduite par un geste lent et précis."
+      }
+    },
+    "grille": { "type": "main-collection", "settings": { "par_page": 12, "spec_complete": true } },
+    "ecrin": {
+      "type": "ym-note",
+      "settings": {
+        "titre": "Chaque pièce est livrée",
+        "titre_suite": "dans son écrin.",
+        "texte": "Tissée à la main, perle après perle, puis confiée à son écrin vert amande frappé d'or — prête à offrir, ou à se faire offrir."
+      }
+    }
+  },
+  "order": ["intro", "grille", "ecrin"]
+}

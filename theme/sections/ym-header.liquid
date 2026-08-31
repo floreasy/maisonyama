@@ -1,0 +1,47 @@
+<header>
+  <div class="ym-header ym-container">
+    <button class="ym-burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="ym-nav">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="ym-nav" id="ym-nav" aria-label="Navigation principale">
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}"{% if link.active or link.child_active %} aria-current="page"{% endif %}>{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+
+    <a class="ym-logo" href="{{ routes.root_url }}">
+      {%- if section.settings.logo != blank -%}
+        {{ section.settings.logo | image_url: width: 260 | image_tag:
+             widths: '104, 156, 208, 260', sizes: '130px', alt: shop.name }}
+      {%- elsif settings.logo_header != blank -%}
+        {{ settings.logo_header | image_url: width: 260 | image_tag:
+             widths: '104, 156, 208, 260', sizes: '130px', alt: shop.name }}
+      {%- else -%}
+        <img src="{{ 'logo-yama-vert.png' | asset_url }}" alt="{{ shop.name }}" width="1100" height="623">
+      {%- endif -%}
+    </a>
+
+    <div class="ym-actions">
+      <a href="{{ routes.search_url }}">{{ 'general.recherche.titre' | t }}</a>
+      <a href="{{ routes.cart_url }}" data-ym-cart-link>
+        {{ 'panier.titre' | t }} (<span data-ym-cart-count>{{ cart.item_count }}</span>)
+      </a>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "En-tête",
+  "settings": [
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo",
+      "info": "Laisser vide pour reprendre le logo des paramètres du thème."
+    }
+  ]
+}
+{% endschema %}

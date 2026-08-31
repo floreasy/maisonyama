@@ -1,0 +1,27 @@
+<section class="ym-quote">
+  {%- render 'ym-image', image: section.settings.image, repli: 'decor-artur.jpg', repli_l: 1600, repli_h: 1200, alt: section.settings.image_alt -%}
+  <div class="ym-quote-veil"></div>
+  <div class="ym-quote-copy">
+    <p>
+      {{- section.settings.ligne_1 -}}
+      {%- if section.settings.ligne_2 != blank -%}<br>{{ section.settings.ligne_2 }}{%- endif -%}
+    </p>
+    {%- if section.settings.auteur != blank -%}
+      <div class="ym-quote-author">{{ section.settings.auteur }}</div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Citation",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Photo de fond" },
+    { "type": "text", "id": "image_alt", "label": "Description de l'image", "default": "Champ de lavande au coucher du soleil" },
+    { "type": "text", "id": "ligne_1", "label": "Première ligne", "default": "« Retenir la lumière du Luberon," },
+    { "type": "text", "id": "ligne_2", "label": "Seconde ligne", "default": "le temps d'une broche. »" },
+    { "type": "text", "id": "auteur", "label": "Signature", "default": "Maison Yama" }
+  ],
+  "presets": [{ "name": "Citation" }]
+}
+{% endschema %}

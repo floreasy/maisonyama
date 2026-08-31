@@ -1,0 +1,75 @@
+{
+  "sections": {
+    "ouverture": {
+      "type": "ym-page-hero",
+      "settings": {
+        "surtitre": "La Maison",
+        "titre": "Une maison née de",
+        "titre_italique": "l'observation du vivant.",
+        "texte": "Au Castellet-en-Luberon, entre les rangs de lavande et le chant des cigales.",
+        "image_alt": "Paysage du Luberon"
+      }
+    },
+    "manifeste": {
+      "type": "ym-statement",
+      "settings": {
+        "texte": "Maison Yama est née d'un attachement profond aux paysages de Provence — de l'envie de retenir, <em>le temps d'une broche,</em> ce que la lumière y fait au vivant.",
+        "mention": "Castellet-en-Luberon · Provence"
+      }
+    },
+    "recit": {
+      "type": "ym-split",
+      "settings": {
+        "surtitre": "Le regard avant le geste",
+        "titre": "Chaque broche commence par une promenade.",
+        "texte": "<p>Une cigale posée sur une pierre chaude, un rouge-gorge dans l'amandier, la lavande qui plie sous le vent. La maison collectionne ces instants avant de les traduire.</p><p>De retour à l'atelier, les couleurs sont choisies de mémoire — puis vient le tissage, perle après perle.</p>",
+        "image_alt": "Broche lavande portée",
+        "image_a_gauche": false,
+        "cadrage": "cover",
+        "fond": "mist"
+      }
+    },
+    "convictions": {
+      "type": "ym-values",
+      "blocks": {
+        "observation": { "type": "conviction", "settings": { "titre": "L'observation", "texte": "Regarder longtemps avant de dessiner. Les formes, les couleurs et les postures viennent du vivant, jamais du catalogue." } },
+        "lenteur": { "type": "conviction", "settings": { "titre": "La lenteur", "texte": "Un geste précis ne se presse pas. Chaque pièce demande des heures de tissage — et les prend." } },
+        "unique": { "type": "conviction", "settings": { "titre": "La pièce unique", "texte": "Tissée main, chaque broche porte de légères variations — la signature discrète de celle qui l'a faite." } }
+      },
+      "block_order": ["observation", "lenteur", "unique"],
+      "settings": { "surtitre": "Ce qui nous guide", "titre": "Trois convictions simples" }
+    },
+    "citation": {
+      "type": "ym-quote",
+      "settings": {
+        "ligne_1": "« Retenir la lumière du Luberon,",
+        "ligne_2": "le temps d'une broche. »",
+        "auteur": "Maison Yama",
+        "image_alt": "Champ de lavande au coucher du soleil"
+      }
+    },
+    "signature": {
+      "type": "ym-split",
+      "settings": {
+        "surtitre": "La signature",
+        "titre": "Achevée, signée, puis confiée à son écrin.",
+        "texte": "<p>Chaque broche quitte l'atelier dans son écrin vert amande frappé d'or — prête à offrir, ou à se faire offrir.</p>",
+        "image_alt": "Écrin Maison Yama",
+        "image_a_gauche": true,
+        "cadrage": "contain",
+        "fond": "aucun"
+      }
+    },
+    "appel": {
+      "type": "ym-cta-band",
+      "settings": {
+        "surtitre": "Collection 2026",
+        "titre": "Découvrez les pièces nées ici.",
+        "cta_libelle": "Voir la collection",
+        "cta_lien": "/collections/all",
+        "fond_sauge": true
+      }
+    }
+  },
+  "order": ["ouverture", "manifeste", "recit", "convictions", "citation", "signature", "appel"]
+}

@@ -1,0 +1,17 @@
+{%- comment -%}
+  Page libre : le contenu saisi dans l'admin, dans la mise en page de la maison.
+  Les pages « La Maison » et « Le savoir-faire » n'utilisent pas cette section —
+  elles sont composées de sections dans l'éditeur de thème.
+{%- endcomment -%}
+<section class="ym-page-content">
+  <div class="ym-container">
+    <div class="ym-eyebrow">{{ shop.name }}</div>
+    <h1>{{ page.title }}</h1>
+    <div class="ym-rule"></div>
+    <div class="ym-rte">{{ page.content }}</div>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Contenu de la page", "settings": [] }
+{% endschema %}

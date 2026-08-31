@@ -1,0 +1,28 @@
+{%- comment -%} Bande paysage sous la fiche produit : photo, voile latéral, titre en italique. {%- endcomment -%}
+<section class="ym-decor">
+  {%- render 'ym-image', image: section.settings.image, repli: 'decor-sarah.jpg', repli_l: 1600, repli_h: 1067, alt: section.settings.image_alt -%}
+  <div class="ym-decor-veil"></div>
+  <div class="ym-decor-copy">
+    <div class="ym-container">
+      {%- if section.settings.surtitre != blank -%}
+        <div class="ym-decor-label">{{ section.settings.surtitre }}</div>
+      {%- endif -%}
+      <h2>{{ section.settings.titre }}</h2>
+      {%- if section.settings.texte != blank -%}<p>{{ section.settings.texte }}</p>{%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Bande paysage",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Photo" },
+    { "type": "text", "id": "image_alt", "label": "Description de l'image", "default": "Champ de blé doré sous le soleil de Provence" },
+    { "type": "text", "id": "surtitre", "label": "Surtitre", "default": "Au cœur du Luberon" },
+    { "type": "text", "id": "titre", "label": "Titre", "default": "Là où l'été se raconte." },
+    { "type": "textarea", "id": "texte", "label": "Texte", "default": "Entre les rangs de lavande et le chant des cigales, chaque broche puise sa lumière dans les paysages qui l'ont vue naître." }
+  ],
+  "presets": [{ "name": "Bande paysage" }]
+}
+{% endschema %}

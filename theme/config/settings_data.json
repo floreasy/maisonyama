@@ -1,0 +1,17 @@
+{
+  "current": {
+    "spec_faconnage": "Tissé entièrement main",
+    "spec_origine": "Castellet-en-Luberon",
+    "product_price_note": "Prix public conseillé · TVA incluse",
+    "product_stock_note": "En stock — expédiée sous 3 à 5 jours",
+    "social_instagram": "https://instagram.com/maisonyama"
+  },
+  "presets": {
+    "Maison Yama": {
+      "spec_faconnage": "Tissé entièrement main",
+      "spec_origine": "Castellet-en-Luberon",
+      "product_price_note": "Prix public conseillé · TVA incluse",
+      "product_stock_note": "En stock — expédiée sous 3 à 5 jours"
+    }
+  }
+}

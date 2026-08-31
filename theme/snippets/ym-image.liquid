@@ -1,0 +1,25 @@
+{%- comment -%}
+  Image de section, avec repli sur un visuel livré dans le thème.
+
+  Toutes les photos d'ambiance du site statique sont embarquées dans assets/ :
+  la boutique voit donc ses sections déjà habillées à l'installation, et remplace
+  ce qu'elle veut par ses propres images sans jamais tomber sur un cadre vide.
+
+  Accepte : image, repli (nom de fichier dans assets/), repli_l et repli_h
+            (ses dimensions réelles), alt, classe, sizes, widths,
+            eager (true pour la première image de la page).
+{%- endcomment -%}
+
+{%- assign ym_sizes = sizes | default: '100vw' -%}
+{%- assign ym_widths = widths | default: '600, 900, 1200, 1800, 2400' -%}
+{%- assign ym_classe = classe | default: '' -%}
+{%- if eager -%}{%- assign ym_loading = 'eager' -%}{%- else -%}{%- assign ym_loading = 'lazy' -%}{%- endif -%}
+{%- assign ym_alt = alt | default: '' | escape -%}
+
+{%- if image != blank -%}
+  {{ image | image_url: width: 2400 | image_tag:
+       class: ym_classe, alt: ym_alt, sizes: ym_sizes, widths: ym_widths, loading: ym_loading }}
+{%- elsif repli != blank -%}
+  <img src="{{ repli | asset_url }}" alt="{{ ym_alt }}" class="{{ ym_classe }}"
+       width="{{ repli_l | default: 1600 }}" height="{{ repli_h | default: 1067 }}" loading="{{ ym_loading }}">
+{%- endif -%}

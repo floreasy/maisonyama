@@ -1,0 +1,15 @@
+<section class="ym-intro ym-404">
+  <div class="ym-container">
+    <div class="ym-eyebrow">Erreur 404</div>
+    <h1>{{ 'general.404.titre' | t }}</h1>
+    <div class="ym-rule"></div>
+    <p>{{ 'general.404.texte' | t }}</p>
+    <p class="ym-404-action">
+      <a class="ym-cta" href="{{ routes.all_products_collection_url }}">{{ 'general.404.lien' | t }}</a>
+    </p>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Page introuvable", "settings": [] }
+{% endschema %}

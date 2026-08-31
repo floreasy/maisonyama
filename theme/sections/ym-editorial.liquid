@@ -1,0 +1,31 @@
+{%- comment -%} Bande éditoriale : photo pleine largeur, voile dégradé, citation en italique. {%- endcomment -%}
+<section class="ym-editorial">
+  {%- render 'ym-image',
+      image: section.settings.image,
+      repli: 'situation-cigale.jpeg', repli_l: 1067, repli_h: 1600,
+      alt: section.settings.image_alt -%}
+  <div class="ym-editorial-veil"></div>
+  <div class="ym-editorial-copy">
+    {%- if section.settings.surtitre != blank -%}
+      <div class="ym-eyebrow">{{ section.settings.surtitre }}</div>
+    {%- endif -%}
+    <p>{{ section.settings.texte }}</p>
+    {%- if section.settings.mention != blank -%}
+      <div class="ym-editorial-foot">{{ section.settings.mention }}</div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Bande éditoriale",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Photo" },
+    { "type": "text", "id": "image_alt", "label": "Description de l'image", "default": "Broche cigale portée" },
+    { "type": "text", "id": "surtitre", "label": "Surtitre", "default": "La Cigale" },
+    { "type": "textarea", "id": "texte", "label": "Phrase", "default": "La symphonie de l'été provençal." },
+    { "type": "text", "id": "mention", "label": "Mention en bas", "default": "Une présence éphémère" }
+  ],
+  "presets": [{ "name": "Bande éditoriale" }]
+}
+{% endschema %}

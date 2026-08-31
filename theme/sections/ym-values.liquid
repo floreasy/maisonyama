@@ -1,0 +1,50 @@
+<section class="ym-values">
+  <div class="ym-container">
+    <div class="ym-values-head">
+      {%- if section.settings.surtitre != blank -%}
+        <div class="ym-eyebrow">{{ section.settings.surtitre }}</div>
+      {%- endif -%}
+      <h2>{{ section.settings.titre }}</h2>
+    </div>
+    <div class="ym-values-grid">
+      {%- for block in section.blocks -%}
+        <div class="ym-value" {{ block.shopify_attributes }}>
+          <div class="ym-rule"></div>
+          <div class="ym-value-title">{{ block.settings.titre }}</div>
+          <p>{{ block.settings.texte }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Convictions",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "text", "id": "surtitre", "label": "Surtitre", "default": "Ce qui nous guide" },
+    { "type": "text", "id": "titre", "label": "Titre", "default": "Trois convictions simples" }
+  ],
+  "blocks": [
+    {
+      "type": "conviction",
+      "name": "Conviction",
+      "settings": [
+        { "type": "text", "id": "titre", "label": "Titre", "default": "L'observation" },
+        { "type": "textarea", "id": "texte", "label": "Texte", "default": "Regarder longtemps avant de dessiner." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Convictions",
+      "blocks": [
+        { "type": "conviction", "settings": { "titre": "L'observation", "texte": "Regarder longtemps avant de dessiner. Les formes, les couleurs et les postures viennent du vivant, jamais du catalogue." } },
+        { "type": "conviction", "settings": { "titre": "La lenteur", "texte": "Un geste précis ne se presse pas. Chaque pièce demande des heures de tissage — et les prend." } },
+        { "type": "conviction", "settings": { "titre": "La pièce unique", "texte": "Tissée main, chaque broche porte de légères variations — la signature discrète de celle qui l'a faite." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

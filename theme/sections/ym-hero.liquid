@@ -1,0 +1,53 @@
+<section class="ym-hero">
+  <div class="ym-hero-copy">
+    {%- if section.settings.surtitre != blank -%}
+      <div class="ym-eyebrow">{{ section.settings.surtitre }}</div>
+    {%- endif -%}
+    <h1>
+      {{- section.settings.titre -}}
+      {%- if section.settings.titre_italique != blank -%}
+        <br><em>{{ section.settings.titre_italique }}</em>
+      {%- endif -%}
+    </h1>
+    {%- if section.settings.texte != blank -%}
+      <p>{{ section.settings.texte }}</p>
+    {%- endif -%}
+    <div class="ym-hero-actions">
+      {%- if section.settings.cta_libelle != blank -%}
+        <a class="ym-cta" href="{{ section.settings.cta_lien }}">{{ section.settings.cta_libelle }}</a>
+      {%- endif -%}
+      {%- if section.settings.lien_libelle != blank -%}
+        <a class="ym-link" href="{{ section.settings.lien_lien }}">{{ section.settings.lien_libelle }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+  <div class="ym-hero-media">
+    {%- render 'ym-image',
+        image: section.settings.image,
+        repli: 'situation-grande-lavande.jpeg', repli_l: 1067, repli_h: 1600,
+        alt: section.settings.image_alt,
+        sizes: '(min-width: 760px) 50vw, 100vw',
+        eager: true -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Ouverture",
+  "settings": [
+    { "type": "text", "id": "surtitre", "label": "Surtitre", "default": "Castellet-en-Luberon · Collection 2026" },
+    { "type": "text", "id": "titre", "label": "Titre", "default": "Broches tissées à la main," },
+    { "type": "text", "id": "titre_italique", "label": "Suite du titre, en italique", "default": "perle après perle." },
+    { "type": "textarea", "id": "texte", "label": "Texte", "default": "Une observation sensible du vivant, traduite par un geste lent et précis, au cœur du Luberon." },
+    { "type": "header", "content": "Boutons" },
+    { "type": "text", "id": "cta_libelle", "label": "Bouton plein", "default": "Découvrir la collection" },
+    { "type": "url", "id": "cta_lien", "label": "Lien du bouton plein" },
+    { "type": "text", "id": "lien_libelle", "label": "Lien souligné", "default": "Le savoir-faire" },
+    { "type": "url", "id": "lien_lien", "label": "Cible du lien souligné" },
+    { "type": "header", "content": "Image" },
+    { "type": "image_picker", "id": "image", "label": "Photo", "info": "Laisser vide pour la lavande portée livrée avec le thème." },
+    { "type": "text", "id": "image_alt", "label": "Description de l'image", "default": "Broche lavande portée" }
+  ],
+  "presets": [{ "name": "Ouverture" }]
+}
+{% endschema %}

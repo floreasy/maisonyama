@@ -1,0 +1,77 @@
+{%- comment -%}
+  Section en deux volets : le texte d'un côté, la photo de l'autre.
+
+  Le texte précède toujours la photo dans le balisage — ainsi, une fois les deux
+  volets empilés sur téléphone, c'est lui qui arrive en premier. L'option
+  « photo à gauche » ne fait que permuter l'ordre visuel en grand écran.
+{%- endcomment -%}
+
+{%- assign classes = 'ym-split' -%}
+{%- if section.settings.image_a_gauche -%}{%- assign classes = classes | append: ' ym-split--reverse' -%}{%- endif -%}
+{%- if section.settings.fond != 'aucun' -%}{%- assign classes = classes | append: ' ym-split--' | append: section.settings.fond -%}{%- endif -%}
+
+{%- assign classes_media = 'ym-split-media' -%}
+{%- if section.settings.cadrage == 'contain' -%}
+  {%- assign classes_media = classes_media | append: ' ym-split-media--contain' -%}
+  {%- comment -%} Un cadrage « en entier » appelle un détouré : c'est l'écrin qui sert de repli. {%- endcomment -%}
+  {%- assign ym_repli = 'cutout-packaging.png' -%}
+  {%- assign ym_repli_l = 1024 -%}{%- assign ym_repli_h = 1024 -%}
+{%- else -%}
+  {%- assign ym_repli = 'box-cigale.jpeg' -%}
+  {%- assign ym_repli_l = 1067 -%}{%- assign ym_repli_h = 1600 -%}
+{%- endif -%}
+
+<section class="{{ classes }}">
+  <div class="ym-split-copy">
+    {%- if section.settings.surtitre != blank -%}
+      <div class="ym-eyebrow">{{ section.settings.surtitre }}</div>
+    {%- endif -%}
+    {%- if section.settings.titre != blank -%}<h2>{{ section.settings.titre }}</h2>{%- endif -%}
+    {{ section.settings.texte }}
+  </div>
+  <div class="{{ classes_media }}">
+    {%- render 'ym-image',
+        image: section.settings.image,
+        repli: ym_repli, repli_l: ym_repli_l, repli_h: ym_repli_h,
+        alt: section.settings.image_alt,
+        sizes: '(min-width: 680px) 50vw, 100vw' -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Texte et photo",
+  "settings": [
+    { "type": "text", "id": "surtitre", "label": "Surtitre", "default": "L'écrin Maison Yama" },
+    { "type": "text", "id": "titre", "label": "Titre", "default": "Chaque pièce présentée dans son écrin." },
+    { "type": "richtext", "id": "texte", "label": "Texte", "default": "<p>Tissée à la main, perle après perle, puis déposée dans son écrin signé — prête à offrir, ou à se faire offrir.</p>" },
+    { "type": "header", "content": "Photo" },
+    { "type": "image_picker", "id": "image", "label": "Photo" },
+    { "type": "text", "id": "image_alt", "label": "Description de l'image", "default": "Écrin Maison Yama" },
+    { "type": "checkbox", "id": "image_a_gauche", "label": "Photo à gauche", "default": false },
+    {
+      "type": "select",
+      "id": "cadrage",
+      "label": "Cadrage",
+      "options": [
+        { "value": "cover", "label": "Remplir le cadre (photo)" },
+        { "value": "contain", "label": "Poser en entier (visuel détouré)" }
+      ],
+      "default": "cover"
+    },
+    { "type": "header", "content": "Fond" },
+    {
+      "type": "select",
+      "id": "fond",
+      "label": "Fond du volet texte",
+      "options": [
+        { "value": "aucun", "label": "Crème (fond de page)" },
+        { "value": "mist", "label": "Vert amande" },
+        { "value": "sage", "label": "Vert sauge" }
+      ],
+      "default": "aucun"
+    }
+  ],
+  "presets": [{ "name": "Texte et photo" }]
+}
+{% endschema %}

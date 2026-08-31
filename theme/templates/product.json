@@ -1,0 +1,30 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {
+        "surtitre": "Collection 2026",
+        "ecrin_titre": "Livrée dans son écrin Maison Yama",
+        "ecrin_texte": "Prête à offrir, ou à se faire offrir."
+      }
+    },
+    "paysage": {
+      "type": "ym-decor",
+      "settings": {
+        "surtitre": "Au cœur du Luberon",
+        "titre": "Là où l'été se raconte.",
+        "texte": "Entre les rangs de lavande et le chant des cigales, chaque broche puise sa lumière dans les paysages qui l'ont vue naître.",
+        "image_alt": "Champ de blé doré sous le soleil de Provence"
+      }
+    },
+    "autres": {
+      "type": "ym-recommendations",
+      "settings": {
+        "surtitre": "À découvrir aussi",
+        "titre": "Autres pièces de la collection",
+        "nombre": 3
+      }
+    }
+  },
+  "order": ["main", "paysage", "autres"]
+}

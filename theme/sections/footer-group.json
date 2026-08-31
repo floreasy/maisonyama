@@ -1,0 +1,19 @@
+{
+  "type": "footer",
+  "name": "Pied de page",
+  "sections": {
+    "pied": {
+      "type": "ym-footer",
+      "blocks": {
+        "maison": { "type": "menu", "settings": { "titre": "Maison", "menu": "footer" } },
+        "contact": { "type": "contact", "settings": { "titre": "Contact" } }
+      },
+      "block_order": ["maison", "contact"],
+      "settings": {
+        "baseline": "Broches en perles de rocaille tissées à la main au cœur du Luberon.",
+        "mention_finale": "Fait main en Provence"
+      }
+    }
+  },
+  "order": ["pied"]
+}

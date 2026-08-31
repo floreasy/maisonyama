@@ -1,0 +1,182 @@
+{%- assign variante = product.selected_or_first_available_variant -%}
+{%- assign col = collection | default: product.collections.first -%}
+{%- assign ym_padding = product.metafields.custom.padding_detoure | default: 10 -%}
+
+<section class="ym-product-page">
+  <div class="ym-container">
+
+    <nav class="ym-breadcrumb" aria-label="Fil d'Ariane">
+      {%- if col != blank -%}
+        <a href="{{ col.url }}">{{ col.title }}</a> &nbsp;/&nbsp;
+      {%- endif -%}
+      <span aria-current="page">{{ product.title }}</span>
+    </nav>
+
+    <div class="ym-product">
+
+      <div class="ym-gallery">
+        {%- if product.images.size > 1 -%}
+          <div class="ym-thumbs">
+            <div class="ym-thumbs-inner">
+              {%- for image in product.images limit: 5 -%}
+                {%- comment -%}
+                  Un détouré (PNG, fond transparent) se pose en entier sur le fond
+                  clair ; une photo pleine remplit son cadre. Chaque vignette porte
+                  son propre cadrage, que le JS applique à la grande image.
+                {%- endcomment -%}
+                {%- capture cadrage -%}{%- render 'ym-cadrage', image: image -%}{%- endcapture -%}
+                {%- assign cadrage = cadrage | strip -%}
+                {%- if cadrage == 'contain' -%}
+                  {%- assign fit = 'contain' -%}
+                  {%- capture pad %}{{ ym_padding | plus: 2 }}%{% endcapture -%}
+                  {%- assign bg = 'var(--ym-cutout-bg)' -%}
+                {%- else -%}
+                  {%- assign fit = 'cover' -%}
+                  {%- assign pad = '0px' -%}
+                  {%- assign bg = 'var(--ym-photo-bg)' -%}
+                {%- endif -%}
+                {%- assign alt_image = image.alt | default: product.title | escape -%}
+
+                <button class="ym-thumb" type="button"
+                        aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
+                        aria-label="{{ alt_image }}"
+                        data-src="{{ image | image_url: width: 2000 }}"
+                        data-alt="{{ alt_image }}"
+                        data-fit="{{ fit }}" data-pad="{{ pad }}" data-bg="{{ bg }}"
+                        {% if fit == 'contain' %}style="background:{{ bg }};"{% endif %}>
+                  {{ image | image_url: width: 220 | image_tag:
+                       alt: alt_image, widths: '110, 220', sizes: '92px', loading: 'lazy',
+                       style: 'object-fit:' | append: fit }}
+                </button>
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- endif -%}
+
+        <div class="ym-zoombox">
+          {%- assign premiere = product.featured_image -%}
+          {%- assign alt_premiere = premiere.alt | default: product.title | escape -%}
+          {%- if premiere != blank -%}
+            {{ premiere | image_url: width: 2000 | image_tag:
+                 class: 'ym-main-img', alt: alt_premiere,
+                 widths: '600, 900, 1300, 2000', sizes: '(min-width: 860px) 50vw, 100vw' }}
+          {%- endif -%}
+          <div class="ym-zoomhint"><span>⤢</span> {{ 'produit.zoom' | t }}</div>
+        </div>
+      </div>
+
+      <div class="ym-details">
+        {%- if section.settings.surtitre != blank -%}
+          <div class="ym-eyebrow">{{ section.settings.surtitre }}</div>
+        {%- endif -%}
+
+        <h1>{{ product.title }}</h1>
+
+        {%- assign tagline = product.metafields.custom.tagline -%}
+        {%- if tagline != blank -%}
+          <p class="ym-tagline">{{ tagline }}</p>
+        {%- endif -%}
+
+        <div class="ym-product-price" data-ym-price>
+          {%- if variante.compare_at_price > variante.price -%}
+            <s>{{ variante.compare_at_price | money }}</s>
+          {%- endif -%}
+          {{ variante.price | money }}
+        </div>
+        {%- if settings.product_price_note != blank -%}
+          <div class="ym-price-note">{{ settings.product_price_note }}</div>
+        {%- endif -%}
+
+        {%- if product.description != blank -%}
+          <div class="ym-description">{{ product.description }}</div>
+        {%- endif -%}
+
+        {%- form 'product', product, id: 'ym-form-produit', novalidate: 'novalidate' -%}
+          {%- unless product.has_only_default_variant -%}
+            <div class="ym-variants">
+              <label class="ym-spec-label" for="ym-variante">{{ product.options.first }}</label>
+              <select id="ym-variante" name="id" data-ym-variant-select>
+                {%- for v in product.variants -%}
+                  <option value="{{ v.id }}"
+                          {% if v == variante %}selected{% endif %}
+                          {% unless v.available %}disabled{% endunless %}>
+                    {{ v.title }} — {{ v.price | money }}{% unless v.available %} · {{ 'produit.epuise' | t }}{% endunless %}
+                  </option>
+                {%- endfor -%}
+              </select>
+            </div>
+          {%- else -%}
+            <input type="hidden" name="id" value="{{ variante.id }}">
+          {%- endunless -%}
+
+          <div class="ym-buy">
+            <button class="ym-add" type="submit" name="add" {% unless variante.available %}disabled{% endunless %}>
+              {%- if variante.available -%}{{ 'produit.ajouter' | t }}{%- else -%}{{ 'produit.epuise' | t }}{%- endif -%}
+            </button>
+            <button class="ym-wish" type="button" aria-label="{{ 'produit.favoris' | t }}">♡</button>
+          </div>
+        {%- endform -%}
+
+        {%- if variante.available and settings.product_stock_note != blank -%}
+          <div class="ym-stock">{{ settings.product_stock_note }}</div>
+        {%- endif -%}
+
+        <div class="ym-specs">
+          {%- if product.metafields.custom.dimensions != blank -%}
+            <div>
+              <div class="ym-spec-label">{{ 'produit.dimensions' | t }}</div>
+              <div class="ym-spec-value">{{ product.metafields.custom.dimensions }}</div>
+            </div>
+          {%- endif -%}
+          {%- if product.metafields.custom.perles != blank -%}
+            <div>
+              <div class="ym-spec-label">{{ 'produit.matiere' | t }}</div>
+              <div class="ym-spec-value">{{ 'produit.perles' | t: count: product.metafields.custom.perles }}</div>
+            </div>
+          {%- endif -%}
+          {%- if settings.spec_faconnage != blank -%}
+            <div>
+              <div class="ym-spec-label">{{ 'produit.faconnage' | t }}</div>
+              <div class="ym-spec-value">{{ settings.spec_faconnage }}</div>
+            </div>
+          {%- endif -%}
+          {%- if settings.spec_origine != blank -%}
+            <div>
+              <div class="ym-spec-label">{{ 'produit.origine' | t }}</div>
+              <div class="ym-spec-value">{{ settings.spec_origine }}</div>
+            </div>
+          {%- endif -%}
+        </div>
+
+        {%- if section.settings.ecrin_titre != blank -%}
+          <div class="ym-ecrin-note">
+            {%- if section.settings.ecrin_image != blank -%}
+              {{ section.settings.ecrin_image | image_url: width: 148 | image_tag:
+                   widths: '74, 148', sizes: '74px', alt: section.settings.ecrin_titre, loading: 'lazy' }}
+            {%- else -%}
+              <img src="{{ 'box-cigale.jpeg' | asset_url }}" alt="{{ section.settings.ecrin_titre | escape }}" width="1067" height="1600" loading="lazy">
+            {%- endif -%}
+            <div>
+              <div class="ym-ecrin-note-title">{{ section.settings.ecrin_titre }}</div>
+              <div class="ym-ecrin-note-sub">{{ section.settings.ecrin_texte }}</div>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Fiche produit",
+  "settings": [
+    { "type": "text", "id": "surtitre", "label": "Surtitre", "default": "Collection 2026" },
+    { "type": "header", "content": "Rappel de l'écrin" },
+    { "type": "image_picker", "id": "ecrin_image", "label": "Photo de l'écrin" },
+    { "type": "text", "id": "ecrin_titre", "label": "Titre", "default": "Livrée dans son écrin Maison Yama" },
+    { "type": "text", "id": "ecrin_texte", "label": "Texte", "default": "Prête à offrir, ou à se faire offrir." }
+  ]
+}
+{% endschema %}
