@@ -1,0 +1,8 @@
+# Ce dépôt sert deux choses : le thème Shopify, à la racine, et le site statique
+# d'origine, qui reste en ligne sur GitHub Pages. Shopify ignore de lui-même les
+# dossiers qui ne ressemblent pas à un thème ; on le dit aussi à la CLI, pour que
+# `theme dev` et `theme push` ne perdent pas de temps dessus.
+docs/*
+shopify/*
+README.md
+.theme-check.yml

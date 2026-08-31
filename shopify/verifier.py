@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """Vérifie les références internes du thème : snippets, sections, groupes,
 assets, types de blocs et clés de traduction. Complète `shopify theme check`,
-qui ne relie pas les gabarits JSON aux schémas des sections.
+qui ne relie pas les gabarits JSON aux schémas des sections, et qui ne suit pas
+les noms de fichiers passés en paramètre de snippet (repli:).
 
     python3 shopify/verifier.py
 """
 import re, os, sys, glob, json
 
-RACINE = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'theme')
+RACINE = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 os.chdir(RACINE)
 
 # Toute chaîne entre guillemets qui ressemble à un nom de fichier d'asset.

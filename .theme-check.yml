@@ -1,0 +1,5 @@
+# Même raison que .shopifyignore : le linter ne doit inspecter que le thème.
+# Pas de `extends` : le jeu de règles par défaut d'un thème est celui qu'on veut.
+ignore:
+  - docs/**
+  - shopify/**
