@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """Vérifie les références internes du thème : snippets, sections, groupes,
-assets, types de blocs et clés de traduction. Complète `shopify theme check`,
-qui ne relie pas les gabarits JSON aux schémas des sections, et qui ne suit pas
-les noms de fichiers passés en paramètre de snippet (repli:).
+assets, types de blocs et clés de traduction. Signale aussi les filtres glissés
+dans un paramètre d'image_tag, que Liquid applique à la sortie entière.
+
+Complète `shopify theme check`, qui ne relie pas les gabarits JSON aux schémas
+des sections, et qui ne suit pas les noms de fichiers passés en paramètre de
+snippet (repli:).
 
     python3 verifier.py
 """
@@ -13,6 +16,12 @@ os.chdir(RACINE)
 
 # Toute chaîne entre guillemets qui ressemble à un nom de fichier d'asset.
 NOMS = re.compile(r"['\"]([\w.\-]+\.(?:css|js|png|jpe?g|woff2))['\"]")
+
+# Liquid n'évalue pas de filtre dans un paramètre de balise : écrire
+# `image_tag: style: 'object-fit:' | append: fit` applique le filtre à la sortie
+# entière de la balise. Le paramètre reste vide et la valeur filtrée s'imprime
+# en texte à côté de l'image. Le linter de Shopify ne voit rien, la page si.
+SORTIES = re.compile(r'\{\{.*?\}\}', re.S)
 
 erreurs = []
 liquides = glob.glob('**/*.liquid', recursive=True)
@@ -31,6 +40,13 @@ for p in liquides:
         if nom not in groupes: erreurs.append(f"{p} : groupe manquant « {nom} »")
     for nom in NOMS.findall(s):
         if nom not in assets: erreurs.append(f"{p} : asset manquant « {nom} »")
+    for sortie in SORTIES.finditer(s):
+        expr = sortie.group(0)
+        i = expr.find('image_tag:')
+        if i != -1 and '|' in expr[i:]:
+            ligne = s[:sortie.start()].count('\n') + 1
+            erreurs.append(f"{p}:{ligne} : filtre dans un paramètre d'image_tag — "
+                           "composez la valeur avant, avec assign ou capture")
 
 gabarits = glob.glob('templates/*.json') + glob.glob('sections/*-group.json')
 for p in gabarits:
