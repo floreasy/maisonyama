@@ -1,4 +1,9 @@
 {%- assign collection = collections[section.settings.collection] -%}
+{%- comment -%}
+  Aucune collection choisie : on retombe sur l'ensemble du catalogue plutôt que
+  d'afficher une grille vide. Un oubli de réglage ne vide plus l'accueil.
+{%- endcomment -%}
+{%- if collection == blank -%}{%- assign collection = collections.all -%}{%- endif -%}
 <section class="ym-collection">
   <div class="ym-container">
     <div class="ym-section-head">

@@ -33,7 +33,8 @@
     "quantite": "Quantité",
     "ajoute": "Ajoutée au panier",
     "erreur": "Cette pièce n'a pas pu être ajoutée au panier.",
-    "fermer": "Fermer le panier"
+    "fermer": "Fermer le panier",
+    "entete": "Panier"
   },
   "produit": {
     "ajouter": "Ajouter au panier",
