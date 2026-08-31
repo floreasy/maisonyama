@@ -14,7 +14,10 @@
       "texte": "Le lien que vous avez suivi ne mène nulle part. La collection, elle, est toujours là.",
       "lien": "Voir la collection"
     },
-    "pagination": { "precedent": "Précédent", "suivant": "Suivant" }
+    "pagination": {
+      "precedent": "Précédent",
+      "suivant": "Suivant"
+    }
   },
   "panier": {
     "titre": "Votre panier",
@@ -47,5 +50,8 @@
   },
   "collection": {
     "vide": "Aucune pièce dans cette collection pour le moment."
+  },
+  "mot_de_passe": {
+    "erreur": "Mot de passe incorrect."
   }
 }

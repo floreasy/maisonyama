@@ -312,3 +312,33 @@
 .ym-rte img{max-width:100%; height:auto; margin:26px 0;}
 .ym-404-action{margin-top:38px;}
 .ym-404-action .ym-cta{display:inline-block;}
+
+
+/* ==========================================================
+   Page mot de passe
+   Sa propre mise en page : pas d'en-tête, pas de menu — il n'y a rien à
+   parcourir tant que la boutique est fermée.
+   ========================================================== */
+.ym-password{position:relative; min-height:100svh; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:clamp(40px,7vw,80px) clamp(20px,5vw,40px); text-align:center; color:#f6f1e4;}
+.ym-password > img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+.ym-password-veil{position:absolute; inset:0; background:linear-gradient(0deg, rgba(20,18,12,.72), rgba(20,18,12,.42));}
+.ym-password-copy{position:relative; display:flex; flex-direction:column; align-items:center; max-width:520px;}
+.ym-password-logo{height:clamp(58px,7vw,76px); width:auto; margin-bottom:clamp(32px,5vw,44px);}
+.ym-password .ym-eyebrow{color:#e0c48a; margin-bottom:20px;}
+.ym-password h1{font-family:var(--ym-serif); font-weight:300; font-size:clamp(32px,4.6vw,46px); line-height:1.15; margin:0 0 24px;}
+.ym-password .ym-rule{margin-bottom:26px;}
+.ym-password p{font-family:var(--ym-serif); font-weight:300; font-size:clamp(18px,2.2vw,20px); line-height:1.55; color:#f1e7d5; margin:0 0 36px;}
+
+.ym-password-form{display:flex; flex-wrap:wrap; gap:12px; justify-content:center; width:100%;}
+.ym-password-form input{flex:1 1 220px; padding:17px 18px; background:rgba(248,246,240,.94); border:1px solid var(--ym-gold-soft); color:var(--ym-ink); font-family:var(--ym-sans); font-size:14px;}
+.ym-password-form input::placeholder{color:var(--ym-muted);}
+.ym-password-form input:focus{outline:2px solid var(--ym-gold); outline-offset:1px;}
+.ym-password-form .ym-cta{border:0; cursor:pointer; font-family:var(--ym-sans);}
+.ym-password .ym-form-error{color:#f0c9b4; margin:0 0 16px;}
+
+/* Le lien « propulsé par Shopify » que Shopify impose sur cette page. */
+.ym-password-foot{position:relative; margin-top:clamp(36px,6vw,56px); font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:rgba(246,241,228,.66);}
+.ym-password-foot a{border-bottom:1px solid rgba(246,241,228,.3);}
+
+/* Visible des lecteurs d'écran seulement. */
+.ym-visually-hidden{position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;}
