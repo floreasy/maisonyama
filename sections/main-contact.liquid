@@ -1,0 +1,104 @@
+{%- comment -%}
+  Page contact. Le formulaire de Shopify ne peut pas vivre dans le corps d'une
+  page — le texte enrichi n'exécute pas de Liquid — d'où cette section.
+  Les messages arrivent sur l'adresse réglée dans Paramètres → Général.
+{%- endcomment -%}
+<section class="ym-contact">
+  <div class="ym-container ym-contact-inner">
+
+    <div class="ym-contact-form">
+      {%- form 'contact' -%}
+        {%- if form.posted_successfully? -%}
+          <p class="ym-contact-ok" role="status">{{ section.settings.merci }}</p>
+        {%- endif -%}
+        {%- if form.errors -%}
+          <p class="ym-form-error" role="alert">
+            {%- for champ in form.errors -%}
+              {{ form.errors.messages[champ] }}{% unless forloop.last %} · {% endunless %}
+            {%- endfor -%}
+          </p>
+        {%- endif -%}
+
+        <div class="ym-field">
+          <label for="ym-contact-nom">{{ 'contact.nom' | t }}</label>
+          <input id="ym-contact-nom" type="text" name="contact[name]" autocomplete="name" value="{{ form.name }}">
+        </div>
+
+        <div class="ym-field">
+          <label for="ym-contact-email">
+            {{ 'contact.email' | t }} <span>· {{ 'contact.obligatoire' | t }}</span>
+          </label>
+          <input id="ym-contact-email" type="email" name="contact[email]" autocomplete="email"
+                 required value="{{ form.email }}">
+        </div>
+
+        <div class="ym-field">
+          <label for="ym-contact-tel">{{ 'contact.telephone' | t }}</label>
+          <input id="ym-contact-tel" type="tel" name="contact[phone]" autocomplete="tel" value="{{ form.phone }}">
+        </div>
+
+        <div class="ym-field">
+          <label for="ym-contact-message">{{ 'contact.message' | t }}</label>
+          <textarea id="ym-contact-message" name="contact[body]" rows="7">{{ form.body }}</textarea>
+        </div>
+
+        <button class="ym-cta" type="submit">{{ 'contact.envoyer' | t }}</button>
+      {%- endform -%}
+    </div>
+
+    <aside class="ym-contact-infos">
+      {%- if section.settings.aside_titre != blank -%}
+        <h2>{{ section.settings.aside_titre }}</h2>
+      {%- endif -%}
+      {%- if section.settings.aside_texte != blank -%}
+        <p class="ym-contact-lede">{{ section.settings.aside_texte }}</p>
+      {%- endif -%}
+
+      {%- for block in section.blocks -%}
+        <div class="ym-contact-info" {{ block.shopify_attributes }}>
+          <div class="ym-spec-label">{{ block.settings.titre }}</div>
+          {%- if block.settings.lien != blank -%}
+            <a class="ym-contact-value" href="{{ block.settings.lien }}">{{ block.settings.texte }}</a>
+          {%- else -%}
+            <div class="ym-contact-value">{{ block.settings.texte }}</div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </aside>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "text", "id": "aside_titre", "label": "Titre de la colonne", "default": "L'atelier" },
+    { "type": "textarea", "id": "aside_texte", "label": "Texte de la colonne", "default": "Une question sur une pièce, une commande, un délai ? Écrivez-nous, on répond sous deux jours ouvrés." },
+    { "type": "text", "id": "merci", "label": "Message de confirmation", "default": "Merci, votre message est parti. On vous répond très vite." }
+  ],
+  "blocks": [
+    {
+      "type": "info",
+      "name": "Coordonnée",
+      "settings": [
+        { "type": "text", "id": "titre", "label": "Intitulé", "default": "Atelier" },
+        { "type": "text", "id": "texte", "label": "Valeur", "default": "Castellet-en-Luberon" },
+        { "type": "url", "id": "lien", "label": "Lien", "info": "Facultatif. Pour un e-mail ou un téléphone, saisissez mailto: ou tel:" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact",
+      "blocks": [
+        { "type": "info", "settings": { "titre": "Atelier", "texte": "Castellet-en-Luberon, Provence" } },
+        { "type": "info", "settings": { "titre": "Téléphone", "texte": "06 23 10 24 41" } },
+        { "type": "info", "settings": { "titre": "E-mail", "texte": "contact@maisonyama.fr" } },
+        { "type": "info", "settings": { "titre": "Instagram", "texte": "@maisonyama" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

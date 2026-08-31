@@ -54,5 +54,14 @@
   },
   "mot_de_passe": {
     "erreur": "Mot de passe incorrect."
+  },
+  "contact": {
+    "nom": "Votre nom",
+    "email": "Votre e-mail",
+    "telephone": "Votre téléphone",
+    "message": "Votre message",
+    "envoyer": "Envoyer",
+    "obligatoire": "obligatoire",
+    "erreur": "Le message n'a pas pu être envoyé."
   }
 }

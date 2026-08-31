@@ -1,0 +1,28 @@
+{
+  "sections": {
+    "intro": {
+      "type": "ym-intro",
+      "settings": {
+        "surtitre": "Maison Yama",
+        "titre": "Nous écrire",
+        "texte": "Chaque broche naît d'un échange — une envie, une couleur, une occasion. Dites-nous ce que vous cherchez."
+      }
+    },
+    "formulaire": {
+      "type": "main-contact",
+      "blocks": {
+        "atelier": { "type": "info", "settings": { "titre": "Atelier", "texte": "Castellet-en-Luberon, Provence" } },
+        "tel": { "type": "info", "settings": { "titre": "Téléphone", "texte": "06 23 10 24 41", "lien": "tel:0623102441" } },
+        "email": { "type": "info", "settings": { "titre": "E-mail", "texte": "contact@maisonyama.fr", "lien": "mailto:contact@maisonyama.fr" } },
+        "insta": { "type": "info", "settings": { "titre": "Instagram", "texte": "@maisonyama", "lien": "https://instagram.com/maisonyama" } }
+      },
+      "block_order": ["atelier", "tel", "email", "insta"],
+      "settings": {
+        "aside_titre": "L'atelier",
+        "aside_texte": "Une question sur une pièce, une commande, un délai ? Écrivez-nous, on répond sous deux jours ouvrés.",
+        "merci": "Merci, votre message est parti. On vous répond très vite."
+      }
+    }
+  },
+  "order": ["intro", "formulaire"]
+}
