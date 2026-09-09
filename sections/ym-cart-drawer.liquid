@@ -3,7 +3,7 @@
   modification : le balisage reste construit par Liquid, le JS ne fait que
   remplacer le bloc et l'ouvrir.
 {%- endcomment -%}
-<div class="ym-drawer" data-ym-drawer hidden>
+<div class="ym-drawer" data-ym-drawer data-ym-count="{{ cart.item_count }}" hidden>
   <div class="ym-drawer-veil" data-ym-close></div>
 
   <aside class="ym-drawer-panel" role="dialog" aria-modal="true" aria-label="{{ 'panier.titre' | t }}">

@@ -1,9 +1,11 @@
 /* Panier : ajout sans rechargement, tiroir latéral, quantités.
 
-   Le balisage du tiroir reste écrit en Liquid. Après chaque modification on
-   redemande la section au serveur et on remplace le bloc : aucune duplication
-   du gabarit en JavaScript, et le prix affiché est toujours celui que Shopify
-   vient de calculer. */
+   Le balisage du tiroir reste écrit en Liquid. Chaque appel au panier réclame
+   la section dans la foulée — paramètre `sections` — et Shopify la renvoie
+   re-rendue dans la même réponse. Un aller-retour au lieu de deux, et surtout
+   plus de GET séparé vers `?sections=` : celui-ci portait un ETag calculé sur
+   la page produit, sans en-tête de cache, si bien que le navigateur le
+   resservait depuis son cache avec l'état du panier d'avant. */
 (function () {
   var routes = (window.YM && window.YM.routes) || {};
   var strings = (window.YM && window.YM.strings) || {};
@@ -41,35 +43,29 @@
     }
   }
 
-  /* Redemande la section au serveur et remplace le bloc en place. Les écouteurs
-     sont posés sur `document`, donc rien n'est à réattacher après coup. */
-  function rafraichir() {
-    return fetch(window.location.pathname + '?sections=' + SECTION, { headers: { Accept: 'application/json' } })
-      .then(function (r) { return r.json(); })
-      .then(function (json) {
-        var actuel = document.getElementById(WRAPPER);
-        var doc = new DOMParser().parseFromString(json[SECTION], 'text/html');
-        var neuf = doc.getElementById(WRAPPER);
-        if (!actuel || !neuf) return;
-        var etaitOuvert = actuel.querySelector('.is-open');
-        actuel.replaceWith(neuf);
-        if (etaitOuvert) {
-          var el = tiroir();
-          if (el) { el.hidden = false; el.classList.add('is-open'); }
-        }
-        return compter();
-      });
-  }
+  /* Remplace le tiroir par la version que Shopify vient de rendre. Les
+     écouteurs sont posés sur `document`, donc rien n'est à réattacher. */
+  function appliquer(html) {
+    if (!html) return;
+    var actuel = document.getElementById(WRAPPER);
+    var neuf = new DOMParser().parseFromString(html, 'text/html').getElementById(WRAPPER);
+    if (!actuel || !neuf) return;
 
-  /* Le compteur de l'en-tête vit hors de la section : on le met à jour à part. */
-  function compter() {
-    return fetch(routes.cart + '.js', { headers: { Accept: 'application/json' } })
-      .then(function (r) { return r.json(); })
-      .then(function (panier) {
-        document.querySelectorAll('[data-ym-cart-count]').forEach(function (n) {
-          n.textContent = panier.item_count;
-        });
+    var etaitOuvert = !!actuel.querySelector('.is-open');
+    actuel.replaceWith(neuf);
+
+    var el = tiroir();
+    if (!el) return;
+    if (etaitOuvert) { el.hidden = false; el.classList.add('is-open'); }
+
+    /* Le compteur de l'en-tête vit hors de la section ; le tiroir le porte en
+       attribut pour qu'on le recopie sans un appel de plus. */
+    var compte = el.getAttribute('data-ym-count');
+    if (compte !== null) {
+      document.querySelectorAll('[data-ym-cart-count]').forEach(function (n) {
+        n.textContent = compte;
       });
+    }
   }
 
   function erreur(form, message) {
@@ -95,15 +91,19 @@
     var erreurAffichee = form.querySelector('.ym-form-error');
     if (erreurAffichee) erreurAffichee.remove();
 
+    var corps = new FormData(form);
+    corps.append('sections', SECTION);
+
     fetch(routes.cart_add, {
       method: 'POST',
       headers: { Accept: 'application/json' },
-      body: new FormData(form)
+      body: corps
     })
       .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
       .then(function (res) {
         if (!res.ok) throw new Error(res.data.description || strings.cartError);
-        return rafraichir().then(ouvrir);
+        appliquer(res.data.sections && res.data.sections[SECTION]);
+        ouvrir();
       })
       .catch(function (err) { erreur(form, err.message || strings.cartError); })
       .then(function () { if (bouton) bouton.disabled = false; });
@@ -111,21 +111,31 @@
 
   /* ---------- Quantités et retrait ---------- */
   document.addEventListener('click', function (e) {
-    var bouton = e.target.closest('[data-ym-qty]');
+    var bouton = e.target.closest('[data-ym-line]');
     if (!bouton) return;
     e.preventDefault();
     bouton.disabled = true;
 
+    /* On désigne la ligne par sa clé, pas par son rang : retirer une ligne
+       décalerait toutes les suivantes. */
     fetch(routes.cart_change, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({ line: Number(bouton.dataset.ymQty), quantity: Number(bouton.dataset.ymTo) })
+      body: JSON.stringify({
+        id: bouton.dataset.ymLine,
+        quantity: Number(bouton.dataset.ymTo),
+        sections: SECTION
+      })
     })
-      .then(function () {
+      .then(function (r) {
+        if (!r.ok) throw new Error(strings.cartError);
+        return r.json();
+      })
+      .then(function (data) {
         /* Sur la page /panier, la liste n'est pas dans la section du tiroir :
            un rechargement reste la façon la plus sûre de tout remettre d'aplomb. */
         if (document.querySelector('.ym-cart-page')) { window.location.reload(); return; }
-        return rafraichir();
+        appliquer(data.sections && data.sections[SECTION]);
       })
       .catch(function () { bouton.disabled = false; });
   });

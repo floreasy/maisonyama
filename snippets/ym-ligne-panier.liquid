@@ -25,13 +25,13 @@
 
     <div class="ym-line-foot">
       <div class="ym-qty">
-        <button type="button" data-ym-qty="{{ item.line }}" data-ym-to="{{ item.quantity | minus: 1 }}" aria-label="Retirer un exemplaire">−</button>
+        <button type="button" data-ym-line="{{ item.key }}" data-ym-to="{{ item.quantity | minus: 1 }}" aria-label="Retirer un exemplaire">−</button>
         <span aria-label="{{ 'panier.quantite' | t }}">{{ item.quantity }}</span>
-        <button type="button" data-ym-qty="{{ item.line }}" data-ym-to="{{ item.quantity | plus: 1 }}" aria-label="Ajouter un exemplaire">+</button>
+        <button type="button" data-ym-line="{{ item.key }}" data-ym-to="{{ item.quantity | plus: 1 }}" aria-label="Ajouter un exemplaire">+</button>
       </div>
       <div class="ym-price">{{ item.final_line_price | money }}</div>
     </div>
 
-    <button class="ym-line-remove" type="button" data-ym-qty="{{ item.line }}" data-ym-to="0">{{ 'panier.retirer' | t }}</button>
+    <button class="ym-line-remove" type="button" data-ym-line="{{ item.key }}" data-ym-to="0">{{ 'panier.retirer' | t }}</button>
   </div>
 </div>
