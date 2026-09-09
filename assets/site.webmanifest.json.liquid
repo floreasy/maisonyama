@@ -1,0 +1,29 @@
+{%- comment -%}
+  Manifeste rendu par Liquid : les icônes vivent sur le CDN Shopify, pas sur le
+  domaine de la boutique. Les chemins doivent donc être absolus, et « start_url »
+  pointer explicitement sur la boutique — sinon il se résoudrait sur le CDN et le
+  manifeste serait rejeté.
+{%- endcomment -%}
+{
+  "name": {{ shop.name | json }},
+  "short_name": "Yama",
+  "start_url": {{ shop.url | append: '/' | json }},
+  "scope": {{ shop.url | append: '/' | json }},
+  "icons": [
+    {
+      "src": {{ 'web-app-manifest-192x192.png' | asset_url | prepend: 'https:' | json }},
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": {{ 'web-app-manifest-512x512.png' | asset_url | prepend: 'https:' | json }},
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "theme_color": "#97a082",
+  "background_color": "#f8f6f0",
+  "display": "standalone"
+}

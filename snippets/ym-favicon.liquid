@@ -1,0 +1,25 @@
+{%- comment -%}
+  Le jeu d'icônes de la maison, livré avec le thème. Le SVG l'emporte partout où
+  il est compris ; le PNG et l'.ico ne servent qu'aux navigateurs qui l'ignorent.
+
+  Le réglage « Favicon » de l'admin reste un secours : s'il est rempli, il ne
+  remplace que l'icône d'onglet, pas l'icône iOS ni le manifeste.
+{%- endcomment -%}
+{%- if settings.favicon != blank -%}
+  <link rel="icon" type="image/png" sizes="96x96" href="{{ settings.favicon | image_url: width: 96, height: 96 }}">
+{%- else -%}
+  <link rel="icon" type="image/png" sizes="96x96" href="{{ 'favicon-96x96.png' | asset_url }}">
+{%- endif -%}
+<link rel="icon" type="image/svg+xml" href="{{ 'favicon.svg' | asset_url }}">
+<link rel="shortcut icon" href="{{ 'favicon.ico' | asset_url }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ 'apple-touch-icon.png' | asset_url }}">
+<meta name="apple-mobile-web-app-title" content="{{ shop.name | escape }}">
+{%- comment -%}
+  Le manifeste est un asset Liquid (site.webmanifest.json.liquid) : il a besoin de
+  shop.url, parce que les icônes sont servies par le CDN et pas par le domaine de
+  la boutique — sans « start_url » absolu, le manifeste serait rejeté. Theme Check
+  ne connaît le suffixe .liquid que pour .css et .js, d'où le faux positif ci-après.
+{%- endcomment -%}
+{% # theme-check-disable MissingAsset %}
+<link rel="manifest" href="{{ 'site.webmanifest.json' | asset_url }}" crossorigin="anonymous">
+{% # theme-check-enable MissingAsset %}
