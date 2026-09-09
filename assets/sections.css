@@ -252,7 +252,7 @@
 .ym-drawer-empty p{font-family:var(--ym-serif); font-weight:300; font-size:21px; color:var(--ym-olive); margin:0;}
 
 .ym-drawer-lines{flex:1; overflow-y:auto; padding:8px clamp(20px,4vw,30px);}
-.ym-drawer-foot{border-top:1px solid var(--ym-line); padding:22px clamp(20px,4vw,30px) 26px;}
+.ym-drawer-foot{border-top:1px solid var(--ym-line); padding:22px clamp(20px,4vw,30px) 26px; background:var(--ym-sage-soft);}
 .ym-drawer-total{display:flex; align-items:baseline; justify-content:space-between; gap:16px; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--ym-muted);}
 .ym-drawer-note{font-size:11px; line-height:1.6; color:var(--ym-muted); margin:10px 0 20px;}
 .ym-drawer-continue{display:block; width:100%; margin-top:18px; padding:0 0 3px; background:none; border:0; border-bottom:1px solid var(--ym-gold); cursor:pointer; font-family:var(--ym-sans);}
