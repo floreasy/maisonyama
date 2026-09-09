@@ -40,39 +40,6 @@ a{text-decoration:none; color:inherit;}
 img{display:block;}
 .ym-container{max-width:1260px; margin:0 auto; padding-left:clamp(20px,5vw,56px); padding-right:clamp(20px,5vw,56px);}
 
-/* ---------- Passage d'une page à l'autre ---------- */
-/* Le navigateur photographie la page qu'on quitte et celle qui arrive, puis fond
-   l'une dans l'autre : plus de flash blanc entre deux clics. Rien à charger, et
-   rien à réparer là où ce n'est pas compris — Firefox, à ce jour, garde le saut
-   d'avant. On ne nomme ni l'en-tête ni le pied : ils sont identiques d'une page
-   à l'autre, donc leur fondu croisé ne se voit pas, et les nommer les ferait
-   glisser depuis leur position d'avant quand on part d'une page défilée. */
-@view-transition{ navigation:auto; }
-
-/* Même courbe que la loupe et le tiroir : la maison n'a qu'une façon de bouger. */
-::view-transition-old(root){ animation:ym-page-sortie .26s cubic-bezier(.2,.7,.2,1) both; }
-::view-transition-new(root){ animation:ym-page-entree .42s cubic-bezier(.2,.7,.2,1) both; }
-@keyframes ym-page-sortie{ to{ opacity:0; } }
-@keyframes ym-page-entree{ from{ opacity:0; transform:translateY(10px); } }
-
-/* La pièce suivie : la vignette cliquée se déplie en grande image sur la fiche.
-   Ici le seul point d'arrivée ; le point de départ est posé par transitions.js
-   sur la carte cliquée, un nom de transition devant rester unique dans la page. */
-.ym-gallery .ym-zoombox{ view-transition-name:ym-piece; }
-::view-transition-group(ym-piece){ animation-duration:.5s; animation-timing-function:cubic-bezier(.2,.7,.2,1); }
-/* La vignette est en 4/5, la grande image en 660 px de haut : sans ça, les deux
-   clichés se déformeraient pendant que le cadre, lui, change de proportions. */
-::view-transition-old(ym-piece),
-::view-transition-new(ym-piece){ height:100%; width:100%; object-fit:cover; }
-
-/* Mouvement réduit : on garde le fondu, qui évite le flash, on retire la montée. */
-@media (prefers-reduced-motion: reduce){
-  ::view-transition-old(root){ animation-duration:.16s; }
-  ::view-transition-new(root){ animation:ym-page-fondu .16s both; }
-  ::view-transition-group(ym-piece){ animation-duration:.16s; }
-  @keyframes ym-page-fondu{ from{ opacity:0; } }
-}
-
 /* ---------- Bandeau utilitaire ---------- */
 .ym-utility{display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:8px 12px; padding:10px 16px; background:var(--ym-sage); color:var(--ym-cream); font-size:11px; letter-spacing:.22em; text-transform:uppercase; font-weight:300; text-align:center;}
 .ym-utility .sep{color:var(--ym-gold-soft);}

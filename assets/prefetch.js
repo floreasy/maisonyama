@@ -1,36 +1,8 @@
-/* Deux gestes pour adoucir le passage d'une page à l'autre. Le fondu lui-même est
-   en CSS, dans base.css ; ne restent ici que les deux choses qu'une feuille de
-   style ne peut pas faire.
-
-   1. Désigner la pièce suivie. Un nom de transition doit rester unique dans la
-      page : impossible de le poser sur toute la grille, il faut attendre le clic
-      pour savoir quelle carte se déplie en grande image.
-
-   2. Précharger au survol. Le fondu masque l'attente, il ne la raccourcit pas :
-      la page suivante part se charger pendant que le pointeur s'attarde. */
+/* Préchargement au survol. La navigation reste celle du navigateur, sans fondu
+   ni voile : c'est l'attente elle-même qu'on retire, plutôt que de l'habiller.
+   Dès que le pointeur s'attarde sur un lien, la page suivante part se charger,
+   et le clic ne trouve plus rien à attendre. */
 (function () {
-  var supporte = 'startViewTransition' in document;
-  var sobre = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* ---------- La pièce suivie ---------- */
-  if (supporte && !sobre) {
-    document.addEventListener('click', function (e) {
-      var carte = e.target.closest('.ym-card');
-      if (!carte) return;
-      var cadre = carte.querySelector('.ym-shot');
-      if (cadre) cadre.style.viewTransitionName = 'ym-piece';
-    });
-
-    /* Au retour arrière, la page revient telle qu'on l'a quittée — le nom posé
-       plus haut y serait encore, et confisquerait la transition suivante. */
-    window.addEventListener('pageshow', function () {
-      document.querySelectorAll('.ym-shot[style*="view-transition-name"]').forEach(function (cadre) {
-        cadre.style.viewTransitionName = '';
-      });
-    });
-  }
-
-  /* ---------- Le préchargement au survol ---------- */
   /* Sur un forfait mesuré ou un réseau lent, charger une page qu'on ne verra
      peut-être jamais coûte plus qu'il ne rapporte. */
   var reseau = navigator.connection;
