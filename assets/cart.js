@@ -84,8 +84,14 @@
     if (!form) return;
     e.preventDefault();
 
+    /* L'appel emporte le rendu du tiroir : il dure le temps qu'il dure, et sans
+       repère l'attente passe pour une panne. Le bouton la porte lui-même —
+       aria-busy pour les lecteurs d'écran, et le filet d'or que dessine le CSS. */
     var bouton = form.querySelector('[name="add"]');
-    if (bouton) bouton.disabled = true;
+    if (bouton) {
+      bouton.disabled = true;
+      bouton.setAttribute('aria-busy', 'true');
+    }
     dernierDeclencheur = bouton;
 
     var erreurAffichee = form.querySelector('.ym-form-error');
@@ -106,7 +112,11 @@
         ouvrir();
       })
       .catch(function (err) { erreur(form, err.message || strings.cartError); })
-      .then(function () { if (bouton) bouton.disabled = false; });
+      .then(function () {
+        if (!bouton) return;
+        bouton.disabled = false;
+        bouton.removeAttribute('aria-busy');
+      });
   });
 
   /* ---------- Quantités et retrait ---------- */

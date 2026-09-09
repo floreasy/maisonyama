@@ -99,8 +99,19 @@
 /* ---------- Achat ---------- */
 .ym-buy{display:flex; border:1px solid #cbb78a; margin-bottom:16px;}
 .ym-buy button{border:none; cursor:pointer; font-family:var(--ym-sans);}
-.ym-add{flex:1; background:var(--ym-button); color:var(--ym-bg); font-size:11px; letter-spacing:.2em; text-transform:uppercase; padding:20px;}
+.ym-add{flex:1; position:relative; overflow:hidden; background:var(--ym-button); color:var(--ym-bg); font-size:11px; letter-spacing:.2em; text-transform:uppercase; padding:20px; transition:color .2s ease;}
 .ym-add:hover{background:var(--ym-olive);}
+/* Pendant l'appel au panier : le libellé s'estompe et un filet d'or balaie le bas
+   du bouton. Le texte ne change pas — la largeur ne doit pas bouger sous le doigt
+   qui vient de cliquer — et le filet reprend celui qui souligne déjà les liens. */
+.ym-add[aria-busy="true"]{color:rgba(248,246,240,.42); cursor:progress;}
+.ym-add[aria-busy="true"]::after{content:''; position:absolute; left:0; bottom:0; width:40%; height:2px; background:var(--ym-gold); animation:ym-attente 1.05s ease-in-out infinite;}
+@keyframes ym-attente{from{transform:translateX(-100%);} to{transform:translateX(250%);}}
+/* Mouvement réduit : le filet reste, posé sous tout le bouton, et respire. */
+@media (prefers-reduced-motion: reduce){
+  .ym-add[aria-busy="true"]::after{width:100%; animation:ym-attente-sobre 1.4s ease-in-out infinite;}
+  @keyframes ym-attente-sobre{0%,100%{opacity:.3;} 50%{opacity:1;}}
+}
 .ym-wish{width:64px; background:var(--ym-bg); border-left:1px solid #cbb78a; color:var(--ym-olive); font-size:18px;}
 .ym-wish:hover{background:#f1ead9;}
 .ym-stock{display:flex; align-items:center; gap:10px; font-size:11px; letter-spacing:.06em; color:var(--ym-olive); margin-bottom:42px;}
