@@ -126,15 +126,39 @@ header{border-bottom:1px solid rgba(117,112,71,.28); background:var(--ym-bg);}
 .ym-stat-value--word{font-size:clamp(30px,3.4vw,44px);}
 .ym-stat-label{font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:#747a5f; margin-top:12px;}
 
-/* ---------- Zoom au survol (fiche produit, savoir-faire) ---------- */
+/* ---------- Loupe (fiche produit, savoir-faire) ---------- */
 /* Chaque page dimensionne son .ym-main-img ; ici on ne gère que le zoom lui-même.
-   --ym-zoom règle l'échelle atteinte au survol. */
-.ym-zoombox{position:relative; overflow:hidden; background:var(--ym-photo-bg); cursor:zoom-in;}
+   --ym-zoom règle l'échelle atteinte. touch-action:manipulation désarme le
+   double-tap qui agrandirait la page entière sous le doigt en train d'explorer. */
+.ym-zoombox{position:relative; overflow:hidden; background:var(--ym-photo-bg); cursor:zoom-in; touch-action:manipulation; -webkit-tap-highlight-color:transparent;}
+/* transform-origin reste hors de la transition : il s'applique aussitôt, donc le
+   cadrage suit le curseur ou le pouce sans retard. Seule l'échelle glisse. */
 .ym-main-img{transform-origin:center; transition:transform 1.1s cubic-bezier(.2,.7,.2,1);}
-.ym-zoombox:hover .ym-main-img{transform:scale(var(--ym-zoom, 2.6));}
+/* Un appui maintenu sur une image ouvre, sur iOS, le menu « Enregistrer » : il
+   couperait le geste de la loupe juste avant qu'elle serve. */
+.ym-zoombox .ym-main-img{-webkit-touch-callout:none; -webkit-user-select:none; user-select:none;}
+
+/* Souris. Sous condition de hover : sans elle, un simple appui sur mobile laisse
+   un survol collant que plus rien ne vient annuler. */
+@media (hover:hover){
+  .ym-zoombox:hover .ym-main-img{transform:scale(var(--ym-zoom, 2.6));}
+  .ym-zoombox:hover .ym-zoomhint{opacity:0;}
+}
+
+/* Doigt : gallery.js pose .is-zooming après un appui maintenu, puis suit le pouce. */
+.ym-zoombox.is-zooming .ym-main-img{transform:scale(var(--ym-zoom, 2.6));}
+.ym-zoombox.is-zooming .ym-zoomhint{opacity:0;}
 .ym-zoomhint{position:absolute; bottom:16px; left:16px; display:flex; align-items:center; gap:8px; padding:9px 15px; background:rgba(43,42,34,.62); color:#f4efe2; font-size:10px; letter-spacing:.16em; text-transform:uppercase; backdrop-filter:blur(3px); pointer-events:none; transition:opacity .4s ease;}
-.ym-zoombox:hover .ym-zoomhint{opacity:0;}
-.ym-zoomhint span{font-size:13px; line-height:1;}
+/* Le ⤢ ouvre l'invitation ; les libellés qui suivent gardent leur propre taille. */
+.ym-zoomhint > span:first-child{font-size:13px; line-height:1;}
+/* Une invitation par mode de pointage — « survolez » ne veut rien dire sans souris —
+   et, sans souris, une approche plus courte : le geste est délibéré, l'attente pèse. */
+.ym-hint-doigt{display:none;}
+@media (hover:none){
+  .ym-hint-souris{display:none;}
+  .ym-hint-doigt{display:inline;}
+  .ym-main-img{transition-duration:.3s;}
+}
 
 /* ---------- Cartes produit (accueil, collection, recommandations) ---------- */
 .ym-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:clamp(28px,4vw,44px) 30px;}

@@ -43,7 +43,11 @@
         {%- else -%}
           <img class="ym-main-img" src="{{ 'cutout-cigale.png' | asset_url }}" alt="{{ alt_zoom }}" width="1100" height="1100" loading="lazy">
         {%- endif -%}
-        <div class="ym-zoomhint"><span>⤢</span> {{ block.settings.zoom_libelle }}</div>
+        {%- comment -%} Le libellé réglable parle de survol : sans souris, il cède la place. {%- endcomment -%}
+        <div class="ym-zoomhint"><span>⤢</span>
+          <span class="ym-hint-souris">{{ block.settings.zoom_libelle }}</span>
+          <span class="ym-hint-doigt">{{ 'general.loupe.tactile' | t }}</span>
+        </div>
       {%- else -%}
         {%- render 'ym-image',
             image: block.settings.image,

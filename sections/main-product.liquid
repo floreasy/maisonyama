@@ -54,15 +54,23 @@
           </div>
         {%- endif -%}
 
-        <div class="ym-zoombox">
-          {%- assign premiere = product.featured_image -%}
-          {%- assign alt_premiere = premiere.alt | default: product.title | escape -%}
+        {%- assign premiere = product.featured_image -%}
+        {%- assign alt_premiere = premiere.alt | default: product.title | escape -%}
+        {%- comment -%}
+          data-zoom-src porte la pleine largeur, que le JS ne charge qu'au premier
+          zoom tactile : le srcset, lui, sert la taille du cadre, et cette taille-là
+          ramollit dès qu'on l'agrandit deux fois et demie.
+        {%- endcomment -%}
+        <div class="ym-zoombox"{% if premiere != blank %} data-zoom-src="{{ premiere | image_url: width: 2000 }}"{% endif %}>
           {%- if premiere != blank -%}
             {{ premiere | image_url: width: 2000 | image_tag:
                  class: 'ym-main-img', alt: alt_premiere,
                  widths: '600, 900, 1300, 2000', sizes: '(min-width: 860px) 50vw, 100vw' }}
           {%- endif -%}
-          <div class="ym-zoomhint"><span>⤢</span> {{ 'produit.zoom' | t }}</div>
+          <div class="ym-zoomhint"><span>⤢</span>
+            <span class="ym-hint-souris">{{ 'produit.zoom' | t }}</span>
+            <span class="ym-hint-doigt">{{ 'general.loupe.tactile' | t }}</span>
+          </div>
         </div>
       </div>
 

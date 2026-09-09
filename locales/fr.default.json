@@ -1,5 +1,8 @@
 {
   "general": {
+    "loupe": {
+      "tactile": "Maintenez, puis glissez"
+    },
     "recherche": {
       "titre": "Recherche",
       "placeholder": "Chercher une broche…",
