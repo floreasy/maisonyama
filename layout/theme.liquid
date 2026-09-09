@@ -51,7 +51,8 @@
 
 {% section 'ym-cart-drawer' %}
 
-{%- comment -%} Trois fichiers, aucun cadre : navigation, loupe, panier. Chacun sort immédiatement si la page ne le concerne pas. {%- endcomment -%}
+{%- comment -%} Quatre fichiers, aucun cadre : passage de page, navigation, loupe, panier. Chacun sort immédiatement si la page ne le concerne pas. {%- endcomment -%}
+<script src="{{ 'transitions.js' | asset_url }}" defer></script>
 <script src="{{ 'nav.js' | asset_url }}" defer></script>
 <script src="{{ 'gallery.js' | asset_url }}" defer></script>
 <script src="{{ 'cart.js' | asset_url }}" defer></script>
