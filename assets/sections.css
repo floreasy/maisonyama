@@ -196,8 +196,10 @@
 
 /* ---------- Les quatre temps ---------- */
 /* Texte seul : le numéro doré tient une colonne étroite à gauche, le propos
-   suit dans une colonne de lecture. Sous 760px la grille repasse à une
-   colonne et le numéro reprend sa place au-dessus du titre. */
+   suit dans une colonne de lecture. Les deux colonnes ont une largeur fixée et
+   l'ensemble se centre dans la page ; le filet, lui, reste pleine largeur.
+   Sous 760px la grille repasse à une colonne et le numéro reprend sa place
+   au-dessus du titre. */
 .ym-steps{padding:clamp(56px,8vw,100px) 0;}
 .ym-steps-list{list-style:none; margin:0; padding:0;}
 .ym-step{padding:clamp(38px,5vw,56px) 0;}
@@ -208,7 +210,7 @@
 .ym-step-copy p{font-family:var(--ym-serif); font-weight:300; font-size:clamp(18px,2vw,20px); line-height:1.6; color:var(--ym-olive); max-width:620px; margin:0;}
 .ym-step-copy p + p{margin-top:18px;}
 @media (min-width:760px){
-  .ym-step{display:grid; grid-template-columns:clamp(110px,12vw,160px) minmax(0,1fr); gap:clamp(28px,5vw,64px); align-items:start;}
+  .ym-step{display:grid; grid-template-columns:clamp(110px,12vw,160px) minmax(0,620px); gap:clamp(28px,5vw,64px); justify-content:center; align-items:start;}
   .ym-step-number{margin-bottom:0;}
 }
 
