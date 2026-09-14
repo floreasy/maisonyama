@@ -27,10 +27,7 @@
             "numero": "01",
             "surtitre": "L'observation",
             "titre": "Tout commence dehors.",
-            "texte": "<p>Les champs, les haies, les toits du village. On note une posture, un éclat de plumage, la courbe d'une tige — le motif existe avant la première perle.</p>",
-            "cadrage": "cover",
-            "zoom": false,
-            "image_alt": "Champ de lavande au lever du soleil"
+            "texte": "<p>Les champs, les haies, les toits du village. On note une posture, un éclat de plumage, la courbe d'une tige — le motif existe avant la première perle.</p>"
           }
         },
         "deux": {
@@ -39,10 +36,7 @@
             "numero": "02",
             "surtitre": "La composition",
             "titre": "Choisir chaque couleur, une à une.",
-            "texte": "<p>Le dessin fixe la silhouette, puis vient la palette : des perles de rocaille triées par teinte et par finition — mates, nacrées, irisées — pour capter la lumière comme le ferait le vivant.</p>",
-            "cadrage": "contain",
-            "zoom": false,
-            "image_alt": "Broche grande lavande"
+            "texte": "<p>Le dessin fixe la silhouette, puis vient la palette : des perles de rocaille triées par teinte et par finition — mates, nacrées, irisées — pour capter la lumière comme le ferait le vivant.</p>"
           }
         },
         "trois": {
@@ -51,11 +45,7 @@
             "numero": "03",
             "surtitre": "Le tissage",
             "titre": "Perle après perle, à l'aiguille.",
-            "texte": "<p>Chaque perle est cousue à sa voisine, rang après rang, jusqu'à ce que le motif prenne corps. Une cigale en demande 599 — et plusieurs heures de tissage ininterrompu.</p>",
-            "cadrage": "contain",
-            "zoom": true,
-            "zoom_libelle": "Survolez pour approcher le tissage",
-            "image_alt": "Tissage de la broche cigale"
+            "texte": "<p>Chaque perle est cousue à sa voisine, rang après rang, jusqu'à ce que le motif prenne corps. Une cigale en demande 599 — et plusieurs heures de tissage ininterrompu.</p>"
           }
         },
         "quatre": {
@@ -64,10 +54,7 @@
             "numero": "04",
             "surtitre": "Les finitions",
             "titre": "Doublée, montée, mise en écrin.",
-            "texte": "<p>Le tissage est doublé pour tenir sa forme, l'attache est cousue à la main, puis la broche rejoint son écrin vert amande — dernière étape avant de quitter l'atelier.</p>",
-            "cadrage": "cover",
-            "zoom": false,
-            "image_alt": "Écrin Maison Yama"
+            "texte": "<p>Le tissage est doublé pour tenir sa forme, l'attache est cousue à la main, puis la broche rejoint son écrin vert amande — dernière étape avant de quitter l'atelier.</p>"
           }
         }
       },
