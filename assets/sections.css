@@ -200,9 +200,13 @@
    l'ensemble se centre dans la page ; le filet, lui, reste pleine largeur.
    Sous 760px la grille repasse à une colonne et le numéro reprend sa place
    au-dessus du titre. */
-.ym-steps{padding:clamp(56px,8vw,100px) 0;}
+/* Aucune respiration en haut : le bas du manifeste la donne déjà, et la
+   redoubler éloignerait le premier temps bien plus que le manifeste ne l'est
+   de ce qui le précède. */
+.ym-steps{padding:0 0 clamp(56px,8vw,100px);}
 .ym-steps-list{list-style:none; margin:0; padding:0;}
 .ym-step{padding:clamp(38px,5vw,56px) 0;}
+.ym-step:first-child{padding-top:0;}
 .ym-step + .ym-step{border-top:1px solid var(--ym-line);}
 .ym-step-number{font-family:var(--ym-serif); font-weight:300; font-size:clamp(40px,5vw,56px); line-height:1; color:var(--ym-gold); margin-bottom:18px;}
 .ym-step .ym-eyebrow{margin-bottom:20px;}
