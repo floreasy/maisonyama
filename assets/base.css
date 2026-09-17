@@ -44,15 +44,27 @@ img{display:block;}
 .ym-utility{display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:8px 12px; padding:10px 16px; background:var(--ym-sage); color:var(--ym-cream); font-size:11px; letter-spacing:.22em; text-transform:uppercase; font-weight:300; text-align:center;}
 .ym-utility .sep{color:var(--ym-gold-soft);}
 
-/* ---------- En-tête ---------- */
-header{border-bottom:1px solid rgba(117,112,71,.28); background:var(--ym-bg);}
-.ym-header{display:grid; grid-template-columns:1fr auto 1fr; align-items:center; padding-top:22px; padding-bottom:22px;}
+/* ---------- En-tête ----------
+   Collant : c'est l'enveloppe de section (classe posée par le schéma) qui colle,
+   pas <header> — le bandeau utilitaire au-dessus défile, puis l'en-tête reste.
+   Passé 80 px de défilement, nav.js pose `is-compact` sur <html> : l'en-tête
+   s'amincit, le logo aussi, le fond se voile légèrement. */
+.ym-header-section{position:sticky; top:0; z-index:40;}
+html{scroll-padding-top:88px;}
+header{border-bottom:1px solid rgba(117,112,71,.28); background:var(--ym-bg); transition:background-color .35s ease, box-shadow .35s ease;}
+.ym-header{display:grid; grid-template-columns:1fr auto 1fr; align-items:center; padding-top:22px; padding-bottom:22px; transition:padding .35s ease;}
+.is-compact header{background:rgba(248,246,240,.9); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); box-shadow:0 10px 30px rgba(43,42,34,.05);}
+.is-compact .ym-header{padding-top:10px; padding-bottom:10px;}
+.is-compact .ym-logo img{height:34px;}
+@media (prefers-reduced-motion: reduce){
+  header, .ym-header, .ym-logo img{transition:none;}
+}
 .ym-nav{display:flex; gap:34px; font-size:11.5px; letter-spacing:.16em; text-transform:uppercase;}
 .ym-nav a{padding-bottom:2px; border-bottom:1px solid transparent;}
 .ym-nav a:hover,
 .ym-nav a[aria-current="page"]{border-bottom-color:var(--ym-gold);}
 .ym-logo{display:flex; justify-content:center;}
-.ym-logo img{height:clamp(40px,5vw,52px); width:auto;}
+.ym-logo img{height:clamp(40px,5vw,52px); width:auto; transition:height .35s ease;}
 .ym-actions{display:flex; gap:22px; justify-content:flex-end; font-size:11.5px; letter-spacing:.16em; text-transform:uppercase;}
 .ym-actions a:hover{color:var(--ym-gold);}
 
