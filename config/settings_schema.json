@@ -63,7 +63,7 @@
         "type": "text",
         "id": "product_price_note",
         "label": "Mention sous le prix",
-        "default": "Prix public conseillé · TVA incluse"
+        "default": "TVA non applicable"
       },
       {
         "type": "text",
