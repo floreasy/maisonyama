@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "header",
   "name": "En-tête",
@@ -5,13 +14,41 @@
     "annonce": {
       "type": "ym-announcement",
       "blocks": {
-        "m1": { "type": "mention", "settings": { "texte": "Tissées main au cœur du Luberon" } },
-        "m2": { "type": "mention", "settings": { "texte": "Chaque pièce dans son écrin" } },
-        "m3": { "type": "mention", "settings": { "texte": "Livraison soignée" } }
+        "m1": {
+          "type": "mention",
+          "settings": {
+            "texte": "Tissées main au cœur du Luberon"
+          }
+        },
+        "m2": {
+          "type": "mention",
+          "settings": {
+            "texte": "Chaque pièce dans son écrin"
+          }
+        },
+        "m3": {
+          "type": "mention",
+          "settings": {
+            "texte": "Livraison soignée"
+          }
+        }
       },
-      "block_order": ["m1", "m2", "m3"]
+      "block_order": [
+        "m1",
+        "m2",
+        "m3"
+      ],
+      "settings": {}
     },
-    "entete": { "type": "ym-header", "settings": { "menu": "main-menu" } }
+    "entete": {
+      "type": "ym-header",
+      "settings": {
+        "menu": "main-menu"
+      }
+    }
   },
-  "order": ["annonce", "entete"]
+  "order": [
+    "annonce",
+    "entete"
+  ]
 }

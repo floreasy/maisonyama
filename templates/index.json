@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "ouverture": {
@@ -18,19 +27,13 @@
       "type": "ym-statement",
       "settings": {
         "texte": "Nées d'un geste lent et précis, elles traduisent une observation sensible du vivant. Les couleurs et les textures sont choisies pour <em>capter la lumière</em> et se révéler au regard.",
-        "mention": "Version A — le texte actuel"
-      }
-    },
-    "manifeste-b": {
-      "type": "ym-statement",
-      "settings": {
-        "texte": "De véritables bijoux vestimentaires qui épousent les courbes naturellement.<br>Des fragments de la Provence qui accompagnent notre quotidien.",
-        "mention": "Version B — la proposition"
+        "mention": "Une présence délicate au quotidien"
       }
     },
     "collection": {
       "type": "ym-featured-collection",
       "settings": {
+        "collection": "collection-2026",
         "surtitre": "Collection",
         "titre": "Nos broches inspirées du vivant",
         "lien_libelle": "Tout voir",
@@ -41,10 +44,10 @@
     "editorial": {
       "type": "ym-editorial",
       "settings": {
+        "image_alt": "Broche cigale portée",
         "surtitre": "La Cigale",
         "texte": "La symphonie de l'été provençal.",
-        "mention": "Une présence éphémère",
-        "image_alt": "Broche cigale portée"
+        "mention": "Une présence éphémère"
       }
     },
     "savoir-faire": {
@@ -54,14 +57,16 @@
           "type": "chiffre",
           "settings": {
             "valeur": "599",
-            "libelle": "Perles · une cigale"
+            "libelle": "Perles · une cigale",
+            "est_un_mot": false
           }
         },
         "main": {
           "type": "chiffre",
           "settings": {
             "valeur": "100%",
-            "libelle": "Tissé main"
+            "libelle": "Tissé main",
+            "est_un_mot": false
           }
         },
         "luberon": {
@@ -101,7 +106,6 @@
   "order": [
     "ouverture",
     "manifeste",
-    "manifeste-b",
     "collection",
     "editorial",
     "savoir-faire",

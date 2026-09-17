@@ -1,14 +1,23 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "ouverture": {
       "type": "ym-page-hero",
       "settings": {
+        "repli": "decor-flor.jpg",
+        "image_alt": "Paysage du Luberon",
         "surtitre": "Le savoir-faire",
         "titre": "Un geste lent,",
         "titre_italique": "une perle après l'autre.",
-        "texte": "De l'observation au dernier point, chaque broche traverse les mêmes quatre temps.",
-        "image_alt": "Paysage du Luberon",
-        "repli": "decor-flor.jpg"
+        "texte": "De l'observation au dernier point, chaque broche traverse les mêmes quatre temps."
       }
     },
     "manifeste": {
@@ -63,7 +72,8 @@
         "deux",
         "trois",
         "quatre"
-      ]
+      ],
+      "settings": {}
     },
     "chiffres": {
       "type": "ym-craft",
