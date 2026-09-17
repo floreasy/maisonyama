@@ -18,7 +18,14 @@
       "type": "ym-statement",
       "settings": {
         "texte": "Nées d'un geste lent et précis, elles traduisent une observation sensible du vivant. Les couleurs et les textures sont choisies pour <em>capter la lumière</em> et se révéler au regard.",
-        "mention": "Une présence délicate au quotidien"
+        "mention": "Version A — le texte actuel"
+      }
+    },
+    "manifeste-b": {
+      "type": "ym-statement",
+      "settings": {
+        "texte": "De véritables bijoux vestimentaires qui épousent les courbes naturellement.<br>Des fragments de la Provence qui accompagnent notre quotidien.",
+        "mention": "Version B — la proposition"
       }
     },
     "collection": {
@@ -94,6 +101,7 @@
   "order": [
     "ouverture",
     "manifeste",
+    "manifeste-b",
     "collection",
     "editorial",
     "savoir-faire",
