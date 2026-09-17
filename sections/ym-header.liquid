@@ -12,7 +12,7 @@
 
     {%- comment -%}
       Deux logos superposés : au repos l'en-tête est clair et porte le vert ;
-      collant, il prend le sauge du bandeau, où seul le beige se lit. Le CSS fond
+      collant, il prend le sauge du bandeau, où seul le blanc se lit. Le CSS fond
       l'un dans l'autre — rien ne se recharge au défilement. Le second est retiré
       de l'arbre d'accessibilité : un seul logo s'annonce, celui qui nomme le lien.
     {%- endcomment -%}
@@ -25,7 +25,7 @@
           {{ settings.logo_header | image_url: width: 260 | image_tag:
                widths: '104, 156, 208, 260', sizes: '130px', alt: shop.name }}
         {%- else -%}
-          <img src="{{ 'logo-yama-vert.png' | asset_url }}" alt="{{ shop.name }}" width="1100" height="623">
+          <img src="{{ 'logo-principal-or.png' | asset_url }}" alt="{{ shop.name }}" width="1100" height="623">
         {%- endif -%}
       </span>
       <span class="ym-logo-compact" aria-hidden="true">
@@ -33,7 +33,7 @@
           {{ section.settings.logo_compact | image_url: width: 260 | image_tag:
                widths: '104, 156, 208, 260', sizes: '130px', alt: '' }}
         {%- else -%}
-          <img src="{{ 'logo-principal-beige.png' | asset_url }}" alt="" width="1776" height="1006">
+          <img src="{{ 'logo-principal-blanc.png' | asset_url }}" alt="" width="1100" height="623">
         {%- endif -%}
       </span>
     </a>

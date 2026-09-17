@@ -49,14 +49,17 @@ img{display:block;}
    pas <header> — le bandeau utilitaire au-dessus défile, puis l'en-tête reste.
    Passé 80 px de défilement, nav.js pose `is-compact` sur <html> : l'en-tête
    s'amincit, le logo aussi, et le fond prend le sauge du bandeau utilitaire —
-   celui-là même qui vient de défiler au-dessus. Le vert du logo n'y tiendrait
-   pas : le beige prend le relais. */
+   celui-là même qui vient de défiler au-dessus. L'or du logo n'y tiendrait
+   pas : le blanc prend le relais. */
 .ym-header-section{position:sticky; top:0; z-index:40;}
 html{scroll-padding-top:88px;}
 header{border-bottom:1px solid rgba(117,112,71,.28); background:var(--ym-bg); transition:background-color .35s ease, box-shadow .35s ease;}
 .ym-header{display:grid; grid-template-columns:1fr auto 1fr; align-items:center; padding-top:22px; padding-bottom:22px; transition:padding .35s ease;}
 header{color:var(--ym-ink); transition:background-color .35s ease, color .35s ease, box-shadow .35s ease, border-color .35s ease;}
-.is-compact header{background:var(--ym-sage); color:var(--ym-cream); border-bottom-color:transparent; box-shadow:0 10px 30px rgba(43,42,34,.12);}
+/* Le sauge est posé en rgba plutôt qu'en token : la page défile dessous et s'y
+   devine, le flou gardant le texte lisible. La valeur est celle de --ym-sage —
+   si le token bouge, cette ligne le suit. */
+.is-compact header{background:rgba(151,160,130,.88); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); color:var(--ym-cream); border-bottom-color:transparent; box-shadow:0 10px 30px rgba(43,42,34,.12);}
 .is-compact .ym-header{padding-top:10px; padding-bottom:10px;}
 .is-compact .ym-logo img{height:34px;}
 /* Sur le sauge, l'or des filets et des survols s'éteint : on prend sa version claire. */
