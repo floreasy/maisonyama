@@ -87,19 +87,23 @@
 /* Le zoom lui-même est dans base.css ; ici, le cadrage de l'image principale. */
 .ym-gallery .ym-main-img{width:100%; height:100%; object-fit:cover;}
 
-/* ---------- Détails ---------- */
+/* ---------- Détails ----------
+   Une colonne de bijouterie : des corps modestes, de l'air, des filets fins.
+   La présence vient de la place, pas de la taille. */
 .ym-details{padding-top:8px; max-width:460px;}
-.ym-details .ym-eyebrow{margin-bottom:18px;}
-.ym-details h1{font-family:var(--ym-serif); font-weight:300; font-size:clamp(46px,6vw,62px); line-height:1; margin:0 0 16px;}
-.ym-tagline{font-family:var(--ym-serif); font-style:italic; font-weight:300; font-size:clamp(21px,2.6vw,25px); line-height:1.45; color:var(--ym-olive); margin:0 0 26px;}
-/* Le nombre de perles, posé comme un chiffre du bandeau savoir-faire : le nombre
-   en grand, sa légende en petites capitales dessous. */
-.ym-perles{margin:-4px 0 30px;}
-.ym-perles-nombre{display:block; font-family:var(--ym-serif); font-weight:300; font-size:clamp(34px,4vw,44px); line-height:1.1;}
-.ym-perles-legende{display:block; margin-top:6px; font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--ym-gold-deep);}
-.ym-product-price{font-family:var(--ym-serif); font-weight:300; font-size:31px; margin-bottom:6px;}
-.ym-price-note{font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ym-muted); margin-bottom:34px;}
-.ym-description{font-family:var(--ym-serif); font-weight:300; font-size:20px; line-height:1.6; color:var(--ym-olive); margin:0 0 38px;}
+.ym-details .ym-eyebrow{margin-bottom:14px;}
+.ym-details h1{font-family:var(--ym-serif); font-weight:300; font-size:clamp(26px,2.6vw,32px); line-height:1.2; letter-spacing:.005em; margin:0 0 12px;}
+.ym-tagline{font-family:var(--ym-serif); font-style:italic; font-weight:300; font-size:clamp(17px,1.8vw,19px); line-height:1.5; color:var(--ym-olive); margin:0 0 22px;}
+/* Le nombre de perles en signature : sous un filet d'or, le nombre en Playfair
+   et sa légende en petites capitales, sur une ligne. Mis en avant par la place
+   — juste sous l'accroche — pas par la taille. */
+.ym-perles{position:relative; display:flex; align-items:baseline; gap:10px; margin:0 0 30px; padding-top:18px;}
+.ym-perles::before{content:""; position:absolute; top:0; left:0; width:34px; height:1px; background:var(--ym-gold);}
+.ym-perles-nombre{font-family:var(--ym-serif); font-weight:300; font-size:22px; line-height:1;}
+.ym-perles-legende{font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--ym-gold-deep);}
+.ym-product-price{font-family:var(--ym-serif); font-weight:300; font-size:21px; margin-bottom:6px;}
+.ym-price-note{font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--ym-muted); margin-bottom:30px;}
+.ym-description{font-family:var(--ym-serif); font-weight:300; font-size:17px; line-height:1.7; color:var(--ym-olive); margin:0 0 34px;}
 
 /* ---------- Achat ---------- */
 .ym-buy{display:flex; border:1px solid #cbb78a; margin-bottom:16px;}
@@ -125,16 +129,16 @@
 /* ---------- Spécifications ---------- */
 .ym-specs{border-top:1px solid var(--ym-line); padding-top:28px; display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:22px 28px;}
 .ym-spec-label{font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--ym-gold-deep); margin-bottom:7px;}
-.ym-spec-value{font-family:var(--ym-serif); font-weight:300; font-size:20px;}
+.ym-spec-value{font-family:var(--ym-serif); font-weight:300; font-size:16px; line-height:1.4;}
 /* Les matières tiennent sur une ligne longue : toute la largeur, en dessous. */
 .ym-spec--large{grid-column:1 / -1;}
-.ym-spec--large .ym-spec-value{font-size:18px; line-height:1.5;}
+.ym-spec--large .ym-spec-value{font-size:15px; line-height:1.55;}
 
 /* ---------- Carte écrin ---------- */
 /* La boîte ouverte, posée de biais comme sur une table. Le lien bascule la
    galerie sur la photo de la broche dans son écrin (gallery.js). */
 .ym-ecrin-card{display:grid; grid-template-columns:minmax(0,1fr) 150px; align-items:center; gap:18px; background:var(--ym-mist); padding:24px 22px 24px 26px; margin-top:32px; overflow:hidden;}
-.ym-ecrin-card-title{font-family:var(--ym-serif); font-weight:300; font-size:21px; line-height:1.25;}
+.ym-ecrin-card-title{font-family:var(--ym-serif); font-weight:300; font-size:18px; line-height:1.3;}
 .ym-ecrin-card-sub{font-size:11px; letter-spacing:.04em; line-height:1.6; color:var(--ym-olive); margin-top:6px;}
 .ym-ecrin-card-link{display:inline-block; margin-top:16px; padding:0 0 3px; background:none; border:0; border-bottom:1px solid var(--ym-gold); cursor:pointer; font-family:var(--ym-sans);}
 .ym-ecrin-card-media{aspect-ratio:1; display:flex; align-items:center; justify-content:center;}
