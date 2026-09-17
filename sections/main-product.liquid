@@ -81,9 +81,13 @@
 
         <h1>{{ product.title }}</h1>
 
+        {%- comment -%}
+          L'accroche est un champ multiligne : ses retours à la ligne sont voulus,
+          et HTML les ignorerait sans newline_to_br.
+        {%- endcomment -%}
         {%- assign tagline = product.metafields.custom.cles_tagline | strip -%}
         {%- if tagline != blank -%}
-          <p class="ym-tagline">{{ tagline }}</p>
+          <p class="ym-tagline">{{ tagline | newline_to_br }}</p>
         {%- endif -%}
 
         <div class="ym-product-price" data-ym-price>

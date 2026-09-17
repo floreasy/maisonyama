@@ -91,7 +91,7 @@
 .ym-details{padding-top:8px; max-width:460px;}
 .ym-details .ym-eyebrow{margin-bottom:18px;}
 .ym-details h1{font-family:var(--ym-serif); font-weight:300; font-size:clamp(46px,6vw,62px); line-height:1; margin:0 0 16px;}
-.ym-tagline{font-family:var(--ym-serif); font-style:italic; font-weight:300; font-size:clamp(21px,2.6vw,25px); color:var(--ym-olive); margin:0 0 30px;}
+.ym-tagline{font-family:var(--ym-serif); font-style:italic; font-weight:300; font-size:clamp(21px,2.6vw,25px); line-height:1.45; color:var(--ym-olive); margin:0 0 30px;}
 .ym-product-price{font-family:var(--ym-serif); font-weight:300; font-size:31px; margin-bottom:6px;}
 .ym-price-note{font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ym-muted); margin-bottom:34px;}
 .ym-description{font-family:var(--ym-serif); font-weight:300; font-size:20px; line-height:1.6; color:var(--ym-olive); margin:0 0 38px;}
