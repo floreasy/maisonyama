@@ -25,6 +25,16 @@
         <p>{{ 'collection.vide' | t }}</p>
       {%- endfor -%}
     </div>
+
+    {%- comment -%}
+      Le même lien qu'en tête de section, repris sous la grille : au bas d'une
+      liste, on ne remonte pas chercher la sortie. Vide, il disparaît.
+    {%- endcomment -%}
+    {%- if section.settings.lien_bas_libelle != blank -%}
+      <div class="ym-collection-foot">
+        <a class="ym-link" href="{{ collection.url }}">{{ section.settings.lien_bas_libelle }}</a>
+      </div>
+    {%- endif -%}
   </div>
 </section>
 
@@ -36,6 +46,7 @@
     { "type": "text", "id": "surtitre", "label": "Surtitre", "default": "Collection" },
     { "type": "text", "id": "titre", "label": "Titre", "default": "Nos broches inspirées du vivant" },
     { "type": "text", "id": "lien_libelle", "label": "Lien à droite du titre", "default": "Tout voir" },
+    { "type": "text", "id": "lien_bas_libelle", "label": "Lien sous la grille", "info": "Laisser vide pour ne pas le montrer.", "default": "Tout voir" },
     { "type": "range", "id": "nombre", "label": "Nombre de pièces", "min": 2, "max": 12, "step": 1, "default": 6 },
     { "type": "checkbox", "id": "spec_complete", "label": "Afficher le nombre de perles", "default": false }
   ],

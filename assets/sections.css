@@ -19,6 +19,8 @@
 
 /* ---------- Grille collection ---------- */
 .ym-collection{padding:0 0 clamp(72px,10vw,116px);}
+/* Le lien de sortie, repris sous la grille et centré. */
+.ym-collection-foot{display:flex; justify-content:center; margin-top:clamp(36px,5vw,52px);}
 .ym-section-head{display:flex; flex-wrap:wrap; gap:20px; align-items:flex-end; justify-content:space-between; margin-bottom:clamp(36px,5vw,52px);}
 .ym-section-head .ym-eyebrow{margin-bottom:14px;}
 .ym-section-head h2{font-family:var(--ym-serif); font-weight:300; font-size:clamp(32px,4vw,46px); margin:0;}
