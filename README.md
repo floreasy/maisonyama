@@ -50,7 +50,7 @@ le produit : l'ordre de la collection suffit à régler le rythme.
 
 | Clé | Type | Rôle |
 |---|---|---|
-| `custom.tagline` | Ligne de texte | La phrase en italique sous le titre |
+| `custom.cles_tagline` | Ligne de texte | La phrase en italique sous le titre |
 | `custom.dimensions` | Ligne de texte | `6 × 2,8 cm` |
 | `custom.perles` | Entier | `599` |
 | `custom.padding_detoure` | Entier | Marge du détouré, en % (10 par défaut) |

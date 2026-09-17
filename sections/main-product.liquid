@@ -81,7 +81,7 @@
 
         <h1>{{ product.title }}</h1>
 
-        {%- assign tagline = product.metafields.custom.tagline | strip -%}
+        {%- assign tagline = product.metafields.custom.cles_tagline | strip -%}
         {%- if tagline != blank -%}
           <p class="ym-tagline">{{ tagline }}</p>
         {%- endif -%}
