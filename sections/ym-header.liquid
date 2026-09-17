@@ -4,9 +4,19 @@
       <span></span><span></span><span></span>
     </button>
 
+    {%- comment -%}
+      Un lien du menu peut être doré : on le désigne par son libellé, réglable
+      ci-dessous. Le menu vient de l'admin, le thème ne peut pas deviner lequel
+      mettre en avant — et renommer l'entrée sans toucher au réglage la rendrait
+      simplement à sa couleur d'origine, sans rien casser.
+    {%- endcomment -%}
+    {%- assign lien_dore = section.settings.lien_dore | strip | downcase -%}
     <nav class="ym-nav" id="ym-nav" aria-label="Navigation principale">
       {%- for link in section.settings.menu.links -%}
-        <a href="{{ link.url }}"{% if link.active or link.child_active %} aria-current="page"{% endif %}>{{ link.title }}</a>
+        {%- assign titre_min = link.title | strip | downcase -%}
+        <a href="{{ link.url }}"
+           {%- if lien_dore != blank and titre_min == lien_dore %} class="ym-nav-dore"{% endif %}
+           {%- if link.active or link.child_active %} aria-current="page"{% endif %}>{{ link.title }}</a>
       {%- endfor -%}
     </nav>
 
@@ -64,6 +74,13 @@
       "id": "logo_compact",
       "label": "Logo sur l'en-tête collant",
       "info": "Sur le fond sauge. Laisser vide pour le logo beige livré avec le thème."
+    },
+    {
+      "type": "text",
+      "id": "lien_dore",
+      "label": "Lien du menu à dorer",
+      "info": "Le libellé exact, tel qu'il est écrit dans le menu. Vide : aucun lien doré.",
+      "default": "Nos produits"
     }
   ]
 }
