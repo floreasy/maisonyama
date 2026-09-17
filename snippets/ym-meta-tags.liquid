@@ -4,7 +4,7 @@
 {%- endcomment -%}
 <meta property="og:site_name" content="{{ shop.name }}">
 <meta property="og:url" content="{{ canonical_url }}">
-<meta property="og:title" content="{{ page_title | escape }}">
+<meta property="og:title" content="{{ titre | default: page_title | escape }}">
 <meta property="og:type" content="{% if request.page_type == 'product' %}product{% else %}website{% endif %}">
 <meta property="og:description" content="{{ page_description | default: shop.description | default: shop.name | escape }}">
 
@@ -19,5 +19,5 @@
 {%- endif -%}
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ page_title | escape }}">
+<meta name="twitter:title" content="{{ titre | default: page_title | escape }}">
 <meta name="twitter:description" content="{{ page_description | default: shop.description | escape }}">

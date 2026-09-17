@@ -63,7 +63,7 @@
     "appel": {
       "type": "ym-cta-band",
       "settings": {
-        "surtitre": "Collection 2026",
+        "surtitre": "Collection",
         "titre": "Découvrez les pièces nées ici.",
         "cta_libelle": "Voir la collection",
         "cta_lien": "/collections/all",

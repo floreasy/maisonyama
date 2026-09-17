@@ -8,12 +8,18 @@
 
 {% render 'ym-favicon' %}
 
-<title>{{ page_title }}{% unless page_title contains shop.name %} — {{ shop.name }}{% endunless %}</title>
+{%- comment -%} Sur une fiche, le titre dit « Broche » : c'est le mot qu'on cherche. {%- endcomment -%}
+{%- if request.page_type == 'product' -%}
+  {%- capture titre_page %}{{ 'produit.broche' | t }} {{ product.title }}{% endcapture -%}
+{%- else -%}
+  {%- assign titre_page = page_title -%}
+{%- endif -%}
+<title>{{ titre_page }}{% unless titre_page contains shop.name %} — {{ shop.name }}{% endunless %}</title>
 {%- if page_description -%}
   <meta name="description" content="{{ page_description | escape }}">
 {%- endif -%}
 
-{% render 'ym-meta-tags' %}
+{% render 'ym-meta-tags', titre: titre_page %}
 {% render 'ym-fonts' %}
 
 {{ 'base.css' | asset_url | stylesheet_tag }}

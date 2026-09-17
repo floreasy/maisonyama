@@ -35,7 +35,8 @@
                   {%- assign pad = '0px' -%}
                   {%- assign bg = 'var(--ym-photo-bg)' -%}
                 {%- endif -%}
-                {%- assign alt_image = image.alt | default: product.title | escape -%}
+                {%- capture alt_repli %}{{ 'produit.broche' | t }} {{ product.title }}{% endcapture -%}
+                {%- assign alt_image = image.alt | default: alt_repli | escape -%}
 
                 <button class="ym-thumb" type="button"
                         aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
@@ -55,7 +56,8 @@
         {%- endif -%}
 
         {%- assign premiere = product.featured_image -%}
-        {%- assign alt_premiere = premiere.alt | default: product.title | escape -%}
+        {%- capture alt_repli %}{{ 'produit.broche' | t }} {{ product.title }}{% endcapture -%}
+        {%- assign alt_premiere = premiere.alt | default: alt_repli | escape -%}
         {%- comment -%}
           data-zoom-src porte la pleine largeur, que le JS ne charge qu'au premier
           zoom tactile : le srcset, lui, sert la taille du cadre, et cette taille-là
@@ -79,7 +81,11 @@
           <div class="ym-eyebrow">{{ section.settings.surtitre }}</div>
         {%- endif -%}
 
-        <h1>{{ product.title }}</h1>
+        {%- comment -%}
+          « La broche Cigale » : le mot que cherchent les gens est dans le h1, et
+          « La broche » se pose en italique au-dessus du nom.
+        {%- endcomment -%}
+        <h1><span class="ym-h1-genre">{{ 'produit.la_broche' | t }}</span> {{ product.title }}</h1>
 
         {%- comment -%}
           L'accroche est un champ multiligne : ses retours à la ligne sont voulus,
@@ -224,7 +230,7 @@
 {
   "name": "Fiche produit",
   "settings": [
-    { "type": "text", "id": "surtitre", "label": "Surtitre", "default": "Collection 2026" },
+    { "type": "text", "id": "surtitre", "label": "Surtitre", "default": "Collection" },
     { "type": "header", "content": "Rappel de l'écrin" },
     { "type": "image_picker", "id": "ecrin_image", "label": "Visuel de l'écrin", "info": "Laisser vide pour la boîte ouverte détourée, livrée avec le thème. La photo de la broche dans son écrin, elle, se met dans les images du produit avec « écrin » dans le texte alternatif." },
     { "type": "text", "id": "ecrin_titre", "label": "Titre", "default": "Livrée dans son écrin Maison Yama" },

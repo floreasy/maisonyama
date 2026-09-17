@@ -106,7 +106,7 @@
     "appel": {
       "type": "ym-cta-band",
       "settings": {
-        "surtitre": "Collection 2026",
+        "surtitre": "Collection",
         "titre": "Voir ce que ces gestes font naître.",
         "cta_libelle": "Découvrir la collection",
         "cta_lien": "/collections/all",

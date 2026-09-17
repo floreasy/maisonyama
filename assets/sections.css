@@ -91,6 +91,8 @@
 .ym-details{padding-top:8px; max-width:460px;}
 .ym-details .ym-eyebrow{margin-bottom:18px;}
 .ym-details h1{font-family:var(--ym-serif); font-weight:300; font-size:clamp(46px,6vw,62px); line-height:1; margin:0 0 16px;}
+/* « La broche » en italique, plus petit, au-dessus du nom : même h1, deux registres. */
+.ym-h1-genre{display:block; font-style:italic; font-size:.4em; line-height:1.2; color:var(--ym-olive); margin-bottom:8px;}
 .ym-tagline{font-family:var(--ym-serif); font-style:italic; font-weight:300; font-size:clamp(21px,2.6vw,25px); line-height:1.45; color:var(--ym-olive); margin:0 0 26px;}
 /* « 599 perles, tissées une à une. » : le nombre en romain, la suite en italique
    comme l'accroche, sur la même ligne de base. Chiffres tabulaires : la largeur

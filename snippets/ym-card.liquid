@@ -55,7 +55,8 @@
 
 {%- assign ym_sizes = '(min-width: 1100px) 25vw, (min-width: 700px) 33vw, 50vw' -%}
 {%- assign ym_widths = '280, 420, 560, 840' -%}
-{%- assign alt_produit = product.title | escape -%}
+{%- capture alt_produit %}{{ 'produit.broche' | t }} {{ product.title }}{% endcapture -%}
+{%- assign alt_produit = alt_produit | escape -%}
 
 <a class="ym-card" href="{{ product.url }}">
   <div class="ym-shot">
