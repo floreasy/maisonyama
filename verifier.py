@@ -23,6 +23,22 @@ NOMS = re.compile(r"['\"]([\w.\-]+\.(?:css|js|png|jpe?g|woff2))['\"]")
 # en texte à côté de l'image. Le linter de Shopify ne voit rien, la page si.
 SORTIES = re.compile(r'\{\{.*?\}\}', re.S)
 
+def sans_entete(brut):
+    """Retire l'avertissement que l'éditeur de thème pose en tête des gabarits.
+
+    Shopify écrit un bloc /* … */ avant le JSON de ses fichiers de thème, et le
+    relit sans broncher. json.loads, lui, refuse. On ne coupe qu'en tête : un
+    /* au milieu appartiendrait à une chaîne, pas à un commentaire.
+    """
+    reste = brut.lstrip('\ufeff \t\r\n')
+    while reste.startswith('/*'):
+        fin = reste.find('*/')
+        if fin == -1:
+            break
+        reste = reste[fin + 2:].lstrip(' \t\r\n')
+    return reste
+
+
 erreurs = []
 liquides = glob.glob('**/*.liquid', recursive=True)
 snippets = {os.path.basename(p)[:-7] for p in glob.glob('snippets/*.liquid')}
@@ -53,7 +69,7 @@ for p in gabarits:
     brut = open(p, encoding='utf-8').read()
     for nom in NOMS.findall(brut):
         if nom not in assets: erreurs.append(f"{p} : asset manquant « {nom} »")
-    d = json.loads(brut)
+    d = json.loads(sans_entete(brut))
     for cle, sec in d.get('sections', {}).items():
         if sec['type'] not in sections:
             erreurs.append(f"{p} : type de section inconnu « {sec['type']} »")
@@ -69,7 +85,8 @@ for p in gabarits:
         if cle not in d.get('sections', {}):
             erreurs.append(f"{p} : « {cle} » listé dans order mais non défini")
 
-trad = json.load(open('locales/fr.default.json', encoding='utf-8'))
+trad = json.loads(sans_entete(
+    open('locales/fr.default.json', encoding='utf-8').read()))
 def resoudre(cle):
     n = trad
     for part in cle.split('.'):
