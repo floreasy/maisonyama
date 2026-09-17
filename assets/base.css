@@ -49,7 +49,7 @@ img{display:block;}
    pas <header> — le bandeau utilitaire au-dessus défile, puis l'en-tête reste.
    Passé 80 px de défilement, nav.js pose `is-compact` sur <html> : l'en-tête
    s'amincit, le logo aussi, et le fond prend le sauge du bandeau utilitaire —
-   celui-là même qui vient de défiler au-dessus. L'or du logo n'y tiendrait
+   celui-là même qui vient de défiler au-dessus. Le logo sombre n'y tiendrait
    pas : le blanc prend le relais. */
 .ym-header-section{position:sticky; top:0; z-index:40;}
 html{scroll-padding-top:88px;}
