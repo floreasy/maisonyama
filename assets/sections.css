@@ -194,6 +194,8 @@
 .ym-values-head h2{font-family:var(--ym-serif); font-weight:300; font-size:clamp(30px,3.8vw,44px); margin:0;}
 .ym-values-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:clamp(36px,5vw,56px);}
 .ym-value{text-align:center;}
+/* Les trois convictions gardent leur filet court : trois traits longs côte à
+   côte pèseraient plus que les titres qu'ils annoncent. */
 .ym-value .ym-rule{width:26px; margin:0 auto 24px;}
 .ym-value-title{font-family:var(--ym-serif); font-weight:300; font-size:26px; margin-bottom:14px;}
 .ym-value p{font-size:13px; font-weight:300; line-height:1.8; color:var(--ym-olive); margin:0 auto; max-width:280px;}

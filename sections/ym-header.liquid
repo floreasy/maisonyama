@@ -10,16 +10,32 @@
       {%- endfor -%}
     </nav>
 
+    {%- comment -%}
+      Deux logos superposés : au repos l'en-tête est clair et porte le vert ;
+      collant, il prend le sauge du bandeau, où seul le beige se lit. Le CSS fond
+      l'un dans l'autre — rien ne se recharge au défilement. Le second est retiré
+      de l'arbre d'accessibilité : un seul logo s'annonce, celui qui nomme le lien.
+    {%- endcomment -%}
     <a class="ym-logo" href="{{ routes.root_url }}">
-      {%- if section.settings.logo != blank -%}
-        {{ section.settings.logo | image_url: width: 260 | image_tag:
-             widths: '104, 156, 208, 260', sizes: '130px', alt: shop.name }}
-      {%- elsif settings.logo_header != blank -%}
-        {{ settings.logo_header | image_url: width: 260 | image_tag:
-             widths: '104, 156, 208, 260', sizes: '130px', alt: shop.name }}
-      {%- else -%}
-        <img src="{{ 'logo-yama-vert.png' | asset_url }}" alt="{{ shop.name }}" width="1100" height="623">
-      {%- endif -%}
+      <span class="ym-logo-repos">
+        {%- if section.settings.logo != blank -%}
+          {{ section.settings.logo | image_url: width: 260 | image_tag:
+               widths: '104, 156, 208, 260', sizes: '130px', alt: shop.name }}
+        {%- elsif settings.logo_header != blank -%}
+          {{ settings.logo_header | image_url: width: 260 | image_tag:
+               widths: '104, 156, 208, 260', sizes: '130px', alt: shop.name }}
+        {%- else -%}
+          <img src="{{ 'logo-yama-vert.png' | asset_url }}" alt="{{ shop.name }}" width="1100" height="623">
+        {%- endif -%}
+      </span>
+      <span class="ym-logo-compact" aria-hidden="true">
+        {%- if section.settings.logo_compact != blank -%}
+          {{ section.settings.logo_compact | image_url: width: 260 | image_tag:
+               widths: '104, 156, 208, 260', sizes: '130px', alt: '' }}
+        {%- else -%}
+          <img src="{{ 'logo-principal-beige.png' | asset_url }}" alt="" width="1776" height="1006">
+        {%- endif -%}
+      </span>
     </a>
 
     <div class="ym-actions">
@@ -42,6 +58,12 @@
       "id": "logo",
       "label": "Logo",
       "info": "Laisser vide pour reprendre le logo des paramètres du thème."
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_compact",
+      "label": "Logo sur l'en-tête collant",
+      "info": "Sur le fond sauge. Laisser vide pour le logo beige livré avec le thème."
     }
   ]
 }
