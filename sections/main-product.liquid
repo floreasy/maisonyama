@@ -81,11 +81,8 @@
           <div class="ym-eyebrow">{{ section.settings.surtitre }}</div>
         {%- endif -%}
 
-        {%- comment -%}
-          « La broche Cigale » : le mot que cherchent les gens est dans le h1, et
-          « La broche » se pose en italique au-dessus du nom.
-        {%- endcomment -%}
-        <h1><span class="ym-h1-genre">{{ 'produit.la_broche' | t }}</span> {{ product.title }}</h1>
+        {%- comment -%} « La broche « Cigale » » : le mot que cherchent les gens est dans le h1. {%- endcomment -%}
+        <h1>{{ 'produit.la_broche' | t }} «&nbsp;{{ product.title }}&nbsp;»</h1>
 
         {%- comment -%}
           L'accroche est un champ multiligne : ses retours à la ligne sont voulus,
@@ -97,16 +94,15 @@
         {%- endif -%}
 
         {%- comment -%}
-          Le nombre de perles est l'argument de la pièce : une phrase sous
-          l'accroche, pas une ligne de caractéristiques. Le nombre se compte sous
-          les yeux du visiteur (perles.js) ; il est déjà écrit en dur, pour qui n'a
-          pas JavaScript.
+          Le nombre de perles est l'argument de la pièce : un chiffre posé comme
+          ceux du bandeau savoir-faire de l'accueil, pas une ligne de
+          caractéristiques.
         {%- endcomment -%}
         {%- assign perles = product.metafields.custom.perles -%}
         {%- if perles != blank -%}
           <p class="ym-perles">
-            <span class="ym-perles-nombre" data-ym-compte="{{ perles }}">{{ perles }}</span>
-            <span class="ym-perles-texte">{{ 'produit.perles_legende' | t }}</span>
+            <span class="ym-perles-nombre">{{ perles }}</span>
+            <span class="ym-perles-legende">{{ 'produit.perles_legende' | t }}</span>
           </p>
         {%- endif -%}
 
@@ -223,8 +219,6 @@
     </div>
   </div>
 </section>
-
-<script src="{{ 'perles.js' | asset_url }}" defer></script>
 
 {% schema %}
 {
