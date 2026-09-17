@@ -152,25 +152,25 @@
 
         <div class="ym-specs">
           {%- if product.metafields.custom.dimensions != blank -%}
-            <div>
+            <div class="ym-spec">
               <div class="ym-spec-label">{{ 'produit.dimensions' | t }}</div>
               <div class="ym-spec-value">{{ product.metafields.custom.dimensions | strip }}</div>
             </div>
           {%- endif -%}
           {%- if settings.spec_fabrication != blank -%}
-            <div>
+            <div class="ym-spec">
               <div class="ym-spec-label">{{ 'produit.fabrication' | t }}</div>
               <div class="ym-spec-value">{{ settings.spec_fabrication }}</div>
             </div>
           {%- endif -%}
           {%- if settings.spec_atelier != blank -%}
-            <div>
+            <div class="ym-spec">
               <div class="ym-spec-label">{{ 'produit.atelier' | t }}</div>
               <div class="ym-spec-value">{{ settings.spec_atelier }}</div>
             </div>
           {%- endif -%}
           {%- if settings.spec_matieres != blank -%}
-            <div class="ym-spec--large">
+            <div class="ym-spec">
               <div class="ym-spec-label">{{ 'produit.matieres' | t }}</div>
               <div class="ym-spec-value">{{ settings.spec_matieres }}</div>
             </div>

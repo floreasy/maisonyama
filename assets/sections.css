@@ -127,12 +127,18 @@
 .ym-stock::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--ym-muted);}
 
 /* ---------- Spécifications ---------- */
-.ym-specs{border-top:1px solid var(--ym-line); padding-top:28px; display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:22px 28px;}
-.ym-spec-label{font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--ym-gold-deep); margin-bottom:7px;}
-.ym-spec-value{font-family:var(--ym-serif); font-weight:300; font-size:16px; line-height:1.4;}
-/* Les matières tiennent sur une ligne longue : toute la largeur, en dessous. */
-.ym-spec--large{grid-column:1 / -1;}
-.ym-spec--large .ym-spec-value{font-size:15px; line-height:1.55;}
+/* Une caractéristique par ligne, libellé à gauche et valeur en regard : la
+   lecture se fait en descendant la colonne des libellés, comme sur une fiche
+   d'atelier. Un filet fin sépare les lignes. */
+.ym-specs{border-top:1px solid var(--ym-line); padding-top:6px;}
+.ym-spec{display:grid; grid-template-columns:minmax(0,104px) minmax(0,1fr); gap:0 22px; align-items:baseline; padding:13px 0;}
+.ym-spec + .ym-spec{border-top:1px solid var(--ym-line);}
+.ym-spec-label{font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--ym-gold-deep);}
+.ym-spec-value{font-family:var(--ym-serif); font-weight:300; font-size:16px; line-height:1.45;}
+/* Sous 420px la colonne des libellés mangerait la valeur : les deux s'empilent. */
+@media (max-width:420px){
+  .ym-spec{grid-template-columns:minmax(0,1fr); gap:6px;}
+}
 
 /* ---------- Carte écrin ---------- */
 /* La boîte ouverte, posée de biais comme sur une table. Le lien bascule la
