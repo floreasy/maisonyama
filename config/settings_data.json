@@ -1,15 +1,17 @@
 {
   "current": {
-    "spec_faconnage": "Tissé entièrement main",
-    "spec_origine": "Castellet-en-Luberon",
+    "spec_matieres": "Perles de rocaille en verre, broche en laiton, fil de tissage en nylon",
+    "spec_fabrication": "Tissée entièrement à la main",
+    "spec_atelier": "Castellet-en-Luberon, France",
     "product_price_note": "TVA non applicable",
     "product_stock_note": "En stock — expédiée sous 3 à 5 jours",
     "social_instagram": "https://instagram.com/maisonyama"
   },
   "presets": {
     "Maison Yama": {
-      "spec_faconnage": "Tissé entièrement main",
-      "spec_origine": "Castellet-en-Luberon",
+      "spec_matieres": "Perles de rocaille en verre, broche en laiton, fil de tissage en nylon",
+      "spec_fabrication": "Tissée entièrement à la main",
+      "spec_atelier": "Castellet-en-Luberon, France",
       "product_price_note": "TVA non applicable",
       "product_stock_note": "En stock — expédiée sous 3 à 5 jours"
     }

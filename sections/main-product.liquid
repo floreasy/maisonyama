@@ -90,6 +90,19 @@
           <p class="ym-tagline">{{ tagline | newline_to_br }}</p>
         {%- endif -%}
 
+        {%- comment -%}
+          Le nombre de perles est l'argument de la pièce : il tient en chiffre-clé,
+          pas en ligne de caractéristiques. Le fil de points d'or au-dessus, c'est
+          le fil de perles.
+        {%- endcomment -%}
+        {%- assign perles = product.metafields.custom.perles -%}
+        {%- if perles != blank -%}
+          <p class="ym-perles">
+            <span class="ym-perles-nombre">{{ perles }}</span>
+            <span class="ym-perles-legende">{{ 'produit.perles_legende' | t }}</span>
+          </p>
+        {%- endif -%}
+
         <div class="ym-product-price" data-ym-price>
           {%- if variante.compare_at_price > variante.price -%}
             <s>{{ variante.compare_at_price | money }}</s>
@@ -141,37 +154,60 @@
               <div class="ym-spec-value">{{ product.metafields.custom.dimensions | strip }}</div>
             </div>
           {%- endif -%}
-          {%- if product.metafields.custom.perles != blank -%}
+          {%- if settings.spec_fabrication != blank -%}
             <div>
-              <div class="ym-spec-label">{{ 'produit.matiere' | t }}</div>
-              <div class="ym-spec-value">{{ 'produit.perles' | t: count: product.metafields.custom.perles }}</div>
+              <div class="ym-spec-label">{{ 'produit.fabrication' | t }}</div>
+              <div class="ym-spec-value">{{ settings.spec_fabrication }}</div>
             </div>
           {%- endif -%}
-          {%- if settings.spec_faconnage != blank -%}
+          {%- if settings.spec_atelier != blank -%}
             <div>
-              <div class="ym-spec-label">{{ 'produit.faconnage' | t }}</div>
-              <div class="ym-spec-value">{{ settings.spec_faconnage }}</div>
+              <div class="ym-spec-label">{{ 'produit.atelier' | t }}</div>
+              <div class="ym-spec-value">{{ settings.spec_atelier }}</div>
             </div>
           {%- endif -%}
-          {%- if settings.spec_origine != blank -%}
-            <div>
-              <div class="ym-spec-label">{{ 'produit.origine' | t }}</div>
-              <div class="ym-spec-value">{{ settings.spec_origine }}</div>
+          {%- if settings.spec_matieres != blank -%}
+            <div class="ym-spec--large">
+              <div class="ym-spec-label">{{ 'produit.matieres' | t }}</div>
+              <div class="ym-spec-value">{{ settings.spec_matieres }}</div>
             </div>
           {%- endif -%}
         </div>
 
         {%- if section.settings.ecrin_titre != blank -%}
-          <div class="ym-ecrin-note">
-            {%- if section.settings.ecrin_image != blank -%}
-              {{ section.settings.ecrin_image | image_url: width: 148 | image_tag:
-                   widths: '74, 148', sizes: '74px', alt: section.settings.ecrin_titre, loading: 'lazy' }}
-            {%- else -%}
-              <img src="{{ 'box-cigale.jpeg' | asset_url }}" alt="{{ section.settings.ecrin_titre | escape }}" width="1067" height="1600" loading="lazy">
+          {%- comment -%}
+            La photo de la broche dans son écrin est une image du produit dont le
+            texte alternatif contient « écrin » — même logique que « PNG = détouré » :
+            rien à cocher, la convention suffit. Le lien de la carte y mène.
+          {%- endcomment -%}
+          {%- assign alt_ecrin = '' -%}
+          {%- for image in product.images limit: 5 -%}
+            {%- assign alt_min = image.alt | downcase -%}
+            {%- if alt_min contains 'écrin' or alt_min contains 'ecrin' -%}
+              {%- assign alt_ecrin = image.alt -%}
+              {%- break -%}
             {%- endif -%}
-            <div>
-              <div class="ym-ecrin-note-title">{{ section.settings.ecrin_titre }}</div>
-              <div class="ym-ecrin-note-sub">{{ section.settings.ecrin_texte }}</div>
+          {%- endfor -%}
+
+          <div class="ym-ecrin-card">
+            <div class="ym-ecrin-card-copy">
+              <div class="ym-ecrin-card-title">{{ section.settings.ecrin_titre }}</div>
+              {%- if section.settings.ecrin_texte != blank -%}
+                <div class="ym-ecrin-card-sub">{{ section.settings.ecrin_texte }}</div>
+              {%- endif -%}
+              {%- if alt_ecrin != blank -%}
+                <button class="ym-link ym-ecrin-card-link" type="button" data-ym-voir-ecrin="{{ alt_ecrin | escape }}">
+                  {{ 'produit.voir_ecrin' | t }}
+                </button>
+              {%- endif -%}
+            </div>
+            <div class="ym-ecrin-card-media" aria-hidden="true">
+              {%- if section.settings.ecrin_image != blank -%}
+                {{ section.settings.ecrin_image | image_url: width: 400 | image_tag:
+                     widths: '200, 400', sizes: '170px', alt: '', loading: 'lazy' }}
+              {%- else -%}
+                <img src="{{ 'cutout-packaging.png' | asset_img_url: '400x' }}" alt="" width="400" height="400" loading="lazy">
+              {%- endif -%}
             </div>
           </div>
         {%- endif -%}
@@ -187,7 +223,7 @@
   "settings": [
     { "type": "text", "id": "surtitre", "label": "Surtitre", "default": "Collection 2026" },
     { "type": "header", "content": "Rappel de l'écrin" },
-    { "type": "image_picker", "id": "ecrin_image", "label": "Photo de l'écrin" },
+    { "type": "image_picker", "id": "ecrin_image", "label": "Visuel de l'écrin", "info": "Laisser vide pour la boîte ouverte détourée, livrée avec le thème. La photo de la broche dans son écrin, elle, se met dans les images du produit avec « écrin » dans le texte alternatif." },
     { "type": "text", "id": "ecrin_titre", "label": "Titre", "default": "Livrée dans son écrin Maison Yama" },
     { "type": "text", "id": "ecrin_texte", "label": "Texte", "default": "Prête à offrir, ou à se faire offrir." }
   ]

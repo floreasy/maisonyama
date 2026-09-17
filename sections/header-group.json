@@ -6,8 +6,8 @@
       "type": "ym-announcement",
       "blocks": {
         "m1": { "type": "mention", "settings": { "texte": "Tissées main au cœur du Luberon" } },
-        "m2": { "type": "mention", "settings": { "texte": "Livraison soignée en France" } },
-        "m3": { "type": "mention", "settings": { "texte": "Chaque pièce dans son écrin" } }
+        "m2": { "type": "mention", "settings": { "texte": "Chaque pièce dans son écrin" } },
+        "m3": { "type": "mention", "settings": { "texte": "Livraison soignée" } }
       },
       "block_order": ["m1", "m2", "m3"]
     },

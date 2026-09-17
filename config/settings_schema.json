@@ -45,19 +45,25 @@
     "settings": [
       {
         "type": "paragraph",
-        "content": "Ces deux mentions sont identiques sur toutes les broches : on les règle une fois ici plutôt que produit par produit."
+        "content": "Ces trois mentions sont identiques sur toutes les broches : on les règle une fois ici plutôt que produit par produit. Les dimensions et le nombre de perles, eux, sont des métachamps du produit."
       },
       {
         "type": "text",
-        "id": "spec_faconnage",
-        "label": "Façonnage",
-        "default": "Tissé entièrement main"
+        "id": "spec_matieres",
+        "label": "Matières",
+        "default": "Perles de rocaille en verre, broche en laiton, fil de tissage en nylon"
       },
       {
         "type": "text",
-        "id": "spec_origine",
-        "label": "Origine",
-        "default": "Castellet-en-Luberon"
+        "id": "spec_fabrication",
+        "label": "Fabrication",
+        "default": "Tissée entièrement à la main"
+      },
+      {
+        "type": "text",
+        "id": "spec_atelier",
+        "label": "Atelier",
+        "default": "Castellet-en-Luberon, France"
       },
       {
         "type": "text",

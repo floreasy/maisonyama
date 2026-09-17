@@ -96,6 +96,21 @@
   var thumbs = Array.prototype.slice.call(galerie.querySelectorAll('.ym-thumb'));
   if (!main || !thumbs.length) return;
 
+  /* « Voir la broche dans son écrin » : la carte écrin promeut la vignette dont le
+     texte alternatif est celui qu'elle porte, et ramène la galerie à l'écran là où
+     elle est sortie du champ — sur téléphone, elle est bien au-dessus. */
+  document.querySelectorAll('[data-ym-voir-ecrin]').forEach(function (lien) {
+    lien.addEventListener('click', function () {
+      var cible = thumbs.filter(function (t) { return t.dataset.alt === lien.dataset.ymVoirEcrin; })[0];
+      if (!cible) return;
+      cible.click();
+      var r = galerie.getBoundingClientRect();
+      if (r.top < 0 || r.bottom > window.innerHeight) {
+        galerie.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
   thumbs.forEach(function (thumb) {
     thumb.addEventListener('click', function () {
       /* Chaque vignette porte son propre cadrage : une photo en situation se

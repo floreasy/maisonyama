@@ -46,10 +46,11 @@
     "favoris": "Ajouter aux favoris",
     "zoom": "Survolez pour voir les détails",
     "dimensions": "Dimensions",
-    "matiere": "Matière",
-    "faconnage": "Façonnage",
-    "origine": "Origine",
-    "perles": "{{ count }} perles de rocaille",
+    "matieres": "Matières",
+    "fabrication": "Fabrication",
+    "atelier": "Atelier",
+    "perles_legende": "perles de rocaille, tissées une à une",
+    "voir_ecrin": "Voir la broche dans son écrin",
     "fil_ariane": "Collection"
   },
   "collection": {

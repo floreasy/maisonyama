@@ -91,7 +91,13 @@
 .ym-details{padding-top:8px; max-width:460px;}
 .ym-details .ym-eyebrow{margin-bottom:18px;}
 .ym-details h1{font-family:var(--ym-serif); font-weight:300; font-size:clamp(46px,6vw,62px); line-height:1; margin:0 0 16px;}
-.ym-tagline{font-family:var(--ym-serif); font-style:italic; font-weight:300; font-size:clamp(21px,2.6vw,25px); line-height:1.45; color:var(--ym-olive); margin:0 0 30px;}
+.ym-tagline{font-family:var(--ym-serif); font-style:italic; font-weight:300; font-size:clamp(21px,2.6vw,25px); line-height:1.45; color:var(--ym-olive); margin:0 0 26px;}
+/* Le chiffre-clé « perles » : le nombre en grand, sa légende en surtitre, et
+   au-dessus un fil de points d'or — le fil de perles. */
+.ym-perles{display:flex; align-items:baseline; gap:14px; margin:0 0 30px; padding-top:14px; position:relative;}
+.ym-perles::before{content:""; position:absolute; top:0; left:0; width:60px; height:4px; background:radial-gradient(circle, var(--ym-gold) 1.3px, transparent 1.7px) 0 0/8px 4px repeat-x;}
+.ym-perles-nombre{font-family:var(--ym-serif); font-weight:300; font-size:clamp(38px,4.6vw,48px); line-height:1; letter-spacing:-.01em;}
+.ym-perles-legende{font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; line-height:1.6; color:var(--ym-gold-deep); max-width:150px;}
 .ym-product-price{font-family:var(--ym-serif); font-weight:300; font-size:31px; margin-bottom:6px;}
 .ym-price-note{font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ym-muted); margin-bottom:34px;}
 .ym-description{font-family:var(--ym-serif); font-weight:300; font-size:20px; line-height:1.6; color:var(--ym-olive); margin:0 0 38px;}
@@ -121,12 +127,27 @@
 .ym-specs{border-top:1px solid var(--ym-line); padding-top:28px; display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:22px 28px;}
 .ym-spec-label{font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--ym-gold-deep); margin-bottom:7px;}
 .ym-spec-value{font-family:var(--ym-serif); font-weight:300; font-size:20px;}
+/* Les matières tiennent sur une ligne longue : toute la largeur, en dessous. */
+.ym-spec--large{grid-column:1 / -1;}
+.ym-spec--large .ym-spec-value{font-size:18px; line-height:1.5;}
 
-/* ---------- Note écrin ---------- */
-.ym-ecrin-note{display:flex; align-items:center; gap:18px; background:var(--ym-mist); padding:18px 22px; margin-top:32px;}
-.ym-ecrin-note img{width:74px; height:74px; object-fit:cover; border-radius:2px; flex:0 0 auto;}
-.ym-ecrin-note-title{font-family:var(--ym-serif); font-weight:300; font-size:20px;}
-.ym-ecrin-note-sub{font-size:11px; letter-spacing:.04em; color:var(--ym-olive); margin-top:3px;}
+/* ---------- Carte écrin ---------- */
+/* La boîte ouverte, posée de biais comme sur une table ; elle se redresse et se
+   soulève quand la carte est survolée. Le lien bascule la galerie sur la photo
+   de la broche dans son écrin (gallery.js). */
+.ym-ecrin-card{display:grid; grid-template-columns:minmax(0,1fr) 150px; align-items:center; gap:18px; background:var(--ym-mist); padding:24px 22px 24px 26px; margin-top:32px; overflow:hidden;}
+.ym-ecrin-card-title{font-family:var(--ym-serif); font-weight:300; font-size:21px; line-height:1.25;}
+.ym-ecrin-card-sub{font-size:11px; letter-spacing:.04em; line-height:1.6; color:var(--ym-olive); margin-top:6px;}
+.ym-ecrin-card-link{display:inline-block; margin-top:16px; padding:0 0 3px; background:none; border:0; border-bottom:1px solid var(--ym-gold); cursor:pointer; font-family:var(--ym-sans);}
+.ym-ecrin-card-media{aspect-ratio:1; display:flex; align-items:center; justify-content:center;}
+.ym-ecrin-card-media img{width:100%; height:auto; transform:rotate(-8deg) translateY(4px); filter:drop-shadow(0 10px 14px rgba(43,42,34,.18)); transition:transform .5s cubic-bezier(.2,.7,.2,1), filter .5s ease;}
+.ym-ecrin-card:hover .ym-ecrin-card-media img{transform:rotate(-2deg) translateY(-4px); filter:drop-shadow(0 16px 20px rgba(43,42,34,.22));}
+@media (prefers-reduced-motion: reduce){
+  .ym-ecrin-card-media img, .ym-ecrin-card:hover .ym-ecrin-card-media img{transform:rotate(-6deg); transition:none;}
+}
+@media (max-width:480px){
+  .ym-ecrin-card{grid-template-columns:minmax(0,1fr) 112px; gap:14px; padding:20px 18px;}
+}
 
 /* ---------- Bande décor ---------- */
 .ym-decor{position:relative; min-height:clamp(380px,48vw,460px);}
